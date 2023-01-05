@@ -6,7 +6,7 @@ def csv_to_transposed_dataframe (csv, dataframe, set_index_names=False):
     dataframe = pd.read_csv(csv, engine='python', sep = ", ", header=None)
     if set_index_names != False :
         dataframe = dataframe.set_index(set_index_names) 
-    #dataframe = dataframe.transpose()
+    dataframe = dataframe.transpose()
     return dataframe
 
 files = [
