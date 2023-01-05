@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
 
-def csv_to_transposed_dataframe (csv, dataframe, indexes=0):
+def csv_to_transposed_dataframe (csv, dataframe, set_index_names=False):
+    #transform from csv into column-based DataFrame
     dataframe = pd.read_csv(csv, engine='python', sep = ", ", header=None)
-    if indexes != 0 :
-        dataframe = dataframe.set_index(indexes) 
-    dataframe = dataframe.transpose()
+    if set_index_names != False :
+        dataframe = dataframe.set_index(set_index_names) 
+    #dataframe = dataframe.transpose()
     return dataframe
 
 files = [
@@ -41,21 +42,30 @@ files = [
     "CSV/Items/Thaddius_10.csv",
     "CSV/Items/Thaddius_25.csv"
     ]
-   
-main_df = pd.DataFrame()
-
+    #all files that we are adding to our list
+main_df = pd.DataFrame(columns=["Item_id", "Item_Name"])
+    #our main DataFrame, that will be witten 
 for i in files:
+    #cycle to get every csv-file into our main DataFrame 
     df_situational = pd.DataFrame()
-    df_situational = csv_to_transposed_dataframe(i, df_situational, indexes = [["Item_id", "Item_Name"]])
-    main_df = pd.concat([main_df,df_situational])
+    df_situational = csv_to_transposed_dataframe(i, df_situational, set_index_names=[["Item_id", "Item_Name"]])
+    main_df = pd.concat([main_df,df_situational], ignore_index=True)
     #exit()
 
-main_df = main_df.sort_values("Item_id")
-#lenght = main_df.loc[0]
-#print (lenght.head())
-#comparison_capsule_1 = 1
-#comparison_capsule_2 = 2
-#print (comparison_capsule_2)
+main_df = main_df.sort_values("Item_id", ignore_index=True)
+lenght = main_df.loc[:, 'Item_id'].size
+#print (lenght.size)
+#print (main_df.loc[:,"Item_id"].size)
+print(main_df.head(4))
+i = 0
+while i <= lenght-1:
+    comparison_capsule_1 = main_df.iat[i,0]
+    comparison_capsule_2 = main_df.iat[i+1,0]
+    if comparison_capsule_1 == comparison_capsule_2:
+        print (comparison_capsule_2)
+        #main_df.pop(i+1)
+    i = +500
 
 #main_df.to_excel("../Items.xlsx", index=False) 
-print(main_df)
+main_df
+print(main_df.head(4))
