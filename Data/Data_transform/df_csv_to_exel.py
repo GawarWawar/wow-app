@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 
-def csv_to_dataframe (csv, dataframe):
-    dataframe = pd.read_csv(csv, engine='python', sep = ", ", index_col = False, header=None)
+def csv_to_transposed_dataframe (csv, dataframe):
+    dataframe = pd.read_csv(csv, engine='python', sep = ", ", header=None)
+    indexes = [["Item_id", "Item_Name"]]
+    dataframe = dataframe.set_index(indexes)
     dataframe = dataframe.transpose()
     return dataframe
 
@@ -39,13 +41,21 @@ files = [
     "CSV/Items/Thaddius_10.csv",
     "CSV/Items/Thaddius_25.csv"
     ]
+   
 main_df = pd.DataFrame()
 
 for i in files:
     df_situational = pd.DataFrame()
-    df_situational = csv_to_dataframe (i, df_situational)
+    df_situational = csv_to_transposed_dataframe(i, df_situational)
     main_df = pd.concat([main_df,df_situational])
+    #exit()
 
-excel = "../Items.xlsx"
-main_df.to_excel(excel, index=False)  
+main_df = main_df.sort_values("Item_id")
+#lenght = main_df.loc[0]
+#print (lenght.head())
+#comparison_capsule_1 = 1
+#comparison_capsule_2 = 2
+#print (comparison_capsule_2)
+
+#main_df.to_excel("../Items.xlsx", index=False) 
 print(main_df)
