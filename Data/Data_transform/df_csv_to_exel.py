@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 
-def csv_to_transposed_dataframe (csv, dataframe):
+def csv_to_transposed_dataframe (csv, dataframe, indexes=0):
     dataframe = pd.read_csv(csv, engine='python', sep = ", ", header=None)
-    indexes = [["Item_id", "Item_Name"]]
-    dataframe = dataframe.set_index(indexes)
+    if indexes != 0 :
+        dataframe = dataframe.set_index(indexes) 
     dataframe = dataframe.transpose()
     return dataframe
 
@@ -46,7 +46,7 @@ main_df = pd.DataFrame()
 
 for i in files:
     df_situational = pd.DataFrame()
-    df_situational = csv_to_transposed_dataframe(i, df_situational)
+    df_situational = csv_to_transposed_dataframe(i, df_situational, indexes = [["Item_id", "Item_Name"]])
     main_df = pd.concat([main_df,df_situational])
     #exit()
 
