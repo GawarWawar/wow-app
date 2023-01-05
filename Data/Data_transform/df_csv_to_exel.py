@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+import time
+
+start_timer = time.perf_counter()
 
 def csv_to_transposed_dataframe (csv, dataframe, set_index_names=False):
     #transform from csv into column-based DataFrame
@@ -69,3 +72,6 @@ while i <= lenght-1:
 #main_df.to_excel("../Items.xlsx", index=False) 
 main_df
 print(main_df.head(4))
+
+end_timer = time.perf_counter()
+print(-start_timer+end_timer)
