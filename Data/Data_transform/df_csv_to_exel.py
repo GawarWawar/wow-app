@@ -43,6 +43,7 @@ def from_many_csv_to_one_fiel_of_any_filetype (
     main_df = main_df.sort_values(set_index_names[0], ignore_index=True)
     #deliting dublocates and sorting by the first (0) element of set_index_names
     
+    #writing into specified file_type file
     if ftw_type == "csv":
         main_df.to_csv(file_to_write, index_label=False, header=True, index=False)
     elif ftw_type == "json":
@@ -51,7 +52,10 @@ def from_many_csv_to_one_fiel_of_any_filetype (
         main_df.to_excel(file_to_write, index=False) 
     else: 
         print("No such file type is supported")
-    #writing into specified file_type file
+    
+
+
+
 files = [
     "Data/Data_transform/CSV/Items/Anub'Rekhan_10.csv",
     "Data/Data_transform/CSV/Items/Anub'Rekhan_25.csv",
@@ -130,19 +134,21 @@ from_many_csv_to_one_fiel_of_any_filetype(
     set_index_names=["Item_id", "Item_Name"],
     csv_separator = wowhead_separator
 )
-"""from_many_csv_to_one_fiel_of_any_filetype(
+from_many_csv_to_one_fiel_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items.json",
     ftw_type = "json",
-    set_index_names=[["Item_id", "Item_Name"]]
+    set_index_names=["Item_id", "Item_Name"],
+    csv_separator = wowhead_separator
 )
-"""
-"""from_many_csv_to_one_fiel_of_any_filetype(
+
+from_many_csv_to_one_fiel_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items.xlsx",
     ftw_type = "exel",
-    set_index_names=[["Item_id", "Item_Name"]]
+    set_index_names=["Item_id", "Item_Name"],
+    csv_separator = wowhead_separator
 )
-"""
+
 end_timer = time.perf_counter()
 print(-start_timer+end_timer)
