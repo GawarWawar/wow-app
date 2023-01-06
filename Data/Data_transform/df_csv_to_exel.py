@@ -4,14 +4,54 @@ import time
 
 start_timer = time.perf_counter()
 
-def csv_to_transposed_dataframe (csv, dataframe, set_index_names=False):
-    #transform from csv into column-based DataFrame
-    dataframe = pd.read_csv(csv, engine='python', sep = ", ", header=None)
-    if set_index_names != False :
-        dataframe = dataframe.set_index(set_index_names) 
+def csv_with_no_header_to_transposed_dataframe (csv, dataframe, set_names_for_transposed_indexes=False, separetor = False):
+    #transform from csv into DataFrame with forward transposing it`s content
+    if separetor != False: 
+        dataframe = pd.read_csv(csv, engine='python', sep = separetor, header=None)
+    else:
+        dataframe = pd.read_csv(csv, header=None)
+    if set_names_for_transposed_indexes != False :
+        dataframe = dataframe.set_index(set_names_for_transposed_indexes) 
     dataframe = dataframe.transpose()
     return dataframe
 
+def from_many_csv_to_one_fiel_of_any_filetype (
+    files_to_read, #list of files to read from 
+    file_to_write, #file to write into
+    ftw_type,      #type of file to write into, can support: json, csv or exel (xlsx) 
+    set_index_names, #names for columns/indexes for ur dataframe
+    csv_separator=False #separator for csv files (oprional)
+):
+    main_df = pd.DataFrame(columns=set_index_names)
+    #dataframe to combine all of the file content in
+    
+    for i in files_to_read:
+        #cycle to get every csv-file into our main DataFrame 
+        df_situational = pd.DataFrame()
+        #dataframe for each step of the cycle
+        df_situational = csv_with_no_header_to_transposed_dataframe(
+            csv = i,
+            dataframe = df_situational, 
+            set_names_for_transposed_indexes=[set_index_names], 
+            separetor=csv_separator
+        )
+        #reading next file our situational dataframe (df_situational) and transposing it
+        main_df = pd.concat([main_df,df_situational], ignore_index=True)
+        #writing transposed situational dataframe (df_situational) into our main storage container
+    
+    main_df = main_df.drop_duplicates(set_index_names[0])
+    main_df = main_df.sort_values(set_index_names[0], ignore_index=True)
+    #deliting dublocates and sorting by the first (0) element of set_index_names
+    
+    if ftw_type == "csv":
+        main_df.to_csv(file_to_write, index_label=False, header=True, index=False)
+    elif ftw_type == "json":
+        main_df.to_json(file_to_write, orient="index")
+    elif ftw_type == "exel":
+        main_df.to_excel(file_to_write, index=False) 
+    else: 
+        print("No such file type is supported")
+    #writing into specified file_type file
 files = [
     "Data/Data_transform/CSV/Items/Anub'Rekhan_10.csv",
     "Data/Data_transform/CSV/Items/Anub'Rekhan_25.csv",
@@ -80,21 +120,29 @@ files = [
     ]
 """  
     #all files that we are adding to our list
-main_df = pd.DataFrame(columns=["Item_id", "Item_Name"])
-    #our main DataFrame, that will be witten 
-for i in files:
-    #cycle to get every csv-file into our main DataFrame 
-    df_situational = pd.DataFrame()
-    df_situational = csv_to_transposed_dataframe(i, df_situational, set_index_names=[["Item_id", "Item_Name"]])
-    main_df = pd.concat([main_df,df_situational], ignore_index=True)
 
-main_df = main_df.drop_duplicates("Item_id")
-main_df = main_df.sort_values("Item_id", ignore_index=True)
+wowhead_separator = ", "
 
-#main_df.to_excel("Data/Items.xlsx", index=False) 
-#main_df.to_csv("Data/Items.csv", index_label=False, header=True, index=False)
-#main_df.to_json("Data/Items.json", orient="index")
-print(main_df)
-
+from_many_csv_to_one_fiel_of_any_filetype(
+    files_to_read=files,
+    file_to_write="Data/Items.csv",
+    ftw_type = "csv",
+    set_index_names=["Item_id", "Item_Name"],
+    csv_separator = wowhead_separator
+)
+"""from_many_csv_to_one_fiel_of_any_filetype(
+    files_to_read=files,
+    file_to_write="Data/Items.json",
+    ftw_type = "json",
+    set_index_names=[["Item_id", "Item_Name"]]
+)
+"""
+"""from_many_csv_to_one_fiel_of_any_filetype(
+    files_to_read=files,
+    file_to_write="Data/Items.xlsx",
+    ftw_type = "exel",
+    set_index_names=[["Item_id", "Item_Name"]]
+)
+"""
 end_timer = time.perf_counter()
 print(-start_timer+end_timer)
