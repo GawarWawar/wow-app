@@ -20,7 +20,8 @@ def csv_with_no_header_to_transposed_dataframe (
     dataframe = dataframe.transpose()
     return dataframe
 
-def from_many_csv_to_one_fiel_of_any_filetype (
+#get data from the different files and write into 1
+def from_many_csv_to_one_file_of_any_filetype (
     files_to_read, #list of files to read from 
     file_to_write, #file to write into
     ftw_type,      #type of file to write into, can support: json, csv or exel (xlsx) 
@@ -59,8 +60,8 @@ def from_many_csv_to_one_fiel_of_any_filetype (
         print("No such file type is supported")
     
 
-
-
+    
+#all files that we are adding to our list but relative pass to main folder
 files = [
     "Data/Data_transform/CSV/Items/Anub'Rekhan_10.csv",
     "Data/Data_transform/CSV/Items/Anub'Rekhan_25.csv",
@@ -92,54 +93,17 @@ files = [
     "Data/Data_transform/CSV/Items/Thaddius_10.csv",
     "Data/Data_transform/CSV/Items/Thaddius_25.csv"
 ]
-#all files that we are adding to our list but relative pass to main folder
-"""
-files = [
-    "CSV/Items/Anub'Rekhan_10.csv",
-    "CSV/Items/Anub'Rekhan_25.csv",
-    "CSV/Items/Anub'Rekhan_10.csv",
-    "CSV/Items/Anub'Rekhan_25.csv",
-    "CSV/Items/Four_Horsemen_Chest_10.csv",
-    "CSV/Items/Four_Horsemen_Chest_25.csv",
-    "CSV/Items/Gothik_the_Harvester_10.csv",
-    "CSV/Items/Gothik_the_Harvester_25.csv",
-    "CSV/Items/Grand_Widow_Faerlina_10.csv",
-    "CSV/Items/Grand_Widow_Faerlina_25.csv",
-    "CSV/Items/Grobbulus_10.csv",
-    "CSV/Items/Grobbulus_25.csv",
-    "CSV/Items/Heigan_the_Unclean_10.csv",
-    "CSV/Items/Heigan_the_Unclean_25.csv",
-    "CSV/Items/Instructor_Razuvious_10.csv",
-    "CSV/Items/Instructor_Razuvious_25.csv",
-    "CSV/Items/Kel'Thuzad_10.csv",
-    "CSV/Items/Kel'Thuzad_25.csv",
-    "CSV/Items/Loatheb_10.csv",
-    "CSV/Items/Loatheb_25.csv",
-    "CSV/Items/Maexxna_10.csv",
-    "CSV/Items/Maexxna_25.csv",
-    "CSV/Items/Naxxramas_trash_10.csv",
-    "CSV/Items/Noth_the_Plaguebringer_10.csv",
-    "CSV/Items/Noth_the_Plaguebringer_25.csv",
-    "CSV/Items/Patchwerk_10.csv",
-    "CSV/Items/Patchwerk_25.csv",
-    "CSV/Items/Sapphiron_10.csv",
-    "CSV/Items/Sapphiron_25.csv",
-    "CSV/Items/Thaddius_10.csv",
-    "CSV/Items/Thaddius_25.csv"
-    ]
-"""  
-    #all files that we are adding to our list
 
 wowhead_separator = ", "
 
-from_many_csv_to_one_fiel_of_any_filetype(
+from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items.csv",
     ftw_type = "csv",
     set_index_names=["Item_id", "Item_Name"],
     csv_separator = wowhead_separator
 )
-from_many_csv_to_one_fiel_of_any_filetype(
+from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items.json",
     ftw_type = "json",
@@ -147,7 +111,7 @@ from_many_csv_to_one_fiel_of_any_filetype(
     csv_separator = wowhead_separator
 )
 
-from_many_csv_to_one_fiel_of_any_filetype(
+from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items.xlsx",
     ftw_type = "exel",
