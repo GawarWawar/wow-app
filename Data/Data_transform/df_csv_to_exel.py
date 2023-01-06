@@ -87,13 +87,13 @@ for i in files:
     df_situational = pd.DataFrame()
     df_situational = csv_to_transposed_dataframe(i, df_situational, set_index_names=[["Item_id", "Item_Name"]])
     main_df = pd.concat([main_df,df_situational], ignore_index=True)
-    #exit()
 
 main_df = main_df.drop_duplicates("Item_id")
 main_df = main_df.sort_values("Item_id", ignore_index=True)
 
-main_df.to_excel("Data/Items.xlsx", index=False) 
-main_df
+#main_df.to_excel("Data/Items.xlsx", index=False) 
+#main_df.to_csv("Data/Items.csv", index_label=False, header=True, index=False)
+#main_df.to_json("Data/Items.json", orient="index")
 print(main_df)
 
 end_timer = time.perf_counter()
