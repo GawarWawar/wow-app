@@ -68,35 +68,35 @@ def from_many_csv_to_one_file_of_any_filetype (
     
 #all files that we are adding to our list but relative pass to main folder
 files = [
-    "Data/Data_transform/CSV/Items/Anub'Rekhan_10.csv",
-    "Data/Data_transform/CSV/Items/Anub'Rekhan_25.csv",
-    "Data/Data_transform/CSV/Items/Four_Horsemen_Chest_10.csv",
-    "Data/Data_transform/CSV/Items/Four_Horsemen_Chest_25.csv",
-    "Data/Data_transform/CSV/Items/Gothik_the_Harvester_10.csv",
-    "Data/Data_transform/CSV/Items/Gothik_the_Harvester_25.csv",
-    "Data/Data_transform/CSV/Items/Grand_Widow_Faerlina_10.csv",
-    "Data/Data_transform/CSV/Items/Grand_Widow_Faerlina_25.csv",
-    "Data/Data_transform/CSV/Items/Grobbulus_10.csv",
-    "Data/Data_transform/CSV/Items/Grobbulus_25.csv",
-    "Data/Data_transform/CSV/Items/Heigan_the_Unclean_10.csv",
-    "Data/Data_transform/CSV/Items/Heigan_the_Unclean_25.csv",
-    "Data/Data_transform/CSV/Items/Instructor_Razuvious_10.csv",
-    "Data/Data_transform/CSV/Items/Instructor_Razuvious_25.csv",
-    "Data/Data_transform/CSV/Items/Kel'Thuzad_10.csv",
-    "Data/Data_transform/CSV/Items/Kel'Thuzad_25.csv",
-    "Data/Data_transform/CSV/Items/Loatheb_10.csv",
-    "Data/Data_transform/CSV/Items/Loatheb_25.csv",
-    "Data/Data_transform/CSV/Items/Maexxna_10.csv",
-    "Data/Data_transform/CSV/Items/Maexxna_25.csv",
-    "Data/Data_transform/CSV/Items/Naxxramas_trash_10.csv",
-    "Data/Data_transform/CSV/Items/Noth_the_Plaguebringer_10.csv",
-    "Data/Data_transform/CSV/Items/Noth_the_Plaguebringer_25.csv",
-    "Data/Data_transform/CSV/Items/Patchwerk_10.csv",
-    "Data/Data_transform/CSV/Items/Patchwerk_25.csv",
-    "Data/Data_transform/CSV/Items/Sapphiron_10.csv",
-    "Data/Data_transform/CSV/Items/Sapphiron_25.csv",
-    "Data/Data_transform/CSV/Items/Thaddius_10.csv",
-    "Data/Data_transform/CSV/Items/Thaddius_25.csv"
+    "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Four_Horsemen_Chest_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Four_Horsemen_Chest_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Gothik_the_Harvester_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Gothik_the_Harvester_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Grand_Widow_Faerlina_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Grand_Widow_Faerlina_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Grobbulus_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Grobbulus_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Heigan_the_Unclean_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Heigan_the_Unclean_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Instructor_Razuvious_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Instructor_Razuvious_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Kel'Thuzad_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Kel'Thuzad_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Loatheb_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Loatheb_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Maexxna_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Maexxna_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Naxxramas_trash_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Noth_the_Plaguebringer_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Noth_the_Plaguebringer_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Patchwerk_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Patchwerk_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Sapphiron_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Sapphiron_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Thaddius_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Thaddius_25.csv"
 ]
 
 wowhead_separator = ", "
@@ -104,14 +104,14 @@ indexes_that_we_want_to_set_up = ["Item_id", "Item_Name"]
 
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Items.csv",
+    file_to_write="Data/Items_from_Naxx.csv",
     ftw_type = "csv",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
 )
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Items.json",
+    file_to_write="Data/Items_from_Naxx.json",
     ftw_type = "json",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
@@ -119,7 +119,7 @@ from_many_csv_to_one_file_of_any_filetype(
 
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Items.xlsx",
+    file_to_write="Data/Items_from_Naxx.xlsx",
     ftw_type = "exel",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
@@ -127,22 +127,22 @@ from_many_csv_to_one_file_of_any_filetype(
 
 #creating Gluth_10 file
 files_for_gluth_10 = [
-    "Data/Data_transform/CSV/Items/Anub'Rekhan_10.csv",
-    "Data/Data_transform/CSV/Items/Four_Horsemen_Chest_10.csv",
-    "Data/Data_transform/CSV/Items/Gothik_the_Harvester_10.csv",
-    "Data/Data_transform/CSV/Items/Grand_Widow_Faerlina_10.csv",
-    "Data/Data_transform/CSV/Items/Grobbulus_10.csv",
-    "Data/Data_transform/CSV/Items/Heigan_the_Unclean_10.csv",
-    "Data/Data_transform/CSV/Items/Instructor_Razuvious_10.csv",
-    "Data/Data_transform/CSV/Items/Loatheb_10.csv",
-    "Data/Data_transform/CSV/Items/Maexxna_10.csv",
-    "Data/Data_transform/CSV/Items/Patchwerk_10.csv",
-    "Data/Data_transform/CSV/Items/Noth_the_Plaguebringer_10.csv",
-    "Data/Data_transform/CSV/Items/Thaddius_10.csv"
+    "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Four_Horsemen_Chest_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Gothik_the_Harvester_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Grand_Widow_Faerlina_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Grobbulus_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Heigan_the_Unclean_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Instructor_Razuvious_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Loatheb_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Maexxna_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Patchwerk_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Noth_the_Plaguebringer_10.csv",
+    "Data/Data_transform/Items_from_Naxx/Thaddius_10.csv"
 ]
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read = files_for_gluth_10,
-    file_to_write = "Data/Data_transform/CSV/Items/Gluth_10_not_wowhead.csv",
+    file_to_write = "Data/Data_transform/Items_from_Naxx/Gluth_10_not_wowhead.csv",
     ftw_type = "csv",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator=wowhead_separator,
@@ -150,22 +150,22 @@ from_many_csv_to_one_file_of_any_filetype(
 )
 #creating Gluth_25 file
 files_for_gluth_25 = [
-    "Data/Data_transform/CSV/Items/Anub'Rekhan_25.csv",
-    "Data/Data_transform/CSV/Items/Four_Horsemen_Chest_25.csv",
-    "Data/Data_transform/CSV/Items/Gothik_the_Harvester_25.csv",
-    "Data/Data_transform/CSV/Items/Grand_Widow_Faerlina_25.csv",
-    "Data/Data_transform/CSV/Items/Grobbulus_25.csv",
-    "Data/Data_transform/CSV/Items/Heigan_the_Unclean_25.csv",
-    "Data/Data_transform/CSV/Items/Instructor_Razuvious_25.csv",
-    "Data/Data_transform/CSV/Items/Loatheb_25.csv",
-    "Data/Data_transform/CSV/Items/Maexxna_25.csv",
-    "Data/Data_transform/CSV/Items/Patchwerk_25.csv",
-    "Data/Data_transform/CSV/Items/Noth_the_Plaguebringer_25.csv",
-    "Data/Data_transform/CSV/Items/Thaddius_25.csv"
+    "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Four_Horsemen_Chest_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Gothik_the_Harvester_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Grand_Widow_Faerlina_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Grobbulus_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Heigan_the_Unclean_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Instructor_Razuvious_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Loatheb_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Maexxna_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Patchwerk_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Noth_the_Plaguebringer_25.csv",
+    "Data/Data_transform/Items_from_Naxx/Thaddius_25.csv"
 ]
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read = files_for_gluth_25,
-    file_to_write = "Data/Data_transform/CSV/Items/Gluth_25_not_wowhead.csv",
+    file_to_write = "Data/Data_transform/Items_from_Naxx/Gluth_25_not_wowhead.csv",
     ftw_type = "csv",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator=wowhead_separator,
