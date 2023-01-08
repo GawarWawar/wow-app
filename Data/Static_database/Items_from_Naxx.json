@@ -1,1494 +1,1494 @@
 {
-  "0": {
-    "Item_id": "39139",
-    "Item_Name": "Ravaging Sabatons"
-  },
-  "1": {
-    "Item_id": "39140",
-    "Item_Name": "Knife of Incision"
-  },
-  "2": {
-    "Item_id": "39141",
-    "Item_Name": "Deflection Band"
-  },
-  "3": {
-    "Item_id": "39146",
-    "Item_Name": "Collar of Dissolution"
-  },
-  "4": {
-    "Item_id": "39188",
-    "Item_Name": "Chivalric Chestguard"
-  },
-  "5": {
-    "Item_id": "39189",
-    "Item_Name": "Boots of Persistence"
-  },
-  "6": {
-    "Item_id": "39190",
-    "Item_Name": "Agonal Sash"
-  },
-  "7": {
-    "Item_id": "39191",
-    "Item_Name": "Splint-Bound Leggings"
-  },
-  "8": {
-    "Item_id": "39192",
-    "Item_Name": "Gloves of Dark Gestures"
-  },
-  "9": {
-    "Item_id": "39193",
-    "Item_Name": "Band of Neglected Pleas"
-  },
-  "10": {
-    "Item_id": "39194",
-    "Item_Name": "Rusted-Link Spiked Gauntlets"
-  },
-  "11": {
-    "Item_id": "39195",
-    "Item_Name": "Bracers of Lost Sentiments"
-  },
-  "12": {
-    "Item_id": "39196",
-    "Item_Name": "Boots of the Worshiper"
-  },
-  "13": {
-    "Item_id": "39197",
-    "Item_Name": "Gauntlets of the Master"
-  },
-  "14": {
-    "Item_id": "39198",
-    "Item_Name": "Frostblight Pauldrons"
-  },
-  "15": {
-    "Item_id": "39199",
-    "Item_Name": "Watchful Eye"
-  },
-  "16": {
-    "Item_id": "39200",
-    "Item_Name": "Grieving Spellblade"
-  },
-  "17": {
-    "Item_id": "39215",
-    "Item_Name": "Boots of the Follower"
-  },
-  "18": {
-    "Item_id": "39216",
-    "Item_Name": "Sash of Mortal Desire"
-  },
-  "19": {
-    "Item_id": "39217",
-    "Item_Name": "Avenging Combat Leggings"
-  },
-  "20": {
-    "Item_id": "39221",
-    "Item_Name": "Wraith Spear"
-  },
-  "21": {
-    "Item_id": "39224",
-    "Item_Name": "Leggings of Discord"
-  },
-  "22": {
-    "Item_id": "39225",
-    "Item_Name": "Cloak of Armed Strife"
-  },
-  "23": {
-    "Item_id": "39226",
-    "Item_Name": "Maexxna's Femur"
-  },
-  "24": {
-    "Item_id": "39228",
-    "Item_Name": "Web Cocoon Grips"
-  },
-  "25": {
-    "Item_id": "39229",
-    "Item_Name": "Embrace of the Spider"
-  },
-  "26": {
-    "Item_id": "39230",
-    "Item_Name": "Spaulders of the Monstrosity"
-  },
-  "27": {
-    "Item_id": "39231",
-    "Item_Name": "Timeworn Silken Band"
-  },
-  "28": {
-    "Item_id": "39232",
-    "Item_Name": "Pendant of Lost Vocations"
-  },
-  "29": {
-    "Item_id": "39233",
-    "Item_Name": "Aegis of Damnation"
-  },
-  "30": {
-    "Item_id": "39234",
-    "Item_Name": "Plague-Impervious Boots"
-  },
-  "31": {
-    "Item_id": "39235",
-    "Item_Name": "Bone-Framed Bracers"
-  },
-  "32": {
-    "Item_id": "39236",
-    "Item_Name": "Trespasser's Boots"
-  },
-  "33": {
-    "Item_id": "39237",
-    "Item_Name": "Spaulders of Resumed Battle"
-  },
-  "34": {
-    "Item_id": "39239",
-    "Item_Name": "Chestplate of the Risen Soldier"
-  },
-  "35": {
-    "Item_id": "39240",
-    "Item_Name": "Noth's Curse"
-  },
-  "36": {
-    "Item_id": "39241",
-    "Item_Name": "Dark Shroud of the Scourge"
-  },
-  "37": {
-    "Item_id": "39242",
-    "Item_Name": "Robes of Hoarse Breaths"
-  },
-  "38": {
-    "Item_id": "39243",
-    "Item_Name": "Handgrips of the Foredoomed"
-  },
-  "39": {
-    "Item_id": "39244",
-    "Item_Name": "Ring of the Fated"
-  },
-  "40": {
-    "Item_id": "39245",
-    "Item_Name": "Demise"
-  },
-  "41": {
-    "Item_id": "39246",
-    "Item_Name": "Amulet of Autopsy"
-  },
-  "42": {
-    "Item_id": "39247",
-    "Item_Name": "Cuffs of Dark Shadows"
-  },
-  "43": {
-    "Item_id": "39248",
-    "Item_Name": "Tunic of the Lost Pack"
-  },
-  "44": {
-    "Item_id": "39249",
-    "Item_Name": "Shoulderplates of Bloodshed"
-  },
-  "45": {
-    "Item_id": "39250",
-    "Item_Name": "Ring of Holy Cleansing"
-  },
-  "46": {
-    "Item_id": "39251",
-    "Item_Name": "Necrogenic Belt"
-  },
-  "47": {
-    "Item_id": "39252",
-    "Item_Name": "Preceptor's Bindings"
-  },
-  "48": {
-    "Item_id": "39254",
-    "Item_Name": "Saltarello Shoes"
-  },
-  "49": {
-    "Item_id": "39255",
-    "Item_Name": "Staff of the Plague Beast"
-  },
-  "50": {
-    "Item_id": "39256",
-    "Item_Name": "Sulfur Stave"
-  },
-  "51": {
-    "Item_id": "39257",
-    "Item_Name": "Loatheb's Shadow"
-  },
-  "52": {
-    "Item_id": "39258",
-    "Item_Name": "Legplates of Inescapable Death"
-  },
-  "53": {
-    "Item_id": "39259",
-    "Item_Name": "Fungi-Stained Coverings"
-  },
-  "54": {
-    "Item_id": "39260",
-    "Item_Name": "Helm of the Corrupted Mind"
-  },
-  "55": {
-    "Item_id": "39261",
-    "Item_Name": "Tainted Girdle of Mending"
-  },
-  "56": {
-    "Item_id": "39262",
-    "Item_Name": "Gauntlets of Combined Strength"
-  },
-  "57": {
-    "Item_id": "39267",
-    "Item_Name": "Abomination Shoulderblades"
-  },
-  "58": {
-    "Item_id": "39270",
-    "Item_Name": "Hatestrike"
-  },
-  "59": {
-    "Item_id": "39271",
-    "Item_Name": "Blade of Dormant Memories"
-  },
-  "60": {
-    "Item_id": "39272",
-    "Item_Name": "Drape of Surgery"
-  },
-  "61": {
-    "Item_id": "39273",
-    "Item_Name": "Sullen Cloth Boots"
-  },
-  "62": {
-    "Item_id": "39274",
-    "Item_Name": "Retcher's Shoulderpads"
-  },
-  "63": {
-    "Item_id": "39275",
-    "Item_Name": "Contagion Gloves"
-  },
-  "64": {
-    "Item_id": "39276",
-    "Item_Name": "The Skull of Ruin"
-  },
-  "65": {
-    "Item_id": "39277",
-    "Item_Name": "Sealing Ring of Grobbulus"
-  },
-  "66": {
-    "Item_id": "39278",
-    "Item_Name": "Bands of Anxiety"
-  },
-  "67": {
-    "Item_id": "39279",
-    "Item_Name": "Blistered Belt of Decay"
-  },
-  "68": {
-    "Item_id": "39280",
-    "Item_Name": "Leggings of Innumerable Barbs"
-  },
-  "69": {
-    "Item_id": "39281",
-    "Item_Name": "Infection Repulser"
-  },
-  "70": {
-    "Item_id": "39282",
-    "Item_Name": "Bone-Linked Amulet"
-  },
-  "71": {
-    "Item_id": "39283",
-    "Item_Name": "Putrescent Bands"
-  },
-  "72": {
-    "Item_id": "39284",
-    "Item_Name": "Miasma Mantle"
-  },
-  "73": {
-    "Item_id": "39285",
-    "Item_Name": "Handgrips of Turmoil"
-  },
-  "74": {
-    "Item_id": "39291",
-    "Item_Name": "Torment of the Banished"
-  },
-  "75": {
-    "Item_id": "39292",
-    "Item_Name": "Repelling Charge"
-  },
-  "76": {
-    "Item_id": "39293",
-    "Item_Name": "Blackened Legplates of Feugen"
-  },
-  "77": {
-    "Item_id": "39294",
-    "Item_Name": "Arc-Scorched Helmet"
-  },
-  "78": {
-    "Item_id": "39295",
-    "Item_Name": "Cowl of Sheet Lightning"
-  },
-  "79": {
-    "Item_id": "39296",
-    "Item_Name": "Accursed Bow of the Elite"
-  },
-  "80": {
-    "Item_id": "39297",
-    "Item_Name": "Cloak of Darkening"
-  },
-  "81": {
-    "Item_id": "39298",
-    "Item_Name": "Waistguard of the Tutor"
-  },
-  "82": {
-    "Item_id": "39299",
-    "Item_Name": "Rapid Attack Gloves"
-  },
-  "83": {
-    "Item_id": "39306",
-    "Item_Name": "Plated Gloves of Relief"
-  },
-  "84": {
-    "Item_id": "39307",
-    "Item_Name": "Iron Rings of Endurance"
-  },
-  "85": {
-    "Item_id": "39308",
-    "Item_Name": "Girdle of Lenience"
-  },
-  "86": {
-    "Item_id": "39309",
-    "Item_Name": "Leggings of the Instructor"
-  },
-  "87": {
-    "Item_id": "39310",
-    "Item_Name": "Mantle of the Extensive Mind"
-  },
-  "88": {
-    "Item_id": "39311",
-    "Item_Name": "Scepter of Murmuring Spirits"
-  },
-  "89": {
-    "Item_id": "39344",
-    "Item_Name": "Slayer of the Lifeless"
-  },
-  "90": {
-    "Item_id": "39345",
-    "Item_Name": "Girdle of the Ascended Phantom"
-  },
-  "91": {
-    "Item_id": "39369",
-    "Item_Name": "Sabatons of Deathlike Gloom"
-  },
-  "92": {
-    "Item_id": "39379",
-    "Item_Name": "Spectral Rider's Girdle"
-  },
-  "93": {
-    "Item_id": "39386",
-    "Item_Name": "Tunic of Dislocation"
-  },
-  "94": {
-    "Item_id": "39388",
-    "Item_Name": "Spirit-World Glass"
-  },
-  "95": {
-    "Item_id": "39389",
-    "Item_Name": "Signet of the Malevolent"
-  },
-  "96": {
-    "Item_id": "39390",
-    "Item_Name": "Resurgent Phantom Bindings"
-  },
-  "97": {
-    "Item_id": "39391",
-    "Item_Name": "Heinous Mail Chestguard"
-  },
-  "98": {
-    "Item_id": "39392",
-    "Item_Name": "Veiled Amulet of Life"
-  },
-  "99": {
-    "Item_id": "39393",
-    "Item_Name": "Claymore of Ancient Power"
-  },
-  "100": {
-    "Item_id": "39394",
-    "Item_Name": "Charmed Cierge"
-  },
-  "101": {
-    "Item_id": "39395",
-    "Item_Name": "Thane's Tainted Greathelm"
-  },
-  "102": {
-    "Item_id": "39396",
-    "Item_Name": "Gown of Blaumeux"
-  },
-  "103": {
-    "Item_id": "39397",
-    "Item_Name": "Pauldrons of Havoc"
-  },
-  "104": {
-    "Item_id": "39398",
-    "Item_Name": "Massive Skeletal Ribcage"
-  },
-  "105": {
-    "Item_id": "39399",
-    "Item_Name": "Helm of the Vast Legions"
-  },
-  "106": {
-    "Item_id": "39401",
-    "Item_Name": "Circle of Death"
-  },
-  "107": {
-    "Item_id": "39403",
-    "Item_Name": "Helm of the Unsubmissive"
-  },
-  "108": {
-    "Item_id": "39404",
-    "Item_Name": "Cloak of Mastery"
-  },
-  "109": {
-    "Item_id": "39405",
-    "Item_Name": "Helmet of the Inner Sanctum"
-  },
-  "110": {
-    "Item_id": "39407",
-    "Item_Name": "Circle of Life"
-  },
-  "111": {
-    "Item_id": "39408",
-    "Item_Name": "Leggings of Sapphiron"
-  },
-  "112": {
-    "Item_id": "39409",
-    "Item_Name": "Cowl of Winged Fear"
-  },
-  "113": {
-    "Item_id": "39415",
-    "Item_Name": "Shroud of the Citadel"
-  },
-  "114": {
-    "Item_id": "39416",
-    "Item_Name": "Kel'Thuzad's Reach"
-  },
-  "115": {
-    "Item_id": "39417",
-    "Item_Name": "Death's Bite"
-  },
-  "116": {
-    "Item_id": "39419",
-    "Item_Name": "Nerubian Conquerer"
-  },
-  "117": {
-    "Item_id": "39420",
-    "Item_Name": "Anarchy"
-  },
-  "118": {
-    "Item_id": "39421",
-    "Item_Name": "Gem of Imprisoned Vassals"
-  },
-  "119": {
-    "Item_id": "39422",
-    "Item_Name": "Staff of the Plaguehound"
-  },
-  "120": {
-    "Item_id": "39423",
-    "Item_Name": "Hammer of the Astral Plane"
-  },
-  "121": {
-    "Item_id": "39424",
-    "Item_Name": "The Soulblade"
-  },
-  "122": {
-    "Item_id": "39425",
-    "Item_Name": "Cloak of the Dying"
-  },
-  "123": {
-    "Item_id": "39426",
-    "Item_Name": "Wand of the Archlich"
-  },
-  "124": {
-    "Item_id": "39427",
-    "Item_Name": "Omen of Ruin"
-  },
-  "125": {
-    "Item_id": "39467",
-    "Item_Name": "Minion Bracers"
-  },
-  "126": {
-    "Item_id": "39468",
-    "Item_Name": "The Stray"
-  },
-  "127": {
-    "Item_id": "39470",
-    "Item_Name": "Medallion of the Disgraced"
-  },
-  "128": {
-    "Item_id": "39472",
-    "Item_Name": "Chain of Latent Energies"
-  },
-  "129": {
-    "Item_id": "39473",
-    "Item_Name": "Contortion"
-  },
-  "130": {
-    "Item_id": "39701",
-    "Item_Name": "Dawnwalkers"
-  },
-  "131": {
-    "Item_id": "39702",
-    "Item_Name": "Arachnoid Gold Band"
-  },
-  "132": {
-    "Item_id": "39703",
-    "Item_Name": "Rescinding Grips"
-  },
-  "133": {
-    "Item_id": "39704",
-    "Item_Name": "Pauldrons of Unnatural Death"
-  },
-  "134": {
-    "Item_id": "39706",
-    "Item_Name": "Sabatons of Sudden Reprisal"
-  },
-  "135": {
-    "Item_id": "39712",
-    "Item_Name": "Gemmed Wand of the Nerubians"
-  },
-  "136": {
-    "Item_id": "39714",
-    "Item_Name": "Webbed Death"
-  },
-  "137": {
-    "Item_id": "39716",
-    "Item_Name": "Shield of Assimilation"
-  },
-  "138": {
-    "Item_id": "39717",
-    "Item_Name": "Inexorable Sabatons"
-  },
-  "139": {
-    "Item_id": "39718",
-    "Item_Name": "Corpse Scarab Handguards"
-  },
-  "140": {
-    "Item_id": "39719",
-    "Item_Name": "Mantle of the Locusts"
-  },
-  "141": {
-    "Item_id": "39720",
-    "Item_Name": "Leggings of Atrophy"
-  },
-  "142": {
-    "Item_id": "39721",
-    "Item_Name": "Sash of the Parlor"
-  },
-  "143": {
-    "Item_id": "39722",
-    "Item_Name": "Swarm Bindings"
-  },
-  "144": {
-    "Item_id": "39723",
-    "Item_Name": "Fire-Scorched Greathelm"
-  },
-  "145": {
-    "Item_id": "39724",
-    "Item_Name": "Cult's Chestguard"
-  },
-  "146": {
-    "Item_id": "39725",
-    "Item_Name": "Epaulets of the Grieving Servant"
-  },
-  "147": {
-    "Item_id": "39726",
-    "Item_Name": "Callous-Hearted Gauntlets"
-  },
-  "148": {
-    "Item_id": "39727",
-    "Item_Name": "Dislocating Handguards"
-  },
-  "149": {
-    "Item_id": "39728",
-    "Item_Name": "Totem of Misery"
-  },
-  "150": {
-    "Item_id": "39729",
-    "Item_Name": "Bracers of the Tyrant"
-  },
-  "151": {
-    "Item_id": "39730",
-    "Item_Name": "Widow's Fury"
-  },
-  "152": {
-    "Item_id": "39731",
-    "Item_Name": "Punctilious Bindings"
-  },
-  "153": {
-    "Item_id": "39732",
-    "Item_Name": "Faerlina's Madness"
-  },
-  "154": {
-    "Item_id": "39733",
-    "Item_Name": "Gloves of Token Respect"
-  },
-  "155": {
-    "Item_id": "39734",
-    "Item_Name": "Atonement Greaves"
-  },
-  "156": {
-    "Item_id": "39735",
-    "Item_Name": "Belt of False Dignity"
-  },
-  "157": {
-    "Item_id": "39756",
-    "Item_Name": "Tunic of Prejudice"
-  },
-  "158": {
-    "Item_id": "39757",
-    "Item_Name": "Idol of Worship"
-  },
-  "159": {
-    "Item_id": "39758",
-    "Item_Name": "The Jawbone"
-  },
-  "160": {
-    "Item_id": "39759",
-    "Item_Name": "Ablative Chitin Girdle"
-  },
-  "161": {
-    "Item_id": "39760",
-    "Item_Name": "Helm of Diminished Pride"
-  },
-  "162": {
-    "Item_id": "39761",
-    "Item_Name": "Infectious Skitterer Leggings"
-  },
-  "163": {
-    "Item_id": "39762",
-    "Item_Name": "Torn Web Wrapping"
-  },
-  "164": {
-    "Item_id": "39763",
-    "Item_Name": "Wraith Strike"
-  },
-  "165": {
-    "Item_id": "39764",
-    "Item_Name": "Bindings of the Hapless Prey"
-  },
-  "166": {
-    "Item_id": "39765",
-    "Item_Name": "Sinner's Bindings"
-  },
-  "167": {
-    "Item_id": "39766",
-    "Item_Name": "Matriarch's Spawn"
-  },
-  "168": {
-    "Item_id": "39767",
-    "Item_Name": "Undiminished Battleplate"
-  },
-  "169": {
-    "Item_id": "39768",
-    "Item_Name": "Cowl of the Perished"
-  },
-  "170": {
-    "Item_id": "40060",
-    "Item_Name": "Distorted Limbs"
-  },
-  "171": {
-    "Item_id": "40061",
-    "Item_Name": "Quivering Tunic"
-  },
-  "172": {
-    "Item_id": "40062",
-    "Item_Name": "Digested Silken Robes"
-  },
-  "173": {
-    "Item_id": "40063",
-    "Item_Name": "Mantle of Shattered Kinship"
-  },
-  "174": {
-    "Item_id": "40064",
-    "Item_Name": "Thunderstorm Amulet"
-  },
-  "175": {
-    "Item_id": "40065",
-    "Item_Name": "Fool's Trial"
-  },
-  "176": {
-    "Item_id": "40069",
-    "Item_Name": "Heritage"
-  },
-  "177": {
-    "Item_id": "40071",
-    "Item_Name": "Chains of Adoration"
-  },
-  "178": {
-    "Item_id": "40074",
-    "Item_Name": "Strong-Handed Ring"
-  },
-  "179": {
-    "Item_id": "40075",
-    "Item_Name": "Ruthlessness"
-  },
-  "180": {
-    "Item_id": "40080",
-    "Item_Name": "Lost Jewel"
-  },
-  "181": {
-    "Item_id": "40107",
-    "Item_Name": "Sand-Worn Band"
-  },
-  "182": {
-    "Item_id": "40108",
-    "Item_Name": "Seized Beauty"
-  },
-  "183": {
-    "Item_id": "40184",
-    "Item_Name": "Crippled Treads"
-  },
-  "184": {
-    "Item_id": "40185",
-    "Item_Name": "Shoulderguards of Opportunity"
-  },
-  "185": {
-    "Item_id": "40186",
-    "Item_Name": "Thrusting Bands"
-  },
-  "186": {
-    "Item_id": "40187",
-    "Item_Name": "Poignant Sabatons"
-  },
-  "187": {
-    "Item_id": "40188",
-    "Item_Name": "Gauntlets of the Disobedient"
-  },
-  "188": {
-    "Item_id": "40189",
-    "Item_Name": "Angry Dread"
-  },
-  "189": {
-    "Item_id": "40190",
-    "Item_Name": "Spinning Fate"
-  },
-  "190": {
-    "Item_id": "40191",
-    "Item_Name": "Libram of Radiance"
-  },
-  "191": {
-    "Item_id": "40192",
-    "Item_Name": "Accursed Spine"
-  },
-  "192": {
-    "Item_id": "40193",
-    "Item_Name": "Tunic of Masked Suffering"
-  },
-  "193": {
-    "Item_id": "40196",
-    "Item_Name": "Legguards of the Undisturbed"
-  },
-  "194": {
-    "Item_id": "40197",
-    "Item_Name": "Gloves of the Fallen Wizard"
-  },
-  "195": {
-    "Item_id": "40198",
-    "Item_Name": "Bands of Impurity"
-  },
-  "196": {
-    "Item_id": "40200",
-    "Item_Name": "Belt of Potent Chanting"
-  },
-  "197": {
-    "Item_id": "40201",
-    "Item_Name": "Leggings of Colossal Strides"
-  },
-  "198": {
-    "Item_id": "40203",
-    "Item_Name": "Breastplate of Tormented Rage"
-  },
-  "199": {
-    "Item_id": "40204",
-    "Item_Name": "Legguards of the Apostle"
-  },
-  "200": {
-    "Item_id": "40205",
-    "Item_Name": "Stalk-Skin Belt"
-  },
-  "201": {
-    "Item_id": "40206",
-    "Item_Name": "Iron-Spring Jumpers"
-  },
-  "202": {
-    "Item_id": "40207",
-    "Item_Name": "Sigil of Awareness"
-  },
-  "203": {
-    "Item_id": "40208",
-    "Item_Name": "Cryptfiend's Bite"
-  },
-  "204": {
-    "Item_id": "40209",
-    "Item_Name": "Bindings of the Decrepit"
-  },
-  "205": {
-    "Item_id": "40210",
-    "Item_Name": "Chestguard of Bitter Charms"
-  },
-  "206": {
-    "Item_id": "40233",
-    "Item_Name": "The Undeath Carrier"
-  },
-  "207": {
-    "Item_id": "40234",
-    "Item_Name": "Heigan's Putrid Vestments"
-  },
-  "208": {
-    "Item_id": "40235",
-    "Item_Name": "Helm of Pilgrimage"
-  },
-  "209": {
-    "Item_id": "40236",
-    "Item_Name": "Serene Echoes"
-  },
-  "210": {
-    "Item_id": "40237",
-    "Item_Name": "Eruption-Scarred Boots"
-  },
-  "211": {
-    "Item_id": "40238",
-    "Item_Name": "Gloves of the Dancing Bear"
-  },
-  "212": {
-    "Item_id": "40239",
-    "Item_Name": "The Hand of Nerub"
-  },
-  "213": {
-    "Item_id": "40240",
-    "Item_Name": "Greaves of Turbulence"
-  },
-  "214": {
-    "Item_id": "40241",
-    "Item_Name": "Girdle of Unity"
-  },
-  "215": {
-    "Item_id": "40242",
-    "Item_Name": "Grotesque Handgrips"
-  },
-  "216": {
-    "Item_id": "40243",
-    "Item_Name": "Footwraps of Vile Deceit"
-  },
-  "217": {
-    "Item_id": "40244",
-    "Item_Name": "The Impossible Dream"
-  },
-  "218": {
-    "Item_id": "40245",
-    "Item_Name": "Fading Glow"
-  },
-  "219": {
-    "Item_id": "40246",
-    "Item_Name": "Boots of Impetuous Ideals"
-  },
-  "220": {
-    "Item_id": "40247",
-    "Item_Name": "Cowl of Innocent Delight"
-  },
-  "221": {
-    "Item_id": "40249",
-    "Item_Name": "Vest of Vitality"
-  },
-  "222": {
-    "Item_id": "40250",
-    "Item_Name": "Aged Winter Cloak"
-  },
-  "223": {
-    "Item_id": "40251",
-    "Item_Name": "Shroud of Luminosity"
-  },
-  "224": {
-    "Item_id": "40252",
-    "Item_Name": "Cloak of the Shadowed Sun"
-  },
-  "225": {
-    "Item_id": "40253",
-    "Item_Name": "Shawl of the Old Maid"
-  },
-  "226": {
-    "Item_id": "40254",
-    "Item_Name": "Cloak of Averted Crisis"
-  },
-  "227": {
-    "Item_id": "40255",
-    "Item_Name": "Dying Curse"
-  },
-  "228": {
-    "Item_id": "40256",
-    "Item_Name": "Grim Toll"
-  },
-  "229": {
-    "Item_id": "40257",
-    "Item_Name": "Defender's Code"
-  },
-  "230": {
-    "Item_id": "40258",
-    "Item_Name": "Forethought Talisman"
-  },
-  "231": {
-    "Item_id": "40259",
-    "Item_Name": "Waistguard of Divine Grace"
-  },
-  "232": {
-    "Item_id": "40260",
-    "Item_Name": "Belt of the Tortured"
-  },
-  "233": {
-    "Item_id": "40261",
-    "Item_Name": "Crude Discolored Battlegrips"
-  },
-  "234": {
-    "Item_id": "40262",
-    "Item_Name": "Gloves of Calculated Risk"
-  },
-  "235": {
-    "Item_id": "40263",
-    "Item_Name": "Fleshless Girdle"
-  },
-  "236": {
-    "Item_id": "40264",
-    "Item_Name": "Split Greathammer"
-  },
-  "237": {
-    "Item_id": "40265",
-    "Item_Name": "Arrowsong"
-  },
-  "238": {
-    "Item_id": "40266",
-    "Item_Name": "Hero's Surrender"
-  },
-  "239": {
-    "Item_id": "40267",
-    "Item_Name": "Totem of Hex"
-  },
-  "240": {
-    "Item_id": "40268",
-    "Item_Name": "Libram of Tolerance"
-  },
-  "241": {
-    "Item_id": "40269",
-    "Item_Name": "Boots of Persuasion"
-  },
-  "242": {
-    "Item_id": "40270",
-    "Item_Name": "Boots of Septic Wounds"
-  },
-  "243": {
-    "Item_id": "40271",
-    "Item_Name": "Sash of Solitude"
-  },
-  "244": {
-    "Item_id": "40272",
-    "Item_Name": "Girdle of the Gambit"
-  },
-  "245": {
-    "Item_id": "40273",
-    "Item_Name": "Surplus Limb"
-  },
-  "246": {
-    "Item_id": "40274",
-    "Item_Name": "Bracers of Liberation"
-  },
-  "247": {
-    "Item_id": "40275",
-    "Item_Name": "Depraved Linked Belt"
-  },
-  "248": {
-    "Item_id": "40277",
-    "Item_Name": "Tunic of Indulgence"
-  },
-  "249": {
-    "Item_id": "40278",
-    "Item_Name": "Girdle of Chivalry"
-  },
-  "250": {
-    "Item_id": "40279",
-    "Item_Name": "Chestguard of the Exhausted"
-  },
-  "251": {
-    "Item_id": "40280",
-    "Item_Name": "Origin of Nightmares"
-  },
-  "252": {
-    "Item_id": "40281",
-    "Item_Name": "Twilight Mist"
-  },
-  "253": {
-    "Item_id": "40282",
-    "Item_Name": "Slime Stream Bands"
-  },
-  "254": {
-    "Item_id": "40283",
-    "Item_Name": "Fallout Impervious Tunic"
-  },
-  "255": {
-    "Item_id": "40284",
-    "Item_Name": "Plague Igniter"
-  },
-  "256": {
-    "Item_id": "40285",
-    "Item_Name": "Desecrated Past"
-  },
-  "257": {
-    "Item_id": "40286",
-    "Item_Name": "Mantle of the Corrupted"
-  },
-  "258": {
-    "Item_id": "40287",
-    "Item_Name": "Cowl of Vanity"
-  },
-  "259": {
-    "Item_id": "40288",
-    "Item_Name": "Spaulders of Incoherence"
-  },
-  "260": {
-    "Item_id": "40289",
-    "Item_Name": "Sympathetic Amice"
-  },
-  "261": {
-    "Item_id": "40294",
-    "Item_Name": "Riveted Abomination Leggings"
-  },
-  "262": {
-    "Item_id": "40296",
-    "Item_Name": "Cover of Silence"
-  },
-  "263": {
-    "Item_id": "40297",
-    "Item_Name": "Sabatons of Endurance"
-  },
-  "264": {
-    "Item_id": "40298",
-    "Item_Name": "Faceguard of the Succumbed"
-  },
-  "265": {
-    "Item_id": "40299",
-    "Item_Name": "Pauldrons of the Abandoned"
-  },
-  "266": {
-    "Item_id": "40300",
-    "Item_Name": "Spire of Sunset"
-  },
-  "267": {
-    "Item_id": "40301",
-    "Item_Name": "Cincture of Polarity"
-  },
-  "268": {
-    "Item_id": "40302",
-    "Item_Name": "Benefactor's Gauntlets"
-  },
-  "269": {
-    "Item_id": "40303",
-    "Item_Name": "Wraps of the Persecuted"
-  },
-  "270": {
-    "Item_id": "40304",
-    "Item_Name": "Headpiece of Fungal Bloom"
-  },
-  "271": {
-    "Item_id": "40305",
-    "Item_Name": "Spaulders of Egotism"
-  },
-  "272": {
-    "Item_id": "40306",
-    "Item_Name": "Bracers of the Unholy Knight"
-  },
-  "273": {
-    "Item_id": "40315",
-    "Item_Name": "Shoulderpads of Secret Arts"
-  },
-  "274": {
-    "Item_id": "40316",
-    "Item_Name": "Gauntlets of Guiding Touch"
-  },
-  "275": {
-    "Item_id": "40317",
-    "Item_Name": "Girdle of Razuvious"
-  },
-  "276": {
-    "Item_id": "40318",
-    "Item_Name": "Legplates of Double Strikes"
-  },
-  "277": {
-    "Item_id": "40319",
-    "Item_Name": "Chestpiece of Suspicion"
-  },
-  "278": {
-    "Item_id": "40320",
-    "Item_Name": "Faithful Steel Sabatons"
-  },
-  "279": {
-    "Item_id": "40321",
-    "Item_Name": "Idol of the Shooting Star"
-  },
-  "280": {
-    "Item_id": "40322",
-    "Item_Name": "Totem of Dueling"
-  },
-  "281": {
-    "Item_id": "40323",
-    "Item_Name": "Esteemed Bindings"
-  },
-  "282": {
-    "Item_id": "40324",
-    "Item_Name": "Bands of Mutual Respect"
-  },
-  "283": {
-    "Item_id": "40325",
-    "Item_Name": "Bindings of the Expansive Mind"
-  },
-  "284": {
-    "Item_id": "40326",
-    "Item_Name": "Boots of Forlorn Wishes"
-  },
-  "285": {
-    "Item_id": "40327",
-    "Item_Name": "Girdle of Recuperation"
-  },
-  "286": {
-    "Item_id": "40328",
-    "Item_Name": "Helm of Vital Protection"
-  },
-  "287": {
-    "Item_id": "40329",
-    "Item_Name": "Hood of the Exodus"
-  },
-  "288": {
-    "Item_id": "40330",
-    "Item_Name": "Bracers of Unrelenting Attack"
-  },
-  "289": {
-    "Item_id": "40331",
-    "Item_Name": "Leggings of Failed Escape"
-  },
-  "290": {
-    "Item_id": "40332",
-    "Item_Name": "Abetment Bracers"
-  },
-  "291": {
-    "Item_id": "40333",
-    "Item_Name": "Leggings of Fleeting Moments"
-  },
-  "292": {
-    "Item_id": "40334",
-    "Item_Name": "Burdened Shoulderplates"
-  },
-  "293": {
-    "Item_id": "40335",
-    "Item_Name": "Touch of Horror"
-  },
-  "294": {
-    "Item_id": "40336",
-    "Item_Name": "Life and Death"
-  },
-  "295": {
-    "Item_id": "40337",
-    "Item_Name": "Libram of Resurgence"
-  },
-  "296": {
-    "Item_id": "40338",
-    "Item_Name": "Bindings of Yearning"
-  },
-  "297": {
-    "Item_id": "40339",
-    "Item_Name": "Gothik's Cowl"
-  },
-  "298": {
-    "Item_id": "40340",
-    "Item_Name": "Helm of Unleashed Energy"
-  },
-  "299": {
-    "Item_id": "40341",
-    "Item_Name": "Shackled Cinch"
-  },
-  "300": {
-    "Item_id": "40342",
-    "Item_Name": "Idol of Awakening"
-  },
-  "301": {
-    "Item_id": "40343",
-    "Item_Name": "Armageddon"
-  },
-  "302": {
-    "Item_id": "40344",
-    "Item_Name": "Helm of the Grave"
-  },
-  "303": {
-    "Item_id": "40345",
-    "Item_Name": "Broken Promise"
-  },
-  "304": {
-    "Item_id": "40346",
-    "Item_Name": "Final Voyage"
-  },
-  "305": {
-    "Item_id": "40347",
-    "Item_Name": "Zeliek's Gauntlets"
-  },
-  "306": {
-    "Item_id": "40348",
-    "Item_Name": "Damnation"
-  },
-  "307": {
-    "Item_id": "40349",
-    "Item_Name": "Gloves of Peaceful Death"
-  },
-  "308": {
-    "Item_id": "40350",
-    "Item_Name": "Urn of Lost Memories"
-  },
-  "309": {
-    "Item_id": "40351",
-    "Item_Name": "Mantle of the Fatigued Sage"
-  },
-  "310": {
-    "Item_id": "40352",
-    "Item_Name": "Leggings of Voracious Shadows"
-  },
-  "311": {
-    "Item_id": "40362",
-    "Item_Name": "Gloves of Fast Reactions"
-  },
-  "312": {
-    "Item_id": "40363",
-    "Item_Name": "Bone-Inlaid Legguards"
-  },
-  "313": {
-    "Item_id": "40365",
-    "Item_Name": "Breastplate of Frozen Pain"
-  },
-  "314": {
-    "Item_id": "40366",
-    "Item_Name": "Platehelm of the Great Wyrm"
-  },
-  "315": {
-    "Item_id": "40367",
-    "Item_Name": "Boots of the Great Construct"
-  },
-  "316": {
-    "Item_id": "40368",
-    "Item_Name": "Murder"
-  },
-  "317": {
-    "Item_id": "40369",
-    "Item_Name": "Icy Blast Amulet"
-  },
-  "318": {
-    "Item_id": "40370",
-    "Item_Name": "Gatekeeper"
-  },
-  "319": {
-    "Item_id": "40371",
-    "Item_Name": "Bandit's Insignia"
-  },
-  "320": {
-    "Item_id": "40372",
-    "Item_Name": "Rune of Repulsion"
-  },
-  "321": {
-    "Item_id": "40373",
-    "Item_Name": "Extract of Necromantic Power"
-  },
-  "322": {
-    "Item_id": "40374",
-    "Item_Name": "Cosmic Lights"
-  },
-  "323": {
-    "Item_id": "40375",
-    "Item_Name": "Ring of Decaying Beauty"
-  },
-  "324": {
-    "Item_id": "40376",
-    "Item_Name": "Legwraps of the Defeated Dragon"
-  },
-  "325": {
-    "Item_id": "40377",
-    "Item_Name": "Noble Birthright Pauldrons"
-  },
-  "326": {
-    "Item_id": "40378",
-    "Item_Name": "Ceaseless Pity"
-  },
-  "327": {
-    "Item_id": "40379",
-    "Item_Name": "Legguards of the Boneyard"
-  },
-  "328": {
-    "Item_id": "40380",
-    "Item_Name": "Gloves of Grandeur"
-  },
-  "329": {
-    "Item_id": "40381",
-    "Item_Name": "Sympathy"
-  },
-  "330": {
-    "Item_id": "40382",
-    "Item_Name": "Soul of the Dead"
-  },
-  "331": {
-    "Item_id": "40383",
-    "Item_Name": "Calamity's Grasp"
-  },
-  "332": {
-    "Item_id": "40384",
-    "Item_Name": "Betrayer of Humanity"
-  },
-  "333": {
-    "Item_id": "40385",
-    "Item_Name": "Envoy of Mortality"
-  },
-  "334": {
-    "Item_id": "40386",
-    "Item_Name": "Sinister Revenge"
-  },
-  "335": {
-    "Item_id": "40387",
-    "Item_Name": "Boundless Ambition"
-  },
-  "336": {
-    "Item_id": "40388",
-    "Item_Name": "Journey's End"
-  },
-  "337": {
-    "Item_id": "40395",
-    "Item_Name": "Torch of Holy Fire"
-  },
-  "338": {
-    "Item_id": "40396",
-    "Item_Name": "The Turning Tide"
-  },
-  "339": {
-    "Item_id": "40398",
-    "Item_Name": "Leggings of Mortal Arrogance"
-  },
-  "340": {
-    "Item_id": "40399",
-    "Item_Name": "Signet of Manifested Pain"
-  },
-  "341": {
-    "Item_id": "40400",
-    "Item_Name": "Wall of Terror"
-  },
-  "342": {
-    "Item_id": "40401",
-    "Item_Name": "Voice of Reason"
-  },
-  "343": {
-    "Item_id": "40402",
-    "Item_Name": "Last Laugh"
-  },
-  "344": {
-    "Item_id": "40403",
-    "Item_Name": "Drape of the Deadly Foe"
-  },
-  "345": {
-    "Item_id": "40405",
-    "Item_Name": "Cape of the Unworthy Wizard"
-  },
-  "346": {
-    "Item_id": "40602",
-    "Item_Name": "Robes of Mutation"
-  },
-  "347": {
-    "Item_id": "40610",
-    "Item_Name": "Chestguard of the Lost Conqueror"
-  },
-  "348": {
-    "Item_id": "40611",
-    "Item_Name": "Chestguard of the Lost Protector"
-  },
-  "349": {
-    "Item_id": "40612",
-    "Item_Name": "Chestguard of the Lost Vanquisher"
-  },
-  "350": {
-    "Item_id": "40616",
-    "Item_Name": "Helm of the Lost Conqueror"
-  },
-  "351": {
-    "Item_id": "40617",
-    "Item_Name": "Helm of the Lost Protector"
-  },
-  "352": {
-    "Item_id": "40618",
-    "Item_Name": "Helm of the Lost Vanquisher"
-  },
-  "353": {
-    "Item_id": "40619",
-    "Item_Name": "Leggings of the Lost Conqueror"
-  },
-  "354": {
-    "Item_id": "40620",
-    "Item_Name": "Leggings of the Lost Protector"
-  },
-  "355": {
-    "Item_id": "40621",
-    "Item_Name": "Leggings of the Lost Vanquisher"
-  },
-  "356": {
-    "Item_id": "40622",
-    "Item_Name": "Spaulders of the Lost Conqueror"
-  },
-  "357": {
-    "Item_id": "40623",
-    "Item_Name": "Spaulders of the Lost Protector"
-  },
-  "358": {
-    "Item_id": "40624",
-    "Item_Name": "Spaulders of the Lost Vanquisher"
-  },
-  "359": {
-    "Item_id": "40625",
-    "Item_Name": "Breastplate of the Lost Conqueror"
-  },
-  "360": {
-    "Item_id": "40626",
-    "Item_Name": "Breastplate of the Lost Protector"
-  },
-  "361": {
-    "Item_id": "40627",
-    "Item_Name": "Breastplate of the Lost Vanquisher"
-  },
-  "362": {
-    "Item_id": "40631",
-    "Item_Name": "Crown of the Lost Conqueror"
-  },
-  "363": {
-    "Item_id": "40632",
-    "Item_Name": "Crown of the Lost Protector"
-  },
-  "364": {
-    "Item_id": "40633",
-    "Item_Name": "Crown of the Lost Vanquisher"
-  },
-  "365": {
-    "Item_id": "40634",
-    "Item_Name": "Legplates of the Lost Conqueror"
-  },
-  "366": {
-    "Item_id": "40635",
-    "Item_Name": "Legplates of the Lost Protector"
-  },
-  "367": {
-    "Item_id": "40636",
-    "Item_Name": "Legplates of the Lost Vanquisher"
-  },
-  "368": {
-    "Item_id": "40637",
-    "Item_Name": "Mantle of the Lost Conqueror"
-  },
-  "369": {
-    "Item_id": "40638",
-    "Item_Name": "Mantle of the Lost Protector"
-  },
-  "370": {
-    "Item_id": "40639",
-    "Item_Name": "Mantle of the Lost Vanquisher"
-  },
-  "371": {
-    "Item_id": "44569",
-    "Item_Name": "Key to the Focusing Iris"
-  },
-  "372": {
-    "Item_id": "44577",
-    "Item_Name": "Heroic Key to the Focusing Iris"
+  "0":{
+    "item_id":"39139",
+    "item_name":"Ravaging Sabatons"
+  },
+  "1":{
+    "item_id":"39140",
+    "item_name":"Knife of Incision"
+  },
+  "2":{
+    "item_id":"39141",
+    "item_name":"Deflection Band"
+  },
+  "3":{
+    "item_id":"39146",
+    "item_name":"Collar of Dissolution"
+  },
+  "4":{
+    "item_id":"39188",
+    "item_name":"Chivalric Chestguard"
+  },
+  "5":{
+    "item_id":"39189",
+    "item_name":"Boots of Persistence"
+  },
+  "6":{
+    "item_id":"39190",
+    "item_name":"Agonal Sash"
+  },
+  "7":{
+    "item_id":"39191",
+    "item_name":"Splint-Bound Leggings"
+  },
+  "8":{
+    "item_id":"39192",
+    "item_name":"Gloves of Dark Gestures"
+  },
+  "9":{
+    "item_id":"39193",
+    "item_name":"Band of Neglected Pleas"
+  },
+  "10":{
+    "item_id":"39194",
+    "item_name":"Rusted-Link Spiked Gauntlets"
+  },
+  "11":{
+    "item_id":"39195",
+    "item_name":"Bracers of Lost Sentiments"
+  },
+  "12":{
+    "item_id":"39196",
+    "item_name":"Boots of the Worshiper"
+  },
+  "13":{
+    "item_id":"39197",
+    "item_name":"Gauntlets of the Master"
+  },
+  "14":{
+    "item_id":"39198",
+    "item_name":"Frostblight Pauldrons"
+  },
+  "15":{
+    "item_id":"39199",
+    "item_name":"Watchful Eye"
+  },
+  "16":{
+    "item_id":"39200",
+    "item_name":"Grieving Spellblade"
+  },
+  "17":{
+    "item_id":"39215",
+    "item_name":"Boots of the Follower"
+  },
+  "18":{
+    "item_id":"39216",
+    "item_name":"Sash of Mortal Desire"
+  },
+  "19":{
+    "item_id":"39217",
+    "item_name":"Avenging Combat Leggings"
+  },
+  "20":{
+    "item_id":"39221",
+    "item_name":"Wraith Spear"
+  },
+  "21":{
+    "item_id":"39224",
+    "item_name":"Leggings of Discord"
+  },
+  "22":{
+    "item_id":"39225",
+    "item_name":"Cloak of Armed Strife"
+  },
+  "23":{
+    "item_id":"39226",
+    "item_name":"Maexxna's Femur"
+  },
+  "24":{
+    "item_id":"39228",
+    "item_name":"Web Cocoon Grips"
+  },
+  "25":{
+    "item_id":"39229",
+    "item_name":"Embrace of the Spider"
+  },
+  "26":{
+    "item_id":"39230",
+    "item_name":"Spaulders of the Monstrosity"
+  },
+  "27":{
+    "item_id":"39231",
+    "item_name":"Timeworn Silken Band"
+  },
+  "28":{
+    "item_id":"39232",
+    "item_name":"Pendant of Lost Vocations"
+  },
+  "29":{
+    "item_id":"39233",
+    "item_name":"Aegis of Damnation"
+  },
+  "30":{
+    "item_id":"39234",
+    "item_name":"Plague-Impervious Boots"
+  },
+  "31":{
+    "item_id":"39235",
+    "item_name":"Bone-Framed Bracers"
+  },
+  "32":{
+    "item_id":"39236",
+    "item_name":"Trespasser's Boots"
+  },
+  "33":{
+    "item_id":"39237",
+    "item_name":"Spaulders of Resumed Battle"
+  },
+  "34":{
+    "item_id":"39239",
+    "item_name":"Chestplate of the Risen Soldier"
+  },
+  "35":{
+    "item_id":"39240",
+    "item_name":"Noth's Curse"
+  },
+  "36":{
+    "item_id":"39241",
+    "item_name":"Dark Shroud of the Scourge"
+  },
+  "37":{
+    "item_id":"39242",
+    "item_name":"Robes of Hoarse Breaths"
+  },
+  "38":{
+    "item_id":"39243",
+    "item_name":"Handgrips of the Foredoomed"
+  },
+  "39":{
+    "item_id":"39244",
+    "item_name":"Ring of the Fated"
+  },
+  "40":{
+    "item_id":"39245",
+    "item_name":"Demise"
+  },
+  "41":{
+    "item_id":"39246",
+    "item_name":"Amulet of Autopsy"
+  },
+  "42":{
+    "item_id":"39247",
+    "item_name":"Cuffs of Dark Shadows"
+  },
+  "43":{
+    "item_id":"39248",
+    "item_name":"Tunic of the Lost Pack"
+  },
+  "44":{
+    "item_id":"39249",
+    "item_name":"Shoulderplates of Bloodshed"
+  },
+  "45":{
+    "item_id":"39250",
+    "item_name":"Ring of Holy Cleansing"
+  },
+  "46":{
+    "item_id":"39251",
+    "item_name":"Necrogenic Belt"
+  },
+  "47":{
+    "item_id":"39252",
+    "item_name":"Preceptor's Bindings"
+  },
+  "48":{
+    "item_id":"39254",
+    "item_name":"Saltarello Shoes"
+  },
+  "49":{
+    "item_id":"39255",
+    "item_name":"Staff of the Plague Beast"
+  },
+  "50":{
+    "item_id":"39256",
+    "item_name":"Sulfur Stave"
+  },
+  "51":{
+    "item_id":"39257",
+    "item_name":"Loatheb's Shadow"
+  },
+  "52":{
+    "item_id":"39258",
+    "item_name":"Legplates of Inescapable Death"
+  },
+  "53":{
+    "item_id":"39259",
+    "item_name":"Fungi-Stained Coverings"
+  },
+  "54":{
+    "item_id":"39260",
+    "item_name":"Helm of the Corrupted Mind"
+  },
+  "55":{
+    "item_id":"39261",
+    "item_name":"Tainted Girdle of Mending"
+  },
+  "56":{
+    "item_id":"39262",
+    "item_name":"Gauntlets of Combined Strength"
+  },
+  "57":{
+    "item_id":"39267",
+    "item_name":"Abomination Shoulderblades"
+  },
+  "58":{
+    "item_id":"39270",
+    "item_name":"Hatestrike"
+  },
+  "59":{
+    "item_id":"39271",
+    "item_name":"Blade of Dormant Memories"
+  },
+  "60":{
+    "item_id":"39272",
+    "item_name":"Drape of Surgery"
+  },
+  "61":{
+    "item_id":"39273",
+    "item_name":"Sullen Cloth Boots"
+  },
+  "62":{
+    "item_id":"39274",
+    "item_name":"Retcher's Shoulderpads"
+  },
+  "63":{
+    "item_id":"39275",
+    "item_name":"Contagion Gloves"
+  },
+  "64":{
+    "item_id":"39276",
+    "item_name":"The Skull of Ruin"
+  },
+  "65":{
+    "item_id":"39277",
+    "item_name":"Sealing Ring of Grobbulus"
+  },
+  "66":{
+    "item_id":"39278",
+    "item_name":"Bands of Anxiety"
+  },
+  "67":{
+    "item_id":"39279",
+    "item_name":"Blistered Belt of Decay"
+  },
+  "68":{
+    "item_id":"39280",
+    "item_name":"Leggings of Innumerable Barbs"
+  },
+  "69":{
+    "item_id":"39281",
+    "item_name":"Infection Repulser"
+  },
+  "70":{
+    "item_id":"39282",
+    "item_name":"Bone-Linked Amulet"
+  },
+  "71":{
+    "item_id":"39283",
+    "item_name":"Putrescent Bands"
+  },
+  "72":{
+    "item_id":"39284",
+    "item_name":"Miasma Mantle"
+  },
+  "73":{
+    "item_id":"39285",
+    "item_name":"Handgrips of Turmoil"
+  },
+  "74":{
+    "item_id":"39291",
+    "item_name":"Torment of the Banished"
+  },
+  "75":{
+    "item_id":"39292",
+    "item_name":"Repelling Charge"
+  },
+  "76":{
+    "item_id":"39293",
+    "item_name":"Blackened Legplates of Feugen"
+  },
+  "77":{
+    "item_id":"39294",
+    "item_name":"Arc-Scorched Helmet"
+  },
+  "78":{
+    "item_id":"39295",
+    "item_name":"Cowl of Sheet Lightning"
+  },
+  "79":{
+    "item_id":"39296",
+    "item_name":"Accursed Bow of the Elite"
+  },
+  "80":{
+    "item_id":"39297",
+    "item_name":"Cloak of Darkening"
+  },
+  "81":{
+    "item_id":"39298",
+    "item_name":"Waistguard of the Tutor"
+  },
+  "82":{
+    "item_id":"39299",
+    "item_name":"Rapid Attack Gloves"
+  },
+  "83":{
+    "item_id":"39306",
+    "item_name":"Plated Gloves of Relief"
+  },
+  "84":{
+    "item_id":"39307",
+    "item_name":"Iron Rings of Endurance"
+  },
+  "85":{
+    "item_id":"39308",
+    "item_name":"Girdle of Lenience"
+  },
+  "86":{
+    "item_id":"39309",
+    "item_name":"Leggings of the Instructor"
+  },
+  "87":{
+    "item_id":"39310",
+    "item_name":"Mantle of the Extensive Mind"
+  },
+  "88":{
+    "item_id":"39311",
+    "item_name":"Scepter of Murmuring Spirits"
+  },
+  "89":{
+    "item_id":"39344",
+    "item_name":"Slayer of the Lifeless"
+  },
+  "90":{
+    "item_id":"39345",
+    "item_name":"Girdle of the Ascended Phantom"
+  },
+  "91":{
+    "item_id":"39369",
+    "item_name":"Sabatons of Deathlike Gloom"
+  },
+  "92":{
+    "item_id":"39379",
+    "item_name":"Spectral Rider's Girdle"
+  },
+  "93":{
+    "item_id":"39386",
+    "item_name":"Tunic of Dislocation"
+  },
+  "94":{
+    "item_id":"39388",
+    "item_name":"Spirit-World Glass"
+  },
+  "95":{
+    "item_id":"39389",
+    "item_name":"Signet of the Malevolent"
+  },
+  "96":{
+    "item_id":"39390",
+    "item_name":"Resurgent Phantom Bindings"
+  },
+  "97":{
+    "item_id":"39391",
+    "item_name":"Heinous Mail Chestguard"
+  },
+  "98":{
+    "item_id":"39392",
+    "item_name":"Veiled Amulet of Life"
+  },
+  "99":{
+    "item_id":"39393",
+    "item_name":"Claymore of Ancient Power"
+  },
+  "100":{
+    "item_id":"39394",
+    "item_name":"Charmed Cierge"
+  },
+  "101":{
+    "item_id":"39395",
+    "item_name":"Thane's Tainted Greathelm"
+  },
+  "102":{
+    "item_id":"39396",
+    "item_name":"Gown of Blaumeux"
+  },
+  "103":{
+    "item_id":"39397",
+    "item_name":"Pauldrons of Havoc"
+  },
+  "104":{
+    "item_id":"39398",
+    "item_name":"Massive Skeletal Ribcage"
+  },
+  "105":{
+    "item_id":"39399",
+    "item_name":"Helm of the Vast Legions"
+  },
+  "106":{
+    "item_id":"39401",
+    "item_name":"Circle of Death"
+  },
+  "107":{
+    "item_id":"39403",
+    "item_name":"Helm of the Unsubmissive"
+  },
+  "108":{
+    "item_id":"39404",
+    "item_name":"Cloak of Mastery"
+  },
+  "109":{
+    "item_id":"39405",
+    "item_name":"Helmet of the Inner Sanctum"
+  },
+  "110":{
+    "item_id":"39407",
+    "item_name":"Circle of Life"
+  },
+  "111":{
+    "item_id":"39408",
+    "item_name":"Leggings of Sapphiron"
+  },
+  "112":{
+    "item_id":"39409",
+    "item_name":"Cowl of Winged Fear"
+  },
+  "113":{
+    "item_id":"39415",
+    "item_name":"Shroud of the Citadel"
+  },
+  "114":{
+    "item_id":"39416",
+    "item_name":"Kel'Thuzad's Reach"
+  },
+  "115":{
+    "item_id":"39417",
+    "item_name":"Death's Bite"
+  },
+  "116":{
+    "item_id":"39419",
+    "item_name":"Nerubian Conquerer"
+  },
+  "117":{
+    "item_id":"39420",
+    "item_name":"Anarchy"
+  },
+  "118":{
+    "item_id":"39421",
+    "item_name":"Gem of Imprisoned Vassals"
+  },
+  "119":{
+    "item_id":"39422",
+    "item_name":"Staff of the Plaguehound"
+  },
+  "120":{
+    "item_id":"39423",
+    "item_name":"Hammer of the Astral Plane"
+  },
+  "121":{
+    "item_id":"39424",
+    "item_name":"The Soulblade"
+  },
+  "122":{
+    "item_id":"39425",
+    "item_name":"Cloak of the Dying"
+  },
+  "123":{
+    "item_id":"39426",
+    "item_name":"Wand of the Archlich"
+  },
+  "124":{
+    "item_id":"39427",
+    "item_name":"Omen of Ruin"
+  },
+  "125":{
+    "item_id":"39467",
+    "item_name":"Minion Bracers"
+  },
+  "126":{
+    "item_id":"39468",
+    "item_name":"The Stray"
+  },
+  "127":{
+    "item_id":"39470",
+    "item_name":"Medallion of the Disgraced"
+  },
+  "128":{
+    "item_id":"39472",
+    "item_name":"Chain of Latent Energies"
+  },
+  "129":{
+    "item_id":"39473",
+    "item_name":"Contortion"
+  },
+  "130":{
+    "item_id":"39701",
+    "item_name":"Dawnwalkers"
+  },
+  "131":{
+    "item_id":"39702",
+    "item_name":"Arachnoid Gold Band"
+  },
+  "132":{
+    "item_id":"39703",
+    "item_name":"Rescinding Grips"
+  },
+  "133":{
+    "item_id":"39704",
+    "item_name":"Pauldrons of Unnatural Death"
+  },
+  "134":{
+    "item_id":"39706",
+    "item_name":"Sabatons of Sudden Reprisal"
+  },
+  "135":{
+    "item_id":"39712",
+    "item_name":"Gemmed Wand of the Nerubians"
+  },
+  "136":{
+    "item_id":"39714",
+    "item_name":"Webbed Death"
+  },
+  "137":{
+    "item_id":"39716",
+    "item_name":"Shield of Assimilation"
+  },
+  "138":{
+    "item_id":"39717",
+    "item_name":"Inexorable Sabatons"
+  },
+  "139":{
+    "item_id":"39718",
+    "item_name":"Corpse Scarab Handguards"
+  },
+  "140":{
+    "item_id":"39719",
+    "item_name":"Mantle of the Locusts"
+  },
+  "141":{
+    "item_id":"39720",
+    "item_name":"Leggings of Atrophy"
+  },
+  "142":{
+    "item_id":"39721",
+    "item_name":"Sash of the Parlor"
+  },
+  "143":{
+    "item_id":"39722",
+    "item_name":"Swarm Bindings"
+  },
+  "144":{
+    "item_id":"39723",
+    "item_name":"Fire-Scorched Greathelm"
+  },
+  "145":{
+    "item_id":"39724",
+    "item_name":"Cult's Chestguard"
+  },
+  "146":{
+    "item_id":"39725",
+    "item_name":"Epaulets of the Grieving Servant"
+  },
+  "147":{
+    "item_id":"39726",
+    "item_name":"Callous-Hearted Gauntlets"
+  },
+  "148":{
+    "item_id":"39727",
+    "item_name":"Dislocating Handguards"
+  },
+  "149":{
+    "item_id":"39728",
+    "item_name":"Totem of Misery"
+  },
+  "150":{
+    "item_id":"39729",
+    "item_name":"Bracers of the Tyrant"
+  },
+  "151":{
+    "item_id":"39730",
+    "item_name":"Widow's Fury"
+  },
+  "152":{
+    "item_id":"39731",
+    "item_name":"Punctilious Bindings"
+  },
+  "153":{
+    "item_id":"39732",
+    "item_name":"Faerlina's Madness"
+  },
+  "154":{
+    "item_id":"39733",
+    "item_name":"Gloves of Token Respect"
+  },
+  "155":{
+    "item_id":"39734",
+    "item_name":"Atonement Greaves"
+  },
+  "156":{
+    "item_id":"39735",
+    "item_name":"Belt of False Dignity"
+  },
+  "157":{
+    "item_id":"39756",
+    "item_name":"Tunic of Prejudice"
+  },
+  "158":{
+    "item_id":"39757",
+    "item_name":"Idol of Worship"
+  },
+  "159":{
+    "item_id":"39758",
+    "item_name":"The Jawbone"
+  },
+  "160":{
+    "item_id":"39759",
+    "item_name":"Ablative Chitin Girdle"
+  },
+  "161":{
+    "item_id":"39760",
+    "item_name":"Helm of Diminished Pride"
+  },
+  "162":{
+    "item_id":"39761",
+    "item_name":"Infectious Skitterer Leggings"
+  },
+  "163":{
+    "item_id":"39762",
+    "item_name":"Torn Web Wrapping"
+  },
+  "164":{
+    "item_id":"39763",
+    "item_name":"Wraith Strike"
+  },
+  "165":{
+    "item_id":"39764",
+    "item_name":"Bindings of the Hapless Prey"
+  },
+  "166":{
+    "item_id":"39765",
+    "item_name":"Sinner's Bindings"
+  },
+  "167":{
+    "item_id":"39766",
+    "item_name":"Matriarch's Spawn"
+  },
+  "168":{
+    "item_id":"39767",
+    "item_name":"Undiminished Battleplate"
+  },
+  "169":{
+    "item_id":"39768",
+    "item_name":"Cowl of the Perished"
+  },
+  "170":{
+    "item_id":"40060",
+    "item_name":"Distorted Limbs"
+  },
+  "171":{
+    "item_id":"40061",
+    "item_name":"Quivering Tunic"
+  },
+  "172":{
+    "item_id":"40062",
+    "item_name":"Digested Silken Robes"
+  },
+  "173":{
+    "item_id":"40063",
+    "item_name":"Mantle of Shattered Kinship"
+  },
+  "174":{
+    "item_id":"40064",
+    "item_name":"Thunderstorm Amulet"
+  },
+  "175":{
+    "item_id":"40065",
+    "item_name":"Fool's Trial"
+  },
+  "176":{
+    "item_id":"40069",
+    "item_name":"Heritage"
+  },
+  "177":{
+    "item_id":"40071",
+    "item_name":"Chains of Adoration"
+  },
+  "178":{
+    "item_id":"40074",
+    "item_name":"Strong-Handed Ring"
+  },
+  "179":{
+    "item_id":"40075",
+    "item_name":"Ruthlessness"
+  },
+  "180":{
+    "item_id":"40080",
+    "item_name":"Lost Jewel"
+  },
+  "181":{
+    "item_id":"40107",
+    "item_name":"Sand-Worn Band"
+  },
+  "182":{
+    "item_id":"40108",
+    "item_name":"Seized Beauty"
+  },
+  "183":{
+    "item_id":"40184",
+    "item_name":"Crippled Treads"
+  },
+  "184":{
+    "item_id":"40185",
+    "item_name":"Shoulderguards of Opportunity"
+  },
+  "185":{
+    "item_id":"40186",
+    "item_name":"Thrusting Bands"
+  },
+  "186":{
+    "item_id":"40187",
+    "item_name":"Poignant Sabatons"
+  },
+  "187":{
+    "item_id":"40188",
+    "item_name":"Gauntlets of the Disobedient"
+  },
+  "188":{
+    "item_id":"40189",
+    "item_name":"Angry Dread"
+  },
+  "189":{
+    "item_id":"40190",
+    "item_name":"Spinning Fate"
+  },
+  "190":{
+    "item_id":"40191",
+    "item_name":"Libram of Radiance"
+  },
+  "191":{
+    "item_id":"40192",
+    "item_name":"Accursed Spine"
+  },
+  "192":{
+    "item_id":"40193",
+    "item_name":"Tunic of Masked Suffering"
+  },
+  "193":{
+    "item_id":"40196",
+    "item_name":"Legguards of the Undisturbed"
+  },
+  "194":{
+    "item_id":"40197",
+    "item_name":"Gloves of the Fallen Wizard"
+  },
+  "195":{
+    "item_id":"40198",
+    "item_name":"Bands of Impurity"
+  },
+  "196":{
+    "item_id":"40200",
+    "item_name":"Belt of Potent Chanting"
+  },
+  "197":{
+    "item_id":"40201",
+    "item_name":"Leggings of Colossal Strides"
+  },
+  "198":{
+    "item_id":"40203",
+    "item_name":"Breastplate of Tormented Rage"
+  },
+  "199":{
+    "item_id":"40204",
+    "item_name":"Legguards of the Apostle"
+  },
+  "200":{
+    "item_id":"40205",
+    "item_name":"Stalk-Skin Belt"
+  },
+  "201":{
+    "item_id":"40206",
+    "item_name":"Iron-Spring Jumpers"
+  },
+  "202":{
+    "item_id":"40207",
+    "item_name":"Sigil of Awareness"
+  },
+  "203":{
+    "item_id":"40208",
+    "item_name":"Cryptfiend's Bite"
+  },
+  "204":{
+    "item_id":"40209",
+    "item_name":"Bindings of the Decrepit"
+  },
+  "205":{
+    "item_id":"40210",
+    "item_name":"Chestguard of Bitter Charms"
+  },
+  "206":{
+    "item_id":"40233",
+    "item_name":"The Undeath Carrier"
+  },
+  "207":{
+    "item_id":"40234",
+    "item_name":"Heigan's Putrid Vestments"
+  },
+  "208":{
+    "item_id":"40235",
+    "item_name":"Helm of Pilgrimage"
+  },
+  "209":{
+    "item_id":"40236",
+    "item_name":"Serene Echoes"
+  },
+  "210":{
+    "item_id":"40237",
+    "item_name":"Eruption-Scarred Boots"
+  },
+  "211":{
+    "item_id":"40238",
+    "item_name":"Gloves of the Dancing Bear"
+  },
+  "212":{
+    "item_id":"40239",
+    "item_name":"The Hand of Nerub"
+  },
+  "213":{
+    "item_id":"40240",
+    "item_name":"Greaves of Turbulence"
+  },
+  "214":{
+    "item_id":"40241",
+    "item_name":"Girdle of Unity"
+  },
+  "215":{
+    "item_id":"40242",
+    "item_name":"Grotesque Handgrips"
+  },
+  "216":{
+    "item_id":"40243",
+    "item_name":"Footwraps of Vile Deceit"
+  },
+  "217":{
+    "item_id":"40244",
+    "item_name":"The Impossible Dream"
+  },
+  "218":{
+    "item_id":"40245",
+    "item_name":"Fading Glow"
+  },
+  "219":{
+    "item_id":"40246",
+    "item_name":"Boots of Impetuous Ideals"
+  },
+  "220":{
+    "item_id":"40247",
+    "item_name":"Cowl of Innocent Delight"
+  },
+  "221":{
+    "item_id":"40249",
+    "item_name":"Vest of Vitality"
+  },
+  "222":{
+    "item_id":"40250",
+    "item_name":"Aged Winter Cloak"
+  },
+  "223":{
+    "item_id":"40251",
+    "item_name":"Shroud of Luminosity"
+  },
+  "224":{
+    "item_id":"40252",
+    "item_name":"Cloak of the Shadowed Sun"
+  },
+  "225":{
+    "item_id":"40253",
+    "item_name":"Shawl of the Old Maid"
+  },
+  "226":{
+    "item_id":"40254",
+    "item_name":"Cloak of Averted Crisis"
+  },
+  "227":{
+    "item_id":"40255",
+    "item_name":"Dying Curse"
+  },
+  "228":{
+    "item_id":"40256",
+    "item_name":"Grim Toll"
+  },
+  "229":{
+    "item_id":"40257",
+    "item_name":"Defender's Code"
+  },
+  "230":{
+    "item_id":"40258",
+    "item_name":"Forethought Talisman"
+  },
+  "231":{
+    "item_id":"40259",
+    "item_name":"Waistguard of Divine Grace"
+  },
+  "232":{
+    "item_id":"40260",
+    "item_name":"Belt of the Tortured"
+  },
+  "233":{
+    "item_id":"40261",
+    "item_name":"Crude Discolored Battlegrips"
+  },
+  "234":{
+    "item_id":"40262",
+    "item_name":"Gloves of Calculated Risk"
+  },
+  "235":{
+    "item_id":"40263",
+    "item_name":"Fleshless Girdle"
+  },
+  "236":{
+    "item_id":"40264",
+    "item_name":"Split Greathammer"
+  },
+  "237":{
+    "item_id":"40265",
+    "item_name":"Arrowsong"
+  },
+  "238":{
+    "item_id":"40266",
+    "item_name":"Hero's Surrender"
+  },
+  "239":{
+    "item_id":"40267",
+    "item_name":"Totem of Hex"
+  },
+  "240":{
+    "item_id":"40268",
+    "item_name":"Libram of Tolerance"
+  },
+  "241":{
+    "item_id":"40269",
+    "item_name":"Boots of Persuasion"
+  },
+  "242":{
+    "item_id":"40270",
+    "item_name":"Boots of Septic Wounds"
+  },
+  "243":{
+    "item_id":"40271",
+    "item_name":"Sash of Solitude"
+  },
+  "244":{
+    "item_id":"40272",
+    "item_name":"Girdle of the Gambit"
+  },
+  "245":{
+    "item_id":"40273",
+    "item_name":"Surplus Limb"
+  },
+  "246":{
+    "item_id":"40274",
+    "item_name":"Bracers of Liberation"
+  },
+  "247":{
+    "item_id":"40275",
+    "item_name":"Depraved Linked Belt"
+  },
+  "248":{
+    "item_id":"40277",
+    "item_name":"Tunic of Indulgence"
+  },
+  "249":{
+    "item_id":"40278",
+    "item_name":"Girdle of Chivalry"
+  },
+  "250":{
+    "item_id":"40279",
+    "item_name":"Chestguard of the Exhausted"
+  },
+  "251":{
+    "item_id":"40280",
+    "item_name":"Origin of Nightmares"
+  },
+  "252":{
+    "item_id":"40281",
+    "item_name":"Twilight Mist"
+  },
+  "253":{
+    "item_id":"40282",
+    "item_name":"Slime Stream Bands"
+  },
+  "254":{
+    "item_id":"40283",
+    "item_name":"Fallout Impervious Tunic"
+  },
+  "255":{
+    "item_id":"40284",
+    "item_name":"Plague Igniter"
+  },
+  "256":{
+    "item_id":"40285",
+    "item_name":"Desecrated Past"
+  },
+  "257":{
+    "item_id":"40286",
+    "item_name":"Mantle of the Corrupted"
+  },
+  "258":{
+    "item_id":"40287",
+    "item_name":"Cowl of Vanity"
+  },
+  "259":{
+    "item_id":"40288",
+    "item_name":"Spaulders of Incoherence"
+  },
+  "260":{
+    "item_id":"40289",
+    "item_name":"Sympathetic Amice"
+  },
+  "261":{
+    "item_id":"40294",
+    "item_name":"Riveted Abomination Leggings"
+  },
+  "262":{
+    "item_id":"40296",
+    "item_name":"Cover of Silence"
+  },
+  "263":{
+    "item_id":"40297",
+    "item_name":"Sabatons of Endurance"
+  },
+  "264":{
+    "item_id":"40298",
+    "item_name":"Faceguard of the Succumbed"
+  },
+  "265":{
+    "item_id":"40299",
+    "item_name":"Pauldrons of the Abandoned"
+  },
+  "266":{
+    "item_id":"40300",
+    "item_name":"Spire of Sunset"
+  },
+  "267":{
+    "item_id":"40301",
+    "item_name":"Cincture of Polarity"
+  },
+  "268":{
+    "item_id":"40302",
+    "item_name":"Benefactor's Gauntlets"
+  },
+  "269":{
+    "item_id":"40303",
+    "item_name":"Wraps of the Persecuted"
+  },
+  "270":{
+    "item_id":"40304",
+    "item_name":"Headpiece of Fungal Bloom"
+  },
+  "271":{
+    "item_id":"40305",
+    "item_name":"Spaulders of Egotism"
+  },
+  "272":{
+    "item_id":"40306",
+    "item_name":"Bracers of the Unholy Knight"
+  },
+  "273":{
+    "item_id":"40315",
+    "item_name":"Shoulderpads of Secret Arts"
+  },
+  "274":{
+    "item_id":"40316",
+    "item_name":"Gauntlets of Guiding Touch"
+  },
+  "275":{
+    "item_id":"40317",
+    "item_name":"Girdle of Razuvious"
+  },
+  "276":{
+    "item_id":"40318",
+    "item_name":"Legplates of Double Strikes"
+  },
+  "277":{
+    "item_id":"40319",
+    "item_name":"Chestpiece of Suspicion"
+  },
+  "278":{
+    "item_id":"40320",
+    "item_name":"Faithful Steel Sabatons"
+  },
+  "279":{
+    "item_id":"40321",
+    "item_name":"Idol of the Shooting Star"
+  },
+  "280":{
+    "item_id":"40322",
+    "item_name":"Totem of Dueling"
+  },
+  "281":{
+    "item_id":"40323",
+    "item_name":"Esteemed Bindings"
+  },
+  "282":{
+    "item_id":"40324",
+    "item_name":"Bands of Mutual Respect"
+  },
+  "283":{
+    "item_id":"40325",
+    "item_name":"Bindings of the Expansive Mind"
+  },
+  "284":{
+    "item_id":"40326",
+    "item_name":"Boots of Forlorn Wishes"
+  },
+  "285":{
+    "item_id":"40327",
+    "item_name":"Girdle of Recuperation"
+  },
+  "286":{
+    "item_id":"40328",
+    "item_name":"Helm of Vital Protection"
+  },
+  "287":{
+    "item_id":"40329",
+    "item_name":"Hood of the Exodus"
+  },
+  "288":{
+    "item_id":"40330",
+    "item_name":"Bracers of Unrelenting Attack"
+  },
+  "289":{
+    "item_id":"40331",
+    "item_name":"Leggings of Failed Escape"
+  },
+  "290":{
+    "item_id":"40332",
+    "item_name":"Abetment Bracers"
+  },
+  "291":{
+    "item_id":"40333",
+    "item_name":"Leggings of Fleeting Moments"
+  },
+  "292":{
+    "item_id":"40334",
+    "item_name":"Burdened Shoulderplates"
+  },
+  "293":{
+    "item_id":"40335",
+    "item_name":"Touch of Horror"
+  },
+  "294":{
+    "item_id":"40336",
+    "item_name":"Life and Death"
+  },
+  "295":{
+    "item_id":"40337",
+    "item_name":"Libram of Resurgence"
+  },
+  "296":{
+    "item_id":"40338",
+    "item_name":"Bindings of Yearning"
+  },
+  "297":{
+    "item_id":"40339",
+    "item_name":"Gothik's Cowl"
+  },
+  "298":{
+    "item_id":"40340",
+    "item_name":"Helm of Unleashed Energy"
+  },
+  "299":{
+    "item_id":"40341",
+    "item_name":"Shackled Cinch"
+  },
+  "300":{
+    "item_id":"40342",
+    "item_name":"Idol of Awakening"
+  },
+  "301":{
+    "item_id":"40343",
+    "item_name":"Armageddon"
+  },
+  "302":{
+    "item_id":"40344",
+    "item_name":"Helm of the Grave"
+  },
+  "303":{
+    "item_id":"40345",
+    "item_name":"Broken Promise"
+  },
+  "304":{
+    "item_id":"40346",
+    "item_name":"Final Voyage"
+  },
+  "305":{
+    "item_id":"40347",
+    "item_name":"Zeliek's Gauntlets"
+  },
+  "306":{
+    "item_id":"40348",
+    "item_name":"Damnation"
+  },
+  "307":{
+    "item_id":"40349",
+    "item_name":"Gloves of Peaceful Death"
+  },
+  "308":{
+    "item_id":"40350",
+    "item_name":"Urn of Lost Memories"
+  },
+  "309":{
+    "item_id":"40351",
+    "item_name":"Mantle of the Fatigued Sage"
+  },
+  "310":{
+    "item_id":"40352",
+    "item_name":"Leggings of Voracious Shadows"
+  },
+  "311":{
+    "item_id":"40362",
+    "item_name":"Gloves of Fast Reactions"
+  },
+  "312":{
+    "item_id":"40363",
+    "item_name":"Bone-Inlaid Legguards"
+  },
+  "313":{
+    "item_id":"40365",
+    "item_name":"Breastplate of Frozen Pain"
+  },
+  "314":{
+    "item_id":"40366",
+    "item_name":"Platehelm of the Great Wyrm"
+  },
+  "315":{
+    "item_id":"40367",
+    "item_name":"Boots of the Great Construct"
+  },
+  "316":{
+    "item_id":"40368",
+    "item_name":"Murder"
+  },
+  "317":{
+    "item_id":"40369",
+    "item_name":"Icy Blast Amulet"
+  },
+  "318":{
+    "item_id":"40370",
+    "item_name":"Gatekeeper"
+  },
+  "319":{
+    "item_id":"40371",
+    "item_name":"Bandit's Insignia"
+  },
+  "320":{
+    "item_id":"40372",
+    "item_name":"Rune of Repulsion"
+  },
+  "321":{
+    "item_id":"40373",
+    "item_name":"Extract of Necromantic Power"
+  },
+  "322":{
+    "item_id":"40374",
+    "item_name":"Cosmic Lights"
+  },
+  "323":{
+    "item_id":"40375",
+    "item_name":"Ring of Decaying Beauty"
+  },
+  "324":{
+    "item_id":"40376",
+    "item_name":"Legwraps of the Defeated Dragon"
+  },
+  "325":{
+    "item_id":"40377",
+    "item_name":"Noble Birthright Pauldrons"
+  },
+  "326":{
+    "item_id":"40378",
+    "item_name":"Ceaseless Pity"
+  },
+  "327":{
+    "item_id":"40379",
+    "item_name":"Legguards of the Boneyard"
+  },
+  "328":{
+    "item_id":"40380",
+    "item_name":"Gloves of Grandeur"
+  },
+  "329":{
+    "item_id":"40381",
+    "item_name":"Sympathy"
+  },
+  "330":{
+    "item_id":"40382",
+    "item_name":"Soul of the Dead"
+  },
+  "331":{
+    "item_id":"40383",
+    "item_name":"Calamity's Grasp"
+  },
+  "332":{
+    "item_id":"40384",
+    "item_name":"Betrayer of Humanity"
+  },
+  "333":{
+    "item_id":"40385",
+    "item_name":"Envoy of Mortality"
+  },
+  "334":{
+    "item_id":"40386",
+    "item_name":"Sinister Revenge"
+  },
+  "335":{
+    "item_id":"40387",
+    "item_name":"Boundless Ambition"
+  },
+  "336":{
+    "item_id":"40388",
+    "item_name":"Journey's End"
+  },
+  "337":{
+    "item_id":"40395",
+    "item_name":"Torch of Holy Fire"
+  },
+  "338":{
+    "item_id":"40396",
+    "item_name":"The Turning Tide"
+  },
+  "339":{
+    "item_id":"40398",
+    "item_name":"Leggings of Mortal Arrogance"
+  },
+  "340":{
+    "item_id":"40399",
+    "item_name":"Signet of Manifested Pain"
+  },
+  "341":{
+    "item_id":"40400",
+    "item_name":"Wall of Terror"
+  },
+  "342":{
+    "item_id":"40401",
+    "item_name":"Voice of Reason"
+  },
+  "343":{
+    "item_id":"40402",
+    "item_name":"Last Laugh"
+  },
+  "344":{
+    "item_id":"40403",
+    "item_name":"Drape of the Deadly Foe"
+  },
+  "345":{
+    "item_id":"40405",
+    "item_name":"Cape of the Unworthy Wizard"
+  },
+  "346":{
+    "item_id":"40602",
+    "item_name":"Robes of Mutation"
+  },
+  "347":{
+    "item_id":"40610",
+    "item_name":"Chestguard of the Lost Conqueror"
+  },
+  "348":{
+    "item_id":"40611",
+    "item_name":"Chestguard of the Lost Protector"
+  },
+  "349":{
+    "item_id":"40612",
+    "item_name":"Chestguard of the Lost Vanquisher"
+  },
+  "350":{
+    "item_id":"40616",
+    "item_name":"Helm of the Lost Conqueror"
+  },
+  "351":{
+    "item_id":"40617",
+    "item_name":"Helm of the Lost Protector"
+  },
+  "352":{
+    "item_id":"40618",
+    "item_name":"Helm of the Lost Vanquisher"
+  },
+  "353":{
+    "item_id":"40619",
+    "item_name":"Leggings of the Lost Conqueror"
+  },
+  "354":{
+    "item_id":"40620",
+    "item_name":"Leggings of the Lost Protector"
+  },
+  "355":{
+    "item_id":"40621",
+    "item_name":"Leggings of the Lost Vanquisher"
+  },
+  "356":{
+    "item_id":"40622",
+    "item_name":"Spaulders of the Lost Conqueror"
+  },
+  "357":{
+    "item_id":"40623",
+    "item_name":"Spaulders of the Lost Protector"
+  },
+  "358":{
+    "item_id":"40624",
+    "item_name":"Spaulders of the Lost Vanquisher"
+  },
+  "359":{
+    "item_id":"40625",
+    "item_name":"Breastplate of the Lost Conqueror"
+  },
+  "360":{
+    "item_id":"40626",
+    "item_name":"Breastplate of the Lost Protector"
+  },
+  "361":{
+    "item_id":"40627",
+    "item_name":"Breastplate of the Lost Vanquisher"
+  },
+  "362":{
+    "item_id":"40631",
+    "item_name":"Crown of the Lost Conqueror"
+  },
+  "363":{
+    "item_id":"40632",
+    "item_name":"Crown of the Lost Protector"
+  },
+  "364":{
+    "item_id":"40633",
+    "item_name":"Crown of the Lost Vanquisher"
+  },
+  "365":{
+    "item_id":"40634",
+    "item_name":"Legplates of the Lost Conqueror"
+  },
+  "366":{
+    "item_id":"40635",
+    "item_name":"Legplates of the Lost Protector"
+  },
+  "367":{
+    "item_id":"40636",
+    "item_name":"Legplates of the Lost Vanquisher"
+  },
+  "368":{
+    "item_id":"40637",
+    "item_name":"Mantle of the Lost Conqueror"
+  },
+  "369":{
+    "item_id":"40638",
+    "item_name":"Mantle of the Lost Protector"
+  },
+  "370":{
+    "item_id":"40639",
+    "item_name":"Mantle of the Lost Vanquisher"
+  },
+  "371":{
+    "item_id":"44569",
+    "item_name":"Key to the Focusing Iris"
+  },
+  "372":{
+    "item_id":"44577",
+    "item_name":"Heroic Key to the Focusing Iris"
   }
 }

@@ -17,20 +17,17 @@ def list_of_books():
     #return json.dumps(books, indent=4)
     return jsonify(books)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-@app.route("/guildStats", method = ["GET"])
+@app.route("/guildStats") #method = ["GET"]
 def give_all_aviable_guild_stats():
 
     return()
 
-@app.route("/raids", method = ["GET"])
+@app.route("/raids") #method = ["GET"]
 def create_new_raid ():
 
     return()
 
-@app.route("/characters", method = ["GET"])
+@app.route("/characters") #method = ["GET"]
 def a():
 
     return()
@@ -40,7 +37,7 @@ def a():
 
     return()
 
-@app.route("/raid/:id", method = ["GET"])
+@app.route("/raid/:id") #method = ["GET"]
 def a():
 
     return()
@@ -50,7 +47,10 @@ def a():
 
     return()
 
-@app.route("/raidRuns", method = ["GET"])
+@app.route("/raidRuns") #method = ["GET"]
 def a():
 
     return()
+
+if __name__ == "__main__":
+    app.run(debug=True)

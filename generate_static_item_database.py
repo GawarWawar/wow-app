@@ -38,7 +38,7 @@ files = [
 ]
 
 wowhead_separator = ", "
-indexes_that_we_want_to_set_up = ["Item_id", "Item_Name"]
+indexes_that_we_want_to_set_up = ["item_id", "item_name"]
 
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
