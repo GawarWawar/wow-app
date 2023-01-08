@@ -2,12 +2,15 @@ import numpy as np
 import pandas as pd
 import time
 
-#read file with the header and standart separator (,)
-#return DataFrame with conramination of the file
+
 def read_the_file_to_DF (
     file_to_read, #file that we need to read
     file_type = "csv" #what type is our file, that we are reading
     ):
+    """
+        read file with the header and standart separator (,); 
+        return DataFrame with conramination of the file
+    """
     #start timer
     start_timer = time.perf_counter()
     if file_type == "csv":
@@ -27,6 +30,9 @@ def find_item_in_DataFrame (
     object_to_search_for, #what we need to find
     object_position = 0, #column to look for item (should be integer, to use in iloc)
     ):
+    """
+        Finds entety that we are looking for in given DataFrame
+    """
     #start timer
     start_timer = time.perf_counter()
     #looking for the item
