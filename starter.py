@@ -19,3 +19,25 @@ def list_of_books():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/raids")
+def a():
+    return()
+@app.route("/characters")
+def a():
+    return()
+@app.route("/raidRun")
+def a():
+    return()
+@app.route("/raid/:id")
+def a():
+    return()
+@app.route("/raidRun/:id")
+def a():
+    return()
+@app.route("/raidRun/:id")
+def a():
+    return()
+@app.route("/raidRuns")
+def a():
+    return()
