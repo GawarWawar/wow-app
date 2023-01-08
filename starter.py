@@ -1,24 +1,21 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, Response, jsonify, json
 from markupsafe import escape
 
 app = Flask(__name__)
+enctype="multipart/form-data"
 
 @app.route('/')
 def index():
     return 'Index Page'
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
+@app.route('/books')
+def list_of_books():
+    books = [
+        {'name': 'The Call of the Wild', 'author': 'Jack London'},
+        {'name': 'Heart of Darkness', 'author': 'Joseph Conrad'}
+    ]
+    #return json.dumps(books, indent=4)
+    return jsonify(books)
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    
+if __name__ == "__main__":
+    app.run(debug=True)
