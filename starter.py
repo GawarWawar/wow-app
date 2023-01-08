@@ -20,24 +20,37 @@ def list_of_books():
 if __name__ == "__main__":
     app.run(debug=True)
 
-@app.route("/raids")
-def a():
+@app.route("/guildStats", method = ["GET"])
+def give_all_aviable_guild_stats():
+
     return()
-@app.route("/characters")
-def a():
+
+@app.route("/raids", method = ["GET"])
+def create_new_raid ():
+
     return()
-@app.route("/raidRun")
+
+@app.route("/characters", method = ["GET"])
 def a():
+
     return()
-@app.route("/raid/:id")
+
+@app.route("/raidRun", method = ["POST"])
 def a():
+
     return()
-@app.route("/raidRun/:id")
+
+@app.route("/raid/:id", method = ["GET"])
 def a():
+
     return()
-@app.route("/raidRun/:id")
+
+@app.route("/raidRun/:id", method = ["GET", "PUT"])
 def a():
+
     return()
-@app.route("/raidRuns")
+
+@app.route("/raidRuns", method = ["GET"])
 def a():
+
     return()
