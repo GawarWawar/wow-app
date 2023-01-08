@@ -58,7 +58,7 @@ def from_many_csv_to_one_file_of_any_filetype (
     if ftw_type == "csv":
         main_df.to_csv(file_to_write, index_label=False, header=True, index=False)
     elif ftw_type == "json":
-        main_df.to_json(file_to_write, orient="index")
+        main_df.to_json(file_to_write, orient="index", indent=2)
     elif ftw_type == "exel":
         main_df.to_excel(file_to_write, index=False) 
     else: 

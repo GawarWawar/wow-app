@@ -47,15 +47,15 @@ from_many_csv_to_one_file_of_any_filetype(
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
 )
-"""
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Items_from_Naxx.json",
+    file_to_write="Data/Static_database/Items_from_Naxx.json",
     ftw_type = "json",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
 )
 
+"""
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items_from_Naxx.xlsx",
