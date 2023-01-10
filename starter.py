@@ -1,8 +1,25 @@
+import numpy as np
+import pandas as pd
+import json
+
 from flask import Flask, request, Response, jsonify, json
 from markupsafe import escape
 
+from utils.tools import read_the_file_to_DF, find_item_in_DataFrame
+
 app = Flask(__name__)
 enctype="multipart/form-data"
+
+static_database = {
+    "raid_table" : "Data/Static_database/Wow app - Raid table.csv",
+    "boss_table" : "Data/Static_database/Wow app - Bosses table.csv",
+    "item_table" : "Data/Static_database/Items_from_Naxx.csv"
+}
+
+
+
+
+
 
 @app.route('/')
 def index():
@@ -17,40 +34,44 @@ def list_of_books():
     #return json.dumps(books, indent=4)
     return jsonify(books)
 
-@app.route("/guildStats") #method = ["GET"]
+@app.route("/guildStats") #methods = ["GET"]
 def give_all_aviable_guild_stats():
 
     return()
 
-@app.route("/raids") #method = ["GET"]
+@app.route("/raids") #methods = ["GET"]
+#user wants to create new raid and we need to give all of the raid to him
 def create_new_raid ():
-
-    return()
-
-@app.route("/characters") #method = ["GET"]
+    df_to_work_with = read_the_file_to_DF(static_database["raid_table"])
+    df_to_send = df_to_work_with.iloc[:,[0,1]]
+    result = json.loads(df_to_send.to_json(orient="index"))
+    return json.dumps(result, indent=2)
+"""
+@app.route("/characters") #methods = ["GET"]
 def a():
 
     return()
 
-@app.route("/raidRun", method = ["POST"])
+@app.route("/raidRun", methods = ["POST"])
 def a():
 
     return()
 
-@app.route("/raid/:id") #method = ["GET"]
+@app.route("/raid/:id") #methods = ["GET"]
 def a():
 
     return()
 
-@app.route("/raidRun/:id", method = ["GET", "PUT"])
+@app.route("/raidRun/:id", methods = ["GET", "PUT"])
 def a():
 
     return()
 
-@app.route("/raidRuns") #method = ["GET"]
+@app.route("/raidRuns") #methods = ["GET"]
 def a():
 
     return()
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)
