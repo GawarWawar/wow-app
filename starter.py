@@ -35,6 +35,7 @@ def list_of_books():
     return jsonify(books)
 
 @app.route("/guildStats") #methods = ["GET"]
+#get all data about the guild
 def give_all_aviable_guild_stats():
 
     return()
@@ -46,12 +47,13 @@ def create_new_raid ():
     df_to_send = df_to_work_with.iloc[:,[0,1]]
     result = json.loads(df_to_send.to_json(orient="index"))
     return json.dumps(result, indent=2)
-"""
 @app.route("/characters") #methods = ["GET"]
-def a():
-
+#giving all the characters in the certain guild
+def characters_of_the_guild ():
+    
     return()
 
+"""
 @app.route("/raidRun", methods = ["POST"])
 def a():
 

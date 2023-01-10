@@ -43,24 +43,14 @@ def find_item_in_DataFrame (
             print("find_item_in_DataFrame timer =", end_timer-start_timer)
             return(i)
 
-#This is slower, but let it be
-def find_item_in_DataFrame_without_for (
+def find_item_by_criteria (
     main_df, #DataFrame that contain our object 
+    criteria, #by what criteria we are looking
     object_to_search_for, #what we need to find
-    column_name #name of column to look into for item 
+    criteria_column, #name of column to look into for criteria
+    item_column #name of column to look into for item
     ):
-    """
-        Finds entety that we are looking for in given DataFrame
-    """
-    #start timer
-    start_timer = time.perf_counter()
-    #looking for the item
-    item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
-    #end_timer
-    end_timer = time.perf_counter()
-    print("find_item_in_DataFrame_without_for timer =", end_timer-start_timer)
-    return(item)
-
+        a=1
 """
 file_to_look_into_csv = "Data/Static_database/Items_from_Naxx.csv"
 file_to_look_into = "Data/Static_database/Wow app - Raid table.csv"
