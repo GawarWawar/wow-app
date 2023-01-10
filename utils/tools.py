@@ -21,7 +21,7 @@ def read_the_file_to_DF (
         return(print ("Error, we dont suppot such file extention"))
     #end timer
     end_timer = time.perf_counter()
-    print(end_timer-start_timer)
+    print("read_the_file_to_DF timer =",end_timer-start_timer)
     return(df)
 
 
@@ -40,7 +40,7 @@ def find_item_in_DataFrame (
         if i == object_to_search_for:
             #end_timer
             end_timer = time.perf_counter()
-            print(end_timer-start_timer)
+            print("find_item_in_DataFrame timer =", end_timer-start_timer)
             return(i)
 
 #This is slower, but let it be
@@ -58,7 +58,7 @@ def find_item_in_DataFrame_without_for (
     item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
     #end_timer
     end_timer = time.perf_counter()
-    print(end_timer-start_timer)
+    print("find_item_in_DataFrame_without_for timer =", end_timer-start_timer)
     return(item)
 
 """
