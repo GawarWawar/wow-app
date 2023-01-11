@@ -16,7 +16,13 @@ static_database = {
     "item_table" : "Data/Static_database/Items.csv"
 }
 
-
+dynamic_database = {
+    "guilds_table" : "Data/Dynamic_database/guild_table.csv",
+    "characters_table" : "Data/Dynamic_database/characters_table.csv",
+    "killed_bosses_table" : "Data/Dynamic_database/bosses_that_were_killed_table.csv",
+    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
+    "dropped_items_table" : "Data/Dynamic_database/dropped_items_table.csv"
+}
 
 
 
@@ -37,7 +43,7 @@ def list_of_books():
 @app.route("/guildStats") #methods = ["GET"]
 #get all data about the guild
 def give_all_aviable_guild_stats():
-
+    df_to_work_with = read_the_file_to_DF()
     return()
 
 @app.route("/raids") #methods = ["GET"]
