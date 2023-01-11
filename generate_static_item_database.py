@@ -42,20 +42,20 @@ indexes_that_we_want_to_set_up = ["item_id", "item_name"]
 
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Static_database/Items_from_Naxx.csv",
+    file_to_write="Data/Static_database/Items.csv",
     ftw_type = "csv",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
 )
+"""
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
-    file_to_write="Data/Static_database/Items_from_Naxx.json",
+    file_to_write="Data/Static_database/Items.json",
     ftw_type = "json",
     set_index_names=indexes_that_we_want_to_set_up,
     csv_separator = wowhead_separator
 )
 
-"""
 from_many_csv_to_one_file_of_any_filetype(
     files_to_read=files,
     file_to_write="Data/Items_from_Naxx.xlsx",
@@ -64,6 +64,7 @@ from_many_csv_to_one_file_of_any_filetype(
     csv_separator = wowhead_separator
 )
 """
+
 #creating Gluth_10 file
 files_for_gluth_10 = [
     "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_10.csv",
@@ -87,6 +88,7 @@ from_many_csv_to_one_file_of_any_filetype(
     csv_separator=wowhead_separator,
     should_be_df_transposed=False  
 )
+
 #creating Gluth_25 file
 files_for_gluth_25 = [
     "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_25.csv",

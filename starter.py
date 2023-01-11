@@ -13,7 +13,7 @@ enctype="multipart/form-data"
 static_database = {
     "raid_table" : "Data/Static_database/Wow app - Raid table.csv",
     "boss_table" : "Data/Static_database/Wow app - Bosses table.csv",
-    "item_table" : "Data/Static_database/Items_from_Naxx.csv"
+    "item_table" : "Data/Static_database/Items.csv"
 }
 
 
