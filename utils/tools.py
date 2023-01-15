@@ -50,7 +50,6 @@ def find_1_row_in_DataFrame (
     """
     #start timer
     start_timer = time.perf_counter()
-    
     #loop to look for the item
     j = 0
     for i in main_df.loc[:,item_column]:
@@ -71,10 +70,8 @@ def find_many_rows_in_DataFrame (
     """
     #start timer
     start_timer = time.perf_counter()
-
     #declare a variable
     dict_to_df = {}
-
     #we are looking for the item we need and adding it to the list of dictionaries 
     j = 0
     for i in main_df.loc[:,item_column]:
@@ -82,10 +79,8 @@ def find_many_rows_in_DataFrame (
             #dict_to_df[len(dict_to_df)] = pd.Series(main_df.iloc[j]).T.to_dict()
             dict_to_df[len(dict_to_df)] = pd.Series(main_df.iloc[j]).T.to_dict()
         j = j+1
-    
     #transforming list of dicts into dataframe
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
-    
     #end_timer + return
     end_timer = time.perf_counter()
     print(find_many_rows_in_DataFrame.__name__, "timer =", end_timer-start_timer)

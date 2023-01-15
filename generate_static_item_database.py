@@ -4,7 +4,7 @@ import time
 
 from utils.creates_static_items_database import from_many_csv_to_one_file_of_any_filetype
     
-#all files that we are adding to our list with relative pass to main folder
+#all files that we are adding to our list 
 files = [
     "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_10.csv",
     "Data/Data_transform/Items_from_Naxx/Anub'Rekhan_25.csv",
