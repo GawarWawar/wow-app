@@ -23,9 +23,6 @@ dynamic_database = {
     "events_table" : "Data/Dynamic_database/events_table.csv"
 }
 
-
-
-
 @app.route('/')
 def index():
     return 'Index Page'
@@ -44,13 +41,10 @@ def list_of_books():
 def give_all_aviable_guild_stats(name):
     #recieve guild name to look for
     guild_name = escape(name) 
-
     #define variables
     guild_info = pd.Series()
-
     #read table w/ guilds info
     df_to_work_with_guild = u_tools.read_the_file_to_DF(dynamic_database["guilds_table"])
-    #print(df_to_work_with_guild)
     #get all guild's info
     guild_info = u_tools.find_1_row_in_DataFrame(
         df_to_work_with_guild,
@@ -61,16 +55,15 @@ def give_all_aviable_guild_stats(name):
     guild_info_type = guild_info.__class__.__name__
     if guild_info_type == "NoneType" :
         return jsonify("There is no such guild")   
-
     #read table w/ characters info
     df_to_work_with_characters = u_tools.read_the_file_to_DF(dynamic_database["characters_table"])
-    
     #find all members of the given guild
     df_to_return = u_tools.find_many_rows_in_DataFrame(
         df_to_work_with_characters,
         object_to_search_for = guild_info.loc["guild_id"],
         item_column = "guild_id"
         )
+    #sending our response
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
 
@@ -82,11 +75,11 @@ def create_new_raid ():
     result = json.loads(df_to_send.to_json(orient="index"))
     return json.dumps(result, indent=2)
 
-@app.route("/characters/<name>") #methods = ["GET"]
+@app.route("/characters/<guild_name>") #methods = ["GET"]
 #giving all the characters in the certain guild
-def characters_of_the_guild (name):
+def characters_of_the_guild (guild_name):
     #recieve guild name to look for
-    guild_name = escape(name) 
+    guild_name = escape(guild_name) 
 
     #define variables
     guild_info = pd.Series()
@@ -122,17 +115,43 @@ def characters_of_the_guild (name):
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
 
-"""
 @app.route("/raidRun", methods = ["POST"])
-def a():
-
+def runs_of_the_guild():
+    
     return()
 
-@app.route("/raid/:id") #methods = ["GET"]
-def a():
+#give all data about specific raid by it's id
+@app.route("/raid/<id>") #methods = ["GET"]
+def info_about_raid_id(id):
+    #getting raid id to look for
+    raid_id = int(escape(id))
+    #read table w/ raid info
+    df_to_work_with_raid = u_tools.read_the_file_to_DF(static_database["raid_table"])
+    #looking for the specific raid id
+    raid_info = u_tools.find_1_row_in_DataFrame(
+        df_to_work_with_raid,
+        object_to_search_for = raid_id,
+        item_column = "raid_id"
+        )
+    #check is there such guild
+    raid_info_type = raid_info.__class__.__name__
+    if raid_info_type == "NoneType" :
+        return jsonify("There is no such raid")
+    #reading table w/ bosses info
+    df_to_work_with_bosses = u_tools.read_the_file_to_DF(static_database["boss_table"])
+    #looking for the bosses in our raid
+    needed_bosses = u_tools.find_many_rows_in_DataFrame(
+            df_to_work_with_bosses,
+            object_to_search_for = raid_id,
+            item_column = "raid_id"
+    )
+    #combining info into 1 substance
+    df_to_return = pd.merge(raid_info.to_frame().T,needed_bosses,on="raid_id")
+    #sending our response
+    result = json.loads(df_to_return.to_json(orient="index"))
+    return json.dumps(result, indent=2)
 
-    return()
-
+"""
 @app.route("/raidRun/:id", methods = ["GET", "PUT"])
 def a():
 
