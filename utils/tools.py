@@ -15,7 +15,7 @@ def read_columns_of_the_csv_to_DF (
     df = pd.read_csv(file_to_read, header = 0, usecols=columns)
     #end timer
     end_timer = time.perf_counter()
-    print(read_columns_of_the_csv_to_DF.__name__, " timer =",end_timer-start_timer)
+    print(read_columns_of_the_csv_to_DF.__name__, "timer =",end_timer-start_timer)
     print(df.columns)
     return(df)
 
@@ -37,7 +37,7 @@ def read_the_file_to_DF (
         return(print ("Error, we dont suppot such file extention"))
     #end timer
     end_timer = time.perf_counter()
-    print(read_the_file_to_DF.__name__, " timer =",end_timer-start_timer)
+    print(read_the_file_to_DF.__name__, "timer =",end_timer-start_timer)
     return(df)
 
 def find_1_row_in_DataFrame (
@@ -57,7 +57,7 @@ def find_1_row_in_DataFrame (
         if i == object_to_search_for:
             #end_timer
             end_timer = time.perf_counter()
-            print(find_1_row_in_DataFrame.__name__," timer =", end_timer-start_timer)
+            print(find_1_row_in_DataFrame.__name__,"timer =", end_timer-start_timer)
             return(main_df.iloc[j])
         j = j+1
 
@@ -88,9 +88,12 @@ def find_many_rows_in_DataFrame (
     
     #end_timer + return
     end_timer = time.perf_counter()
-    print(find_many_rows_in_DataFrame.__name__, " timer =", end_timer-start_timer)
+    print(find_many_rows_in_DataFrame.__name__, "timer =", end_timer-start_timer)
     return(df_to_return)
 
+
+
+"""
 static_database = {
     "raid_table" : "Data/Static_database/Wow app - Raid table.csv",
     "boss_table" : "Data/Static_database/Wow app - Bosses table.csv",
@@ -104,11 +107,6 @@ dynamic_database = {
     "events_table" : "Data/Dynamic_database/events_table.csv"
 }
 
-
-
-
-
-"""
 column = ["raid id"]
 main_df = read_the_file_to_DF(
     file_to_read = dynamic_database["guilds_table"])
