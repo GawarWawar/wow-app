@@ -4,6 +4,8 @@ import time
 
 from utils.useless_tools import from_many_csv_to_one_file_of_any_filetype
 from utils.tools import from_many_csv_to_one_df
+ 
+start_timer = time.perf_counter()
     
 #all files that we are adding to our list 
 files = [
@@ -113,3 +115,6 @@ from_many_csv_to_one_file_of_any_filetype(
     csv_separator=wowhead_separator,
     should_be_df_transposed=False  
 )
+
+end_timer = time.perf_counter()
+print("generate_static_item_database time =", end_timer-start_timer)
