@@ -47,7 +47,6 @@ def find_many_rows_in_DataFrame_with_for__concat (
     
     return(df_to_return)
 
-
 #transform from csv into DataFrame with forward transposing it`s content
 def csv_with_no_header_to_transposed_dataframe (
     csv, #file to read from

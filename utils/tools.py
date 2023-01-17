@@ -91,12 +91,13 @@ def from_many_csv_to_one_df (
     files_to_read, #list of files to read from
     set_index_names, #names for columns/indexes for ur dataframe
     csv_separator=None, #separator for csv files (oprional)
-    should_be_df_transposed = True, #should dataframe be transposed, boolean, True by default (optional)
 ):
     #startin timer
     start_timer = time.perf_counter()
     #dataframe to combine all of the file content in
     main_df = pd.DataFrame(columns=set_index_names)
+    #transforming set_index_names for DataFrame.set_index
+    set_index_names = [set_index_names]
     #cycle to get every csv-file into our main DataFrame
     for i in files_to_read: 
         #dataframe for each step of the cycle
@@ -109,9 +110,6 @@ def from_many_csv_to_one_df (
         df_situational = df_situational.transpose()
         #writing transposed situational dataframe (df_situational) into our main storage container
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
-    #transposing to original state, if needed
-    if should_be_df_transposed != True:
-        main_df = main_df.transpose()
     #ending timer
     end_timer = time.perf_counter()
     print(from_many_csv_to_one_df.__name__,"time =", end_timer-start_timer)
