@@ -23,21 +23,9 @@ dynamic_database = {
     "events_table" : "Data/Dynamic_database/events_table.csv"
 }
 
-@app.route('/')
-def index():
-    return 'Index Page'
-
-@app.route('/books')
-def list_of_books():
-    books = [
-        {'name': 'The Call of the Wild', 'author': 'Jack London'},
-        {'name': 'Heart of Darkness', 'author': 'Joseph Conrad'}
-    ]
-    #return json.dumps(books, indent=4)
-    return jsonify(books)
-
 @app.route("/guildStats/<name>") #methods = ["GET"]
 #get all data about the guild
+#now gives only list of guild members
 def give_all_aviable_guild_stats(name):
     #recieve guild name to look for
     guild_name = escape(name) 
@@ -133,7 +121,7 @@ def info_about_raid_id(id):
         object_to_search_for = raid_id,
         item_column = "raid_id"
         )
-    #check is there such guild
+    #check is there such raid
     raid_info_type = raid_info.__class__.__name__
     if raid_info_type == "NoneType" :
         return jsonify("There is no such raid")

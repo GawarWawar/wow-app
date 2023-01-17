@@ -86,7 +86,37 @@ def find_many_rows_in_DataFrame (
     print(find_many_rows_in_DataFrame.__name__, "timer =", end_timer-start_timer)
     return(df_to_return)
 
-
+#get data from the different files and write into 1
+def from_many_csv_to_one_df (
+    files_to_read, #list of files to read from
+    set_index_names, #names for columns/indexes for ur dataframe
+    csv_separator=None, #separator for csv files (oprional)
+    should_be_df_transposed = True, #should dataframe be transposed, boolean, True by default (optional)
+):
+    #startin timer
+    start_timer = time.perf_counter()
+    #dataframe to combine all of the file content in
+    main_df = pd.DataFrame(columns=set_index_names)
+    #cycle to get every csv-file into our main DataFrame
+    for i in files_to_read: 
+        #dataframe for each step of the cycle
+        df_situational = pd.DataFrame()
+        #reading next file our situational dataframe (df_situational)
+        df_situational = pd.read_csv(i, engine= "python",sep=csv_separator, header=None )
+        #giving names for columns in the created dataframe
+        df_situational = df_situational.set_index(set_index_names)
+        #transposing created dataframe
+        df_situational = df_situational.transpose()
+        #writing transposed situational dataframe (df_situational) into our main storage container
+        main_df = pd.concat([main_df,df_situational], ignore_index=True)
+    #transposing to original state, if needed
+    if should_be_df_transposed != True:
+        main_df = main_df.transpose()
+    #ending timer
+    end_timer = time.perf_counter()
+    print(from_many_csv_to_one_df.__name__,"time =", end_timer-start_timer)
+    return (main_df)
+    
 
 """
 static_database = {
