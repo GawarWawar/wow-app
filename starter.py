@@ -33,7 +33,10 @@ def give_all_aviable_guild_stats(name):
     guild_info = pd.Series()
     
     #read table w/ guilds info
-    df_to_work_with_guild = u_tools.read_the_file_to_DF(dynamic_database["guilds_table"])
+    df_to_work_with_guild = pd.read_csv(
+        dynamic_database["guilds_table"]
+    )
+
     #get all guild's info
     guild_info = u_tools.find_1_row_in_DataFrame(
         df_to_work_with_guild,
@@ -47,7 +50,9 @@ def give_all_aviable_guild_stats(name):
         return jsonify("There is no such guild")   
     
     #read table w/ characters info
-    df_to_work_with_characters = u_tools.read_the_file_to_DF(dynamic_database["characters_table"])
+    df_to_work_with_characters = pd.read_csv(
+        dynamic_database["characters_table"]
+        )
     
     #find all members of the given guild
     df_to_return = u_tools.find_many_rows_in_DataFrame(
@@ -64,9 +69,11 @@ def give_all_aviable_guild_stats(name):
 #user wants to create new raid and we need to give all of the raid to him
 def create_new_raid ():
     #read the table w/ info about raids
-    df_to_work_with = u_tools.read_the_file_to_DF(static_database["raid_table"])
+    df_to_work_with = pd.read_csv(
+        static_database["raid_table"]
+        )
     
-    #get needed info
+    #get needed columns where the info stored
     df_to_send = df_to_work_with.loc[:,["raid_id","raid_name"]]
     
     result = json.loads(df_to_send.to_json(orient="index"))
@@ -76,11 +83,12 @@ def create_new_raid ():
 @app.route("/characters/<guild_name>") #methods = ["GET"]
 #giving all the characters in the certain guild
 def characters_of_the_guild (guild_name):
-    #recieve guild name to look for
     guild_name = escape(guild_name) 
 
     #read table w/ guilds info
-    df_to_work_with_guild = u_tools.read_the_file_to_DF(dynamic_database["guilds_table"])
+    df_to_work_with_guild = pd.read_csv(
+        dynamic_database["guilds_table"]
+        )
     
     #get all guild's info
     guild_info = u_tools.find_1_row_in_DataFrame(
@@ -95,7 +103,7 @@ def characters_of_the_guild (guild_name):
         return jsonify("There is no such guild")   
 
     #read table w/ characters info
-    df_to_work_with_characters = u_tools.read_the_file_to_DF(dynamic_database["characters_table"])
+    df_to_work_with_characters = pd.read_csv(dynamic_database["characters_table"])
     
     #find all members of the given guild
     df_to_return = u_tools.find_many_rows_in_DataFrame(
@@ -126,7 +134,9 @@ def info_about_raid_id(id):
     raid_id = int(escape(id))
     
     #read table w/ raid info
-    df_to_work_with_raid = u_tools.read_the_file_to_DF(static_database["raid_table"])
+    df_to_work_with_raid = pd.read_csv(
+        static_database["raid_table"]
+        )
     
     #looking for the specific raid id
     raid_info = u_tools.find_1_row_in_DataFrame(
@@ -141,7 +151,9 @@ def info_about_raid_id(id):
         return jsonify("There is no such raid")
     
     #reading table w/ bosses info
-    df_to_work_with_bosses = u_tools.read_the_file_to_DF(static_database["boss_table"])
+    df_to_work_with_bosses = pd.read_csv(
+        static_database["boss_table"]
+        )
     
     #looking for the bosses in our raid
     needed_bosses = u_tools.find_many_rows_in_DataFrame(

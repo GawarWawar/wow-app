@@ -47,6 +47,7 @@ def find_many_rows_in_DataFrame_with_for__concat (
     
     return(df_to_return)
 
+
 #transform from csv into DataFrame with forward transposing it`s content
 def csv_with_no_header_to_transposed_dataframe (
     csv, #file to read from
@@ -67,6 +68,7 @@ def csv_with_no_header_to_transposed_dataframe (
     end_timer = time.perf_counter()
     print(csv_with_no_header_to_transposed_dataframe.__name__,"time =", end_timer-start_timer)
     return dataframe
+
 
 #get data from the different files and write into 1
 def from_many_csv_to_one_file_of_any_filetype (
@@ -111,3 +113,37 @@ def from_many_csv_to_one_file_of_any_filetype (
     #ending timer
     end_timer = time.perf_counter()
     print(from_many_csv_to_one_file_of_any_filetype.__name__,"time =", end_timer-start_timer)
+
+#useless reads
+def read_columns_of_the_csv_to_DF (
+        file_to_read, #file that we need to read
+        columns = False #what columns do we need to read
+):
+    """
+        Read file with the header and standart separator (,); \
+        Return DataFrame with contamination of the columns we gave
+    """
+    
+    df = pd.read_csv(file_to_read, header = 0, usecols=columns)
+
+    return(df)
+
+
+def read_the_file_to_DF (
+    file_to_read, #file that we need to read
+    file_type = "csv" #what type is our file, that we are reading
+):
+    """
+        read file with the header and standart separator (,); \n
+        return DataFrame with contamination of the file
+    """
+
+    if file_type == "csv":
+        df = pd.read_csv(file_to_read)
+    elif file_type == "json":
+        df = pd.read_json(file_to_read, orient="index")
+    else:
+        return(print ("Error, we dont suppot such file extention"))
+
+    return(df)
+    

@@ -148,6 +148,9 @@ df_for_gluth_25.to_csv(
     index=False
 )
 
+file_for_boss_id = files_for_items_list
+for i in file_for_boss_id:
+    file_df = pd.read_csv()
 
 end_timer = time.perf_counter()
 print("generate_static_item_database time =", end_timer-start_timer)
