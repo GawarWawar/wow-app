@@ -13,6 +13,22 @@ def time_the_function (
           end_timer-start_timer)
     return(result)
 
+#transform from csv into DataFrame with forward transposing it`s content
+def wowhead_style_csv_to_df (
+    file_to_read, #file to read from
+    dataframe, #dataframe to write into
+    set_indexes_names, #names for the indexes (optional)
+    separator #separator into csv file (optional)
+):
+    dataframe = pd.read_csv(
+        file_to_read, 
+        engine='python', 
+        sep = separator, 
+        header=None
+    )
+    dataframe = dataframe.set_index([set_indexes_names]) 
+    dataframe = dataframe.transpose()
+    return dataframe
 
 def find_1_row_in_DataFrame (
         main_df, #DataFrame that contain our object 
@@ -51,6 +67,7 @@ def find_many_rows_in_DataFrame (
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
     return(df_to_return)
 
+
 #get data from the different files and write into 1
 def from_many_csv_to_one_df (
         files_to_read, #list of files to read from
@@ -59,20 +76,16 @@ def from_many_csv_to_one_df (
     ):
     #dataframe to combine all of the file content in
     main_df = pd.DataFrame(columns=set_index_names)
-    #transforming set_index_names for DataFrame.set_index
-    set_index_names = [set_index_names]
     
     #cycle to get every csv-file into our main DataFrame
     for i in files_to_read: 
         df_situational = pd.DataFrame()
-        df_situational = pd.read_csv(
-            i, 
-            engine = "python",
-            sep = csv_separator, 
-            header = None
+        df_situational = wowhead_style_csv_to_df(
+            i,
+            df_situational,
+            set_index_names,
+            csv_separator
         )
-        df_situational = df_situational.set_index(set_index_names)
-        df_situational = df_situational.transpose()
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
         
     return (main_df)

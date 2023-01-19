@@ -12,12 +12,8 @@ def find_item_in_DataFrame_without_for (
         Finds entety that we are looking for in given DataFrame
     """
     #start timer
-    start_timer = time.perf_counter()
     #looking for the item
     item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
-    #end_timer
-    end_timer = time.perf_counter()
-    print("find_item_in_DataFrame_without_for timer =", end_timer-start_timer)
     return(item)
 
 def find_many_rows_in_DataFrame_with_for__concat (
@@ -29,7 +25,6 @@ def find_many_rows_in_DataFrame_with_for__concat (
         Finds all enteties that we are looking for in given DataFrame
     """
     #start timer
-    start_timer = time.perf_counter()
     #declare a variable
     df_to_return = pd.DataFrame(columns=main_df.columns)
     #looking for the item
@@ -41,33 +36,8 @@ def find_many_rows_in_DataFrame_with_for__concat (
             s = pd.Series(main_df.iloc[j])
             df_to_return = pd.concat([df_to_return, s.to_frame().T], ignore_index=True) 
         j = j+1
-    #end_timer
-    end_timer = time.perf_counter()
-    print(find_many_rows_in_DataFrame_with_for__concat.__name__, " timer =", end_timer-start_timer)
     
     return(df_to_return)
-
-
-#transform from csv into DataFrame with forward transposing it`s content
-def csv_with_no_header_to_transposed_dataframe (
-    csv, #file to read from
-    dataframe, #dataframe to write into
-    set_names_for_transposed_indexes=False, #names for the indexes (optional)
-    separetor = False, #separator into csv file (optional)
-):
-    #startin timer
-    start_timer = time.perf_counter()
-    if separetor != False: 
-        dataframe = pd.read_csv(csv, engine='python', sep = separetor, header=None)
-    else:
-        dataframe = pd.read_csv(csv, header=None)
-    if set_names_for_transposed_indexes != False :
-        dataframe = dataframe.set_index(set_names_for_transposed_indexes) 
-    dataframe = dataframe.transpose()
-    #ending timer
-    end_timer = time.perf_counter()
-    print(csv_with_no_header_to_transposed_dataframe.__name__,"time =", end_timer-start_timer)
-    return dataframe
 
 
 #get data from the different files and write into 1
@@ -79,8 +49,6 @@ def from_many_csv_to_one_file_of_any_filetype (
     csv_separator=False, #separator for csv files (oprional)
     should_be_df_transposed = True, #should dataframe be transposed, boolean, True by default (optional)
 ):
-    #startin timer
-    start_timer = time.perf_counter()
     #dataframe to combine all of the file content in
     main_df = pd.DataFrame(columns=set_index_names)
     #cycle to get every csv-file into our main DataFrame
@@ -110,9 +78,6 @@ def from_many_csv_to_one_file_of_any_filetype (
         main_df.to_excel(file_to_write, index=False) 
     else: 
         print("No such file type is supported") 
-    #ending timer
-    end_timer = time.perf_counter()
-    print(from_many_csv_to_one_file_of_any_filetype.__name__,"time =", end_timer-start_timer)
 
 #useless reads
 def read_columns_of_the_csv_to_DF (
