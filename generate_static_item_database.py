@@ -3,7 +3,7 @@ import pandas as pd
 import time
 
 from utils.useless_tools import from_many_csv_to_one_file_of_any_filetype
-from utils.tools import from_many_csv_to_one_df
+from utils.tools import from_many_csv_to_one_df, wowhead_style_csv_to_df
     
 start_timer = time.perf_counter()
  
@@ -54,7 +54,7 @@ df_for_items = from_many_csv_to_one_df(
 df_for_items = df_for_items.drop_duplicates(indexes_that_we_want_to_set_up[0])
 df_for_items = df_for_items.sort_values(indexes_that_we_want_to_set_up[0])
 df_for_items.to_csv(
-    "Data/Static_database/Items.csv", 
+    "Data/Static_database/items.csv", 
     index_label=False, 
     header=True, 
     index=False
@@ -64,7 +64,7 @@ df_for_items.to_csv(
 """
 #create exel file for items
 df_for_items.to_csv(
-    "Data/Static_database/Items.xlsx", 
+    "Data/Static_database/items.xlsx", 
     index_label=False, 
     header=True, 
     index=False
@@ -73,7 +73,7 @@ df_for_items.to_csv(
 
 #create json file for items
 df_for_items.to_csv(
-    "Data/Static_database/Items.json", 
+    "Data/Static_database/items.json", 
     index_label=False, 
     header=True, 
     index=False
@@ -130,6 +130,7 @@ files_for_gluth_25 = [
     "Data/Data_transform/Items_from_Naxx/Noth_the_Plaguebringer_25.csv",
     "Data/Data_transform/Items_from_Naxx/Thaddius_25.csv"
 ]
+
 df_for_gluth_25 = from_many_csv_to_one_df(
     files_to_read = files_for_gluth_10,
     set_index_names = indexes_that_we_want_to_set_up,
@@ -140,7 +141,7 @@ df_for_gluth_25 = df_for_gluth_25.drop_duplicates(indexes_that_we_want_to_set_up
 df_for_gluth_25 = df_for_gluth_25.sort_values(indexes_that_we_want_to_set_up[0])
 #transpoe df to make it the same orientation as other file
 df_for_gluth_25 = df_for_gluth_25.transpose()
-#create csv file for gluth_10
+
 df_for_gluth_25.to_csv(
     "Data/Data_transform/Items_from_Naxx/Gluth_25_not_wowhead.csv", 
     index_label=False, 
@@ -148,9 +149,54 @@ df_for_gluth_25.to_csv(
     index=False
 )
 
-file_for_boss_id = files_for_items_list
-for i in file_for_boss_id:
-    file_df = pd.read_csv()
+
+# Building table for loot that drops from bosses
+bosses_list = pd.read_csv(
+    "Data/Static_database/Wow app - Bosses table.csv"
+)
+bosses_list = bosses_list.sort_values("boss_name")
+#temporary droping lists, that doesnt have files
+bosses_list = bosses_list.drop([16])
+#droping not wowhead files
+bosses_list = bosses_list.drop([3, 19])
+
+#creating table for items, that can drop from certain bosses
+file_for_drops_from_bosses = files_for_items_list
+drop_dict = {
+    "boss_id" : [],
+    "item_id" : []
+}
+
+j = 0
+for i in file_for_drops_from_bosses:
+    boss_df = pd.DataFrame()
+    boss_dict = {}
+    
+    boss_df = wowhead_style_csv_to_df(
+        i,
+        boss_df,
+        indexes_that_we_want_to_set_up,
+        wowhead_separator
+    )
+
+    boss_id = bosses_list.iat[j,0]
+    
+    #creat DataFrame w/ drop for certain boss
+    boss_df["boss_id"] = boss_id
+    boss_df.pop("item_name")
+    
+    boss_dict = boss_df.to_dict(orient="list")
+    drop_dict["boss_id"].extend(boss_dict["boss_id"])
+    drop_dict["item_id"].extend(boss_dict["item_id"])
+    
+    j += 1
+
+drop_df = pd.DataFrame.from_dict(drop_dict)    
+drop_df.to_csv("Data/Static_database/drop_of_bosses.csv",index=False,index_label=False)
+
 
 end_timer = time.perf_counter()
-print("generate_static_item_database time =", end_timer-start_timer)
+print(
+    "generate_static_item_database time =",
+    end_timer-start_timer
+)
