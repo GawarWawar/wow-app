@@ -2,18 +2,39 @@ import numpy as np
 import pandas as pd
 import time
 
+#change separetor from ", " to ","
+def rewrite_wowhead_separator(
+    file_to_rewrite, #file which separator we want to change
+    path_to_ftw, #path to file to write
+    new_path, #path to new file
+    sep_style = ", ", #by default common sep from wowhead
+    rename_pattern = "_not_wowhead" #what to add to file, "_not_wowhead" for default
+):
+    df_to_rewrite = pd.read_csv(
+        path_to_ftw + "/"+ file_to_rewrite, #combinepath + filename 
+        engine='python', 
+        sep = sep_style, 
+        header=None
+    )
+    split_file_name = file_to_rewrite.split(".")
+    new_path = f"{new_path}/{split_file_name[0]}{rename_pattern}.{split_file_name[1]}"
+    df_to_rewrite.to_csv(
+        new_path,
+        index=False,
+        index_label=False,
+        header=None     
+    )
 
 #transform from csv into DataFrame with forward transposing it`s content
-def wowhead_style_csv_to_df (
+#old name: wowhead_inspired_csv_to_df
+def vertical_csv_to_df (
     file_to_read, #file to read from
+    path_to_ftr, #path to file to read
     dataframe, #dataframe to write into
     set_indexes_names, #names for the indexes (optional)
-    separator #separator into csv file (optional)
 ):
     dataframe = pd.read_csv(
-        file_to_read, 
-        engine='python', 
-        sep = separator, 
+        path_to_ftr +"/"+file_to_read,  
         header=None
     )
     dataframe = dataframe.set_index([set_indexes_names]) 
@@ -57,14 +78,12 @@ def find_rows_in_DataFrame (
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
     return(df_to_return)
 
-#def find_rows_in_DF__dict ():
-#    print("Just started")
 
 #get data from the different files and write into 1
 def from_many_csv_to_one_df (
         files_to_read, #list of files to read from
+        path_to_ftrs, #path to file to read
         set_index_names, #names for columns/indexes for ur dataframe
-        csv_separator=None, #separator for csv files (oprional)
     ):
     #dataframe to combine all of the file content in
     main_df = pd.DataFrame(columns=set_index_names)
@@ -72,15 +91,56 @@ def from_many_csv_to_one_df (
     #cycle to get every csv-file into our main DataFrame
     for i in files_to_read: 
         df_situational = pd.DataFrame()
-        df_situational = wowhead_style_csv_to_df(
+        df_situational = vertical_csv_to_df(
             i,
+            path_to_ftrs,
             df_situational,
-            set_index_names,
-            csv_separator
+            set_index_names
         )
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
         
     return (main_df)
+
+#read many csv to create one csv
+#has drop duplicantes and sort_value on colomn n1
+#write options: index_label=False, header=False, index=False
+def from_many_csv_to_one_csv(
+    files_to_read, #list of files to read from
+    path_to_ftrs, #path to file to read
+    file_to_write, #file to write
+    path_to_ftw, #path to write file
+    set_index_names, #names for columns/indexes for ur dataframe
+    transpose_grouped_file=True, #check if new file should be transposed
+    options_for_tocsv = {   #options for pd.csv
+        "index_label":False,
+        "header":False,
+        "index":False
+    }
+):
+    main_df = from_many_csv_to_one_df(
+        files_to_read=files_to_read,
+        path_to_ftrs=path_to_ftrs,
+        set_index_names=set_index_names
+    )
+
+    main_df = main_df.drop_duplicates(
+        set_index_names[0]
+    )
+    main_df = main_df.sort_values(
+        set_index_names[0]
+    )
+    
+    #transpoe df to make it the same orientation as antecedence files
+    if transpose_grouped_file:
+        main_df = main_df.transpose()
+
+    main_df.to_csv(
+        path_to_ftw+"/"+file_to_write, 
+        index_label=options_for_tocsv["index_label"], 
+        header=options_for_tocsv["header"], 
+        index=options_for_tocsv["index"]
+    )
+
 
 
 def time_the_function (
@@ -100,13 +160,13 @@ class TMF ():
     def __init__(self) -> None:
         pass
     
-    def wowhead_style_csv_to_df (
+    def vertical_csv_to_df (
         file_to_read, #file to read from
         dataframe, #dataframe to write into
         set_indexes_names, #names for the indexes (optional)
         separator #separator into csv file (optional)
     ):
-        time_the_function(wowhead_style_csv_to_df (
+        time_the_function(vertical_csv_to_df (
             file_to_read, #file to read from
             dataframe, #dataframe to write into
             set_indexes_names, #names for the indexes (optional)
