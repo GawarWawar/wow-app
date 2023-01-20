@@ -33,7 +33,6 @@ indexes_that_we_want_to_set_up =["0","1"]
 #creating file for the gluth_10   
 files_for_gluth_10 = [
     "Anub'Rekhan_10_not_wowhead.csv",
-    "Four_Horsemen_Chest_10_not_wowhead.csv",
     "Gothik_the_Harvester_10_not_wowhead.csv",
     "Grand_Widow_Faerlina_10_not_wowhead.csv",
     "Grobbulus_10_not_wowhead.csv",
@@ -43,12 +42,13 @@ files_for_gluth_10 = [
     "Maexxna_10_not_wowhead.csv",
     "Patchwerk_10_not_wowhead.csv",
     "Noth_the_Plaguebringer_10_not_wowhead.csv",
-    "Thaddius_10_not_wowhead.csv"
+    "Thaddius_10_not_wowhead.csv",
+    "The_Four_Horsemen_10_not_wowhead.csv"
 ]
 
 u_tools.from_many_csv_to_one_csv(
     files_to_read=files_for_gluth_10,
-    path_to_ftrs=file_path_to_ri,
+    path_to_fstr=file_path_to_ri,
     file_to_write="Gluth_10_not_wowhead.csv",
     path_to_ftw=file_path_to_ri,
     set_index_names=indexes_that_we_want_to_set_up
@@ -57,7 +57,6 @@ u_tools.from_many_csv_to_one_csv(
 #creating Gluth_25 file
 files_for_gluth_25 = [
     "Anub'Rekhan_25_not_wowhead.csv",
-    "Four_Horsemen_Chest_25_not_wowhead.csv",
     "Gothik_the_Harvester_25_not_wowhead.csv",
     "Grand_Widow_Faerlina_25_not_wowhead.csv",
     "Grobbulus_25_not_wowhead.csv",
@@ -67,13 +66,21 @@ files_for_gluth_25 = [
     "Maexxna_25_not_wowhead.csv",
     "Patchwerk_25_not_wowhead.csv",
     "Noth_the_Plaguebringer_25_not_wowhead.csv",
-    "Thaddius_25_not_wowhead.csv"
+    "Thaddius_25_not_wowhead.csv",
+    "The_Four_Horsemen_25_not_wowhead.csv"
+
 ]
 
 u_tools.from_many_csv_to_one_csv(
     files_to_read=files_for_gluth_10,
-    path_to_ftrs=file_path_to_ri,
+    path_to_fstr=file_path_to_ri,
     file_to_write="Gluth_25_not_wowhead.csv",
     path_to_ftw=file_path_to_ri,
     set_index_names=indexes_that_we_want_to_set_up
+)
+
+end_timer = time.perf_counter()
+print(
+    "generate_wowhead_transform time =",
+    end_timer-start_timer
 )

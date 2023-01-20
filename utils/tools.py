@@ -82,7 +82,7 @@ def find_rows_in_DataFrame (
 #get data from the different files and write into 1
 def from_many_csv_to_one_df (
         files_to_read, #list of files to read from
-        path_to_ftrs, #path to file to read
+        path_to_fstr, #path to file to read
         set_index_names, #names for columns/indexes for ur dataframe
     ):
     #dataframe to combine all of the file content in
@@ -93,7 +93,7 @@ def from_many_csv_to_one_df (
         df_situational = pd.DataFrame()
         df_situational = vertical_csv_to_df(
             i,
-            path_to_ftrs,
+            path_to_fstr,
             df_situational,
             set_index_names
         )
@@ -106,7 +106,7 @@ def from_many_csv_to_one_df (
 #write options: index_label=False, header=False, index=False
 def from_many_csv_to_one_csv(
     files_to_read, #list of files to read from
-    path_to_ftrs, #path to file to read
+    path_to_fstr, #path to file to read
     file_to_write, #file to write
     path_to_ftw, #path to write file
     set_index_names, #names for columns/indexes for ur dataframe
@@ -119,7 +119,7 @@ def from_many_csv_to_one_csv(
 ):
     main_df = from_many_csv_to_one_df(
         files_to_read=files_to_read,
-        path_to_ftrs=path_to_ftrs,
+        path_to_fstr=path_to_fstr,
         set_index_names=set_index_names
     )
 
