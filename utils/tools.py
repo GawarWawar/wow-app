@@ -91,6 +91,57 @@ def from_many_csv_to_one_df (
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
         
     return (main_df)
+
+#time_my_function
+# Class to include timer into given functions
+class TMF ():
+    def __init__(self) -> None:
+        pass
+    def wowhead_style_csv_to_df (
+        file_to_read, #file to read from
+        dataframe, #dataframe to write into
+        set_indexes_names, #names for the indexes (optional)
+        separator #separator into csv file (optional)
+    ):
+        time_the_function(wowhead_style_csv_to_df (
+            file_to_read, #file to read from
+            dataframe, #dataframe to write into
+            set_indexes_names, #names for the indexes (optional)
+            separator #separator into csv file (optional)
+        ))
+    def find_one_row_in_DataFrame (
+        main_df, #DataFrame that contain our object 
+        object_to_search_for, #what we need to find
+        item_column #name of column to look into for item 
+    ):
+        time_the_function(find_one_row_in_DataFrame (
+            main_df,
+            object_to_search_for,
+            item_column 
+        ))
+    def find_rows_in_DataFrame(
+        main_df, #DataFrame that contain our object 
+        object_to_search_for, #what we need to find
+        item_column #name of column to look into for item
+    ):
+        time_the_function(find_rows_in_DataFrame(
+            main_df, 
+            object_to_search_for,
+            item_column  
+        ))
+    def from_many_csv_to_one_df(
+        self,
+        files_to_read, 
+        set_index_names, 
+        csv_separator
+    ):
+        time_the_function(from_many_csv_to_one_df(
+            files_to_read,
+            set_index_names,
+            csv_separator
+        ))
+    
+    
     
 """
 static_database = {
