@@ -12,16 +12,16 @@ enctype="multipart/form-data"
 
 
 static_database = {
-    "raid_table" : "Data/Static_database/Wow app - Raid table.csv",
-    "boss_table" : "Data/Static_database/Wow app - Bosses table.csv",
-    "item_table" : "Data/Static_database/Items.csv"
+    "raid_table" : "data/Static_database/Wow app - Raid table.csv",
+    "boss_table" : "data/Static_database/Wow app - Bosses table.csv",
+    "item_table" : "data/Static_database/Items.csv"
 }
 
 dynamic_database = {
-    "guilds_table" : "Data/Dynamic_database/guilds_table.csv",
-    "characters_table" : "Data/Dynamic_database/characters_table.csv",
-    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
-    "events_table" : "Data/Dynamic_database/events_table.csv"
+    "guilds_table" : "data/Dynamic_database/guilds_table.csv",
+    "characters_table" : "data/Dynamic_database/characters_table.csv",
+    "runs_table" : "data/Dynamic_database/runs_of_the_guilds_table.csv",
+    "events_table" : "data/Dynamic_database/events_table.csv"
 }
 
 
