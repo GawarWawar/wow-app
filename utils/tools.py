@@ -2,16 +2,6 @@ import numpy as np
 import pandas as pd
 import time
 
-def time_the_function (
-    function_to_time
-):
-    start_timer = time.perf_counter()
-    result = function_to_time()
-    end_timer = time.perf_counter()
-    print(function_to_time.__name__, 
-          "time =",
-          end_timer-start_timer)
-    return(result)
 
 #transform from csv into DataFrame with forward transposing it`s content
 def wowhead_style_csv_to_df (
@@ -92,11 +82,24 @@ def from_many_csv_to_one_df (
         
     return (main_df)
 
+
+def time_the_function (
+    function_to_time
+):
+    start_timer = time.perf_counter()
+    result = function_to_time()
+    end_timer = time.perf_counter()
+    print(function_to_time.__name__, 
+          "time =",
+          end_timer-start_timer)
+    return(result)
+
 #time_my_function
 # Class to include timer into given functions
 class TMF ():
     def __init__(self) -> None:
         pass
+    
     def wowhead_style_csv_to_df (
         file_to_read, #file to read from
         dataframe, #dataframe to write into
@@ -109,6 +112,7 @@ class TMF ():
             set_indexes_names, #names for the indexes (optional)
             separator #separator into csv file (optional)
         ))
+    
     def find_one_row_in_DataFrame (
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
@@ -119,6 +123,7 @@ class TMF ():
             object_to_search_for,
             item_column 
         ))
+    
     def find_rows_in_DataFrame(
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
@@ -129,6 +134,7 @@ class TMF ():
             object_to_search_for,
             item_column  
         ))
+    
     def from_many_csv_to_one_df(
         self,
         files_to_read, 

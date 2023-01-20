@@ -137,8 +137,12 @@ df_for_gluth_25 = from_many_csv_to_one_df(
     csv_separator = wowhead_separator
 )
 
-df_for_gluth_25 = df_for_gluth_25.drop_duplicates(indexes_that_we_want_to_set_up[0])
-df_for_gluth_25 = df_for_gluth_25.sort_values(indexes_that_we_want_to_set_up[0])
+df_for_gluth_25 = df_for_gluth_25.drop_duplicates(
+    indexes_that_we_want_to_set_up[0]
+)
+df_for_gluth_25 = df_for_gluth_25.sort_values(
+    indexes_that_we_want_to_set_up[0]
+)
 #transpoe df to make it the same orientation as other file
 df_for_gluth_25 = df_for_gluth_25.transpose()
 
@@ -186,14 +190,19 @@ for i in file_for_drops_from_bosses:
     boss_df.pop("item_name")
     
     boss_dict = boss_df.to_dict(orient="list")
+    #create dictiorary to transform into df
     drop_dict["boss_id"].extend(boss_dict["boss_id"])
     drop_dict["item_id"].extend(boss_dict["item_id"])
     
     j += 1
 
-drop_df = pd.DataFrame.from_dict(drop_dict)    
-drop_df.to_csv("Data/Static_database/drop_of_bosses.csv",index=False,index_label=False)
-
+drop_df = pd.DataFrame.from_dict(drop_dict) 
+drop_df = drop_df.sort_values(by="boss_id")   
+drop_df.to_csv(
+    "Data/Static_database/drop_of_bosses.csv",
+    index=False,
+    index_label=False
+)
 
 end_timer = time.perf_counter()
 print(
