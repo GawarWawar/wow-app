@@ -38,7 +38,7 @@ def give_all_aviable_guild_stats(name):
     )
 
     #get all guild's info
-    guild_info = u_tools.find_1_row_in_DataFrame(
+    guild_info = u_tools.find_one_row_in_DataFrame(
         df_to_work_with_guild,
         object_to_search_for = guild_name,
         item_column = "guild_name"
@@ -55,7 +55,7 @@ def give_all_aviable_guild_stats(name):
         )
     
     #find all members of the given guild
-    df_to_return = u_tools.find_many_rows_in_DataFrame(
+    df_to_return = u_tools.find_rows_in_DataFrame(
         df_to_work_with_characters,
         object_to_search_for = guild_info.loc["guild_id"],
         item_column = "guild_id"
@@ -71,7 +71,7 @@ def create_new_raid ():
     #read the table w/ info about raids
     df_to_work_with = pd.read_csv(
         static_database["raid_table"]
-        )
+    )
     
     #get needed columns where the info stored
     df_to_send = df_to_work_with.loc[:,["raid_id","raid_name"]]
@@ -91,7 +91,7 @@ def characters_of_the_guild (guild_name):
         )
     
     #get all guild's info
-    guild_info = u_tools.find_1_row_in_DataFrame(
+    guild_info = u_tools.find_one_row_in_DataFrame(
         df_to_work_with_guild,
         object_to_search_for = guild_name,
         item_column = "guild_name"
@@ -106,7 +106,7 @@ def characters_of_the_guild (guild_name):
     df_to_work_with_characters = pd.read_csv(dynamic_database["characters_table"])
     
     #find all members of the given guild
-    df_to_return = u_tools.find_many_rows_in_DataFrame(
+    df_to_return = u_tools.find_rows_in_DataFrame(
         df_to_work_with_characters,
         object_to_search_for = guild_info.loc["guild_id"],
         item_column = "guild_id"
@@ -128,6 +128,7 @@ def runs_of_the_guild():
 
 
 #give all data about specific raid by it's id
+#need to add loot from bosses
 @app.route("/raid/<id>") #methods = ["GET"]
 def info_about_raid_id(id):
     #getting raid id to look for
@@ -139,7 +140,7 @@ def info_about_raid_id(id):
         )
     
     #looking for the specific raid id
-    raid_info = u_tools.find_1_row_in_DataFrame(
+    raid_info = u_tools.find_one_row_in_DataFrame(
         df_to_work_with_raid,
         object_to_search_for = raid_id,
         item_column = "raid_id"
@@ -156,14 +157,16 @@ def info_about_raid_id(id):
         )
     
     #looking for the bosses in our raid
-    needed_bosses = u_tools.find_many_rows_in_DataFrame(
+    needed_bosses = u_tools.find_rows_in_DataFrame(
             df_to_work_with_bosses,
             object_to_search_for = raid_id,
             item_column = "raid_id"
     )
     
     #combining info into 1 substance
-    df_to_return = pd.merge(raid_info.to_frame().T,needed_bosses,on="raid_id")
+    df_to_return = pd.merge(raid_info.to_frame().T,
+                            needed_bosses,
+                            on="raid_id")
 
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)

@@ -30,7 +30,7 @@ def wowhead_style_csv_to_df (
     dataframe = dataframe.transpose()
     return dataframe
 
-def find_1_row_in_DataFrame (
+def find_one_row_in_DataFrame (
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
         item_column #name of column to look into for item 
@@ -46,7 +46,7 @@ def find_1_row_in_DataFrame (
         
         j = j+1
 
-def find_many_rows_in_DataFrame (
+def find_rows_in_DataFrame (
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
         item_column #name of column to look into for item
@@ -67,6 +67,8 @@ def find_many_rows_in_DataFrame (
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
     return(df_to_return)
 
+#def find_rows_in_DF__dict ():
+#    print("Just started")
 
 #get data from the different files and write into 1
 def from_many_csv_to_one_df (
