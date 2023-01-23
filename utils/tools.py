@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import time
 
+
 #change separetor from ", " to ","
 def rewrite_wowhead_separator(
     file_to_rewrite, #file which separator we want to change
@@ -25,6 +26,7 @@ def rewrite_wowhead_separator(
         header=None     
     )
 
+
 #transform from csv into DataFrame with forward transposing it`s content
 #old name: wowhead_inspired_csv_to_df
 def vertical_csv_to_df (
@@ -40,43 +42,6 @@ def vertical_csv_to_df (
     dataframe = dataframe.set_index([set_indexes_names]) 
     dataframe = dataframe.transpose()
     return dataframe
-
-def find_one_row_in_DataFrame (
-        main_df, #DataFrame that contain our object 
-        object_to_search_for, #what we need to find
-        item_column #name of column to look into for item 
-):
-    """
-        Finds entety that we are looking for in given DataFrame
-    """
-
-    j = 0
-    for i in main_df.loc[:,item_column]:
-        if i == object_to_search_for: 
-            return(main_df.iloc[j])
-        
-        j = j+1
-
-def find_rows_in_DataFrame (
-        main_df, #DataFrame that contain our object 
-        object_to_search_for, #what we need to find
-        item_column #name of column to look into for item
-):
-    """
-        Finds all enteties that we are looking for in given DataFrame
-    """
-    dict_to_df = {}
-    
-    #loop to find all lines and add them to the 1 dictionary 
-    #after that we can create df from it
-    j = 0
-    for i in main_df.loc[:,item_column]:
-        if i == object_to_search_for:
-            dict_to_df[len(dict_to_df)] = pd.Series(main_df.iloc[j]).T.to_dict()
-        j = j+1
-
-    df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
-    return(df_to_return)
 
 
 #get data from the different files and write into 1
@@ -100,6 +65,7 @@ def from_many_csv_to_one_df (
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
         
     return (main_df)
+
 
 #read many csv to create one csv
 #has drop duplicantes and sort_value on colomn n1
@@ -142,85 +108,74 @@ def from_many_csv_to_one_csv(
     )
 
 
-
-def time_the_function (
-    function_to_time
-):
-    start_timer = time.perf_counter()
-    result = function_to_time()
-    end_timer = time.perf_counter()
-    print(function_to_time.__name__, 
-          "time =",
-          end_timer-start_timer)
-    return(result)
-
-#time_my_function
-# Class to include timer into given functions
-class TMF ():
-    def __init__(self) -> None:
-        pass
-    
-    def vertical_csv_to_df (
-        file_to_read, #file to read from
-        dataframe, #dataframe to write into
-        set_indexes_names, #names for the indexes (optional)
-        separator #separator into csv file (optional)
-    ):
-        time_the_function(vertical_csv_to_df (
-            file_to_read, #file to read from
-            dataframe, #dataframe to write into
-            set_indexes_names, #names for the indexes (optional)
-            separator #separator into csv file (optional)
-        ))
-    
-    def find_one_row_in_DataFrame (
+#find row that contain searched object in 1 column
+def find_one_row_in_DataFrame (
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
         item_column #name of column to look into for item 
-    ):
-        time_the_function(find_one_row_in_DataFrame (
-            main_df,
-            object_to_search_for,
-            item_column 
-        ))
-    
-    def find_rows_in_DataFrame(
+):
+    """
+        Finds entety that we are looking for in given DataFrame
+    """
+
+    j = 0
+    for i in main_df.loc[:,item_column]:
+        if i == object_to_search_for: 
+            return(main_df.iloc[j])
+        
+        j = j+1
+
+
+#find many rows that contain searched object in 1 column
+def find_rows_in_DataFrame (
         main_df, #DataFrame that contain our object 
         object_to_search_for, #what we need to find
         item_column #name of column to look into for item
-    ):
-        time_the_function(find_rows_in_DataFrame(
-            main_df, 
-            object_to_search_for,
-            item_column  
-        ))
+):
+    """
+        Finds all enteties that we are looking for in given DataFrame
+    """
+    dict_to_df = {}
     
-    def from_many_csv_to_one_df(
-        self,
-        files_to_read, 
-        set_index_names, 
-        csv_separator
-    ):
-        time_the_function(from_many_csv_to_one_df(
-            files_to_read,
-            set_index_names,
-            csv_separator
-        ))
-    
-    
-    
-"""
-static_database = {
-    "raid_table" : "Data/Static_database/Wow app - Raid table.csv",
-    "boss_table" : "Data/Static_database/Wow app - Bosses table.csv",
-    "item_table" : "Data/Static_database/Items.csv"
-}
+    #loop to find all lines and add them to the 1 dictionary 
+    #after that we can create df from it
+    j = 0
+    for i in main_df.loc[:,item_column]:
+        if i == object_to_search_for:
+            dict_to_df[len(dict_to_df)] = pd.Series(main_df.iloc[j]).T.to_dict()
+        j = j+1
 
-dynamic_database = {
-    "guilds_table" : "Data/Dynamic_database/guilds_table.csv",
-    "characters_table" : "Data/Dynamic_database/characters_table.csv",
-    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
-    "events_table" : "Data/Dynamic_database/events_table.csv"
-}
+    df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
+    return(df_to_return)
 
-"""
+#find many rows for each object we are looking for in the column
+def many_to_many_finder (
+        main_df, #DataFrame that contain our object 
+        list_to_search_for, #list of what we need to find
+        item_column #name of column to look into for item
+):
+    """
+    Find items for the list for given criterias
+    Befor searching for the items sorts "item_colum" and "list_to_search_for" 
+    """
+    dict_to_df = {}
+    
+    #sorting list_to_sear_for and item column to make less searches
+    main_df = main_df.sort_values(item_column)
+    list_to_search_for.sort()
+    
+    #loop to find all lines and add them to the 1 dictionary 
+    df_lvl_counter =0
+    list_counter = 0
+    
+    for i in main_df.loc[:,item_column]:
+        if i == list_to_search_for[list_counter]:
+            dict_to_df[len(dict_to_df)] = pd.Series(
+                main_df.iloc[df_lvl_counter]).T.to_dict()
+        elif list_to_search_for[list_counter] < i:
+            b = 0
+        df_lvl_counter += 1
+
+    df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
+    return(df_to_return)
+
