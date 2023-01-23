@@ -14,6 +14,7 @@ enctype="multipart/form-data"
 static_database = {
     "raid_table" : "data/Static_database/Wow app - Raid table.csv",
     "boss_table" : "data/Static_database/Wow app - Bosses table.csv",
+    "drop_table" : "data/Static_database/drop_of_bosses.csv",
     "item_table" : "data/Static_database/Items.csv"
 }
 
@@ -163,6 +164,19 @@ def info_about_raid_id(id):
             item_column = "raid_id"
     )
     
+    #reading table w/ dropp info
+    df_to_work_with_drop = pd.read_csv(
+        static_database["drop_table"]
+    )
+
+    
+    #looking for the loot for our bosses
+    needed_items = u_tools.many_to_many_finder(
+        df_to_work_with_drop,
+        needed_bosses.loc[:,"boss_id"],
+        "boss_id"
+    )
+
     #combining info into 1 substance
     df_to_return = pd.merge(raid_info.to_frame().T,
                             needed_bosses,

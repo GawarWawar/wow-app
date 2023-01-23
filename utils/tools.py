@@ -148,34 +148,67 @@ def find_rows_in_DataFrame (
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
     return(df_to_return)
 
+
+#searches for the position of the needed item in the given list
+def next_in_series (
+    item_to_compair,
+    list_for_search,
+    position_to_start
+):
+    for search in range(
+        position_to_start,
+        len(list_for_search-1)
+    ):
+        if list_for_search[search] >= item_to_compair:
+            return search
+
 #find many rows for each object we are looking for in the column
 def many_to_many_finder (
         main_df, #DataFrame that contain our object 
-        list_to_search_for, #list of what we need to find
+        series_to_search_for, #list of what we need to find
         item_column #name of column to look into for item
 ):
     """
     Find items for the list for given criterias
-    Befor searching for the items sorts "item_colum" and "list_to_search_for" 
+    Befor searching for the items sorts "item_colum" and "series_to_search_for" 
     """
+    t_start = time.perf_counter()
+
     dict_to_df = {}
     
     #sorting list_to_sear_for and item column to make less searches
-    main_df = main_df.sort_values(item_column)
-    list_to_search_for.sort()
+    #main_df = main_df.sort_values(item_column)
+    #series_to_search_for = series_to_search_for.sort_values()
     
     #loop to find all lines and add them to the 1 dictionary 
-    df_lvl_counter =0
-    list_counter = 0
+    df_lvl_counter = 0
+    series_counter = 0
     
     for i in main_df.loc[:,item_column]:
-        if i == list_to_search_for[list_counter]:
+        if i == series_to_search_for.iat[series_counter]:
             dict_to_df[len(dict_to_df)] = pd.Series(
                 main_df.iloc[df_lvl_counter]).T.to_dict()
-        elif list_to_search_for[list_counter] < i:
-            b = 0
+        elif series_to_search_for.iat[series_counter] < i:
+            series_counter = next_in_series(
+                i,
+                series_to_search_for,
+                series_counter
+            )
+            #for search in range(series_counter, len(series_to_search_for)):
+            #    if series_to_search_for.iat[search] >= i:
+            #        
+            #        break
+            if series_counter == None:
+                break
+            elif i == series_to_search_for[series_counter]:
+                dict_to_df[len(dict_to_df)] = pd.Series(
+                    main_df.iloc[df_lvl_counter]).T.to_dict()
         df_lvl_counter += 1
 
     df_to_return = pd.DataFrame.from_dict(dict_to_df, orient="index")
+    
+    t_end = time.perf_counter()
+    print(many_to_many_finder.__name__,"time =",t_end-t_start)
+    
     return(df_to_return)
 
