@@ -138,56 +138,56 @@ def info_about_raid_id(id):
     raid_id = int(escape(id))
     
     #read table w/ raid info
-    df_to_work_with_raid = pd.read_csv(
+    df_to_return = pd.read_csv(
         static_database["raid_table"]
         )
-    
     #looking for the specific raid id
-    raid_info = u_tools.find_one_row_in_DataFrame(
-        df_to_work_with_raid,
+    df_to_return = u_tools.find_one_row_in_DataFrame(
+        df_to_return,
         object_to_search_for = raid_id,
         item_column = "raid_id"
     )
     
     #check is there such raid
-    raid_info_type = raid_info.__class__.__name__
-    if raid_info_type == "NoneType" :
+    df_to_return_type = df_to_return.__class__.__name__
+    if df_to_return_type == "NoneType" :
         return jsonify("There is no such raid")
     
     #reading table w/ bosses info
     df_to_work_with_bosses = pd.read_csv(
         static_database["boss_table"]
         )
-    
-    #looking for the bosses in our raid
-    needed_bosses = u_tools.find_rows_in_DataFrame(
-            df_to_work_with_bosses,
-            object_to_search_for = raid_id,
-            item_column = "raid_id"
-    )
+    #add bosses of our raid
+    df_to_return = pd.DataFrame.merge(
+        df_to_return.to_frame().T,
+        df_to_work_with_bosses,
+        on="raid_id")
+
     
     #reading table w/ dropp info
     df_to_work_with_drop = pd.read_csv(
         static_database["drop_table"]
     )
-
-    #drop from selected raid
-    needed_items = u_tools.many_to_many_finder(
-        df_to_work_with_drop,
-        needed_bosses.loc[:,"boss_id"],
-        "boss_id"
+    #add drop from selected bosses
+    df_to_return = pd.merge(
+        df_to_work_with_drop, 
+        df_to_return, 
+        on="boss_id" 
     )
     
+    #read items info
     df_items = pd.read_csv(
         static_database["item_table"]
     )
-
-    df_to_return = pd.merge(df_to_work_with_drop, needed_bosses, on="boss_id" )
+    #add items info to the drops table
+    df_to_return = pd.merge(
+        df_to_return,
+        df_items,
+        on="item_id"
+    )
     
-    #combining info into 1 substance
-    df_to_return = pd.merge(raid_info.to_frame().T,
-                            needed_bosses,
-                            on="raid_id")
+    #    
+    df_to_return = df_to_return.sort_values(by="boss_id", ignore_index=True)
 
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
