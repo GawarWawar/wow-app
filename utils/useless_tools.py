@@ -11,7 +11,6 @@ def find_item_in_DataFrame_without_for (
     """
         Finds entety that we are looking for in given DataFrame
     """
-    #start timer
     #looking for the item
     item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
     return(item)
@@ -24,7 +23,6 @@ def find_many_rows_in_DataFrame_with_for__concat (
     """
         Finds all enteties that we are looking for in given DataFrame
     """
-    #start timer
     #declare a variable
     df_to_return = pd.DataFrame(columns=main_df.columns)
     #looking for the item
@@ -36,6 +34,91 @@ def find_many_rows_in_DataFrame_with_for__concat (
             s = pd.Series(main_df.iloc[j])
             df_to_return = pd.concat([df_to_return, s.to_frame().T], ignore_index=True) 
         j = j+1
+    
+    return(df_to_return)
+
+
+#searches for the position of the needed item in the given list
+def next_in_series (
+    item_to_compair,
+    series_for_search,
+    position_to_start
+):
+    for search in range(
+        position_to_start,
+        len(series_for_search-1)
+    ):
+        if series_for_search.iat[search] >= item_to_compair:
+            return search
+
+#find many rows for each object we are looking for in the column
+def many_to_many_finder_based_myltiple_for (
+        main_df, #DataFrame that contain our object 
+        series_to_search_for, #list of what we need to find
+        item_column #name of column to look into for item
+):
+    """
+    Find items for the list for given criterias
+    Befor searching for the items sorts "item_colum" and "series_to_search_for" 
+    """
+    t_start = time.perf_counter()
+
+    dict_to_work = {}
+    
+    #sorting list_to_sear_for and item column to make less searches
+    main_df = main_df.sort_values(item_column)
+    series_to_search_for = series_to_search_for.sort_values()
+    
+    #loop to find all lines and add them to 1 dictionary 
+    df_lvl_counter = 0
+    series_counter = 0
+    
+    for i in main_df.loc[:,item_column]:
+        if i == series_to_search_for.iat[series_counter]:
+            dict_to_work[len(dict_to_work)] = pd.Series(
+                main_df.iloc[df_lvl_counter]).T.to_dict()
+        
+        #check if the search item still in the range of search 
+        elif series_to_search_for.iat[series_counter] < i:
+            #look for the next criteria to compair
+            series_counter = next_in_series(
+                i,
+                series_to_search_for,
+                series_counter
+            )
+            #if there is no more items to search for -> break
+            if series_counter == None:
+                break
+            #check the same item after changing criteria
+            elif i == series_to_search_for[series_counter]:
+                dict_to_work[len(dict_to_work)] = pd.Series(
+                    main_df.iloc[df_lvl_counter]).T.to_dict()
+        df_lvl_counter += 1
+
+    df_to_return = pd.DataFrame.from_dict(dict_to_work, orient="index")
+    
+    t_end = time.perf_counter()
+    print(many_to_many_finder.__name__,"time =",t_end-t_start)
+    
+    return(df_to_return)
+
+#find many rows for each object we are looking for in the column
+def many_to_many_based_on_pandas_search_with_concat (
+        main_df, #DataFrame that contain our object 
+        series_to_search_for, #list of what we need to find
+        item_column #name of column to look into for item
+    ):
+    t_start = time.perf_counter()
+    
+    df_to_return = pd.DataFrame()
+    #loop to find all lines for all criterias
+    for i in series_to_search_for:
+        df_to_concat = main_df[main_df.loc[:, item_column] == i]
+        #add them through concat
+        df_to_return = pd.concat([df_to_return,df_to_concat])    
+    
+    t_end = time.perf_counter()
+    print(function.__name__,"time =",t_end-t_start)
     
     return(df_to_return)
 

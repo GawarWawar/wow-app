@@ -169,8 +169,7 @@ def info_about_raid_id(id):
         static_database["drop_table"]
     )
 
-    
-    #looking for the loot for our bosses
+    #drop from selected raid
     needed_items = u_tools.many_to_many_finder(
         df_to_work_with_drop,
         needed_bosses.loc[:,"boss_id"],
