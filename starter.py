@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import json
 
+import time
+
 from flask import Flask, request, Response, jsonify, json
 from markupsafe import escape
 
@@ -175,7 +177,13 @@ def info_about_raid_id(id):
         needed_bosses.loc[:,"boss_id"],
         "boss_id"
     )
+    
+    df_items = pd.read_csv(
+        static_database["item_table"]
+    )
 
+    df_to_return = pd.merge(df_to_work_with_drop, needed_bosses, on="boss_id" )
+    
     #combining info into 1 substance
     df_to_return = pd.merge(raid_info.to_frame().T,
                             needed_bosses,
