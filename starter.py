@@ -109,16 +109,10 @@ def characters_of_the_guild (guild_name):
     df_to_work_with_characters = pd.read_csv(dynamic_database["characters_table"])
     
     #find all members of the given guild
-    df_to_return = u_tools.find_rows_in_DataFrame(
+    df_to_return = pd.DataFrame.merge(
+        guild_info.to_frame().T,
         df_to_work_with_characters,
-        object_to_search_for = guild_info.loc["guild_id"],
-        item_column = "guild_id"
-    )
-    
-    #check is there any member of that guild
-    df_to_return_type = df_to_return.__class__.__name__
-    if df_to_return_type == "NoneType" :
-        return jsonify("There is no members in",guild_name)
+        on="guild_id")
 
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
@@ -131,7 +125,6 @@ def runs_of_the_guild():
 
 
 #give all data about specific raid by it's id
-#need to add loot from bosses
 @app.route("/raid/<id>") #methods = ["GET"]
 def info_about_raid_id(id):
     #getting raid id to look for
@@ -186,7 +179,7 @@ def info_about_raid_id(id):
         on="item_id"
     )
     
-    #    
+    #sort respons to be in a-z order by "boss_id" 
     df_to_return = df_to_return.sort_values(by="boss_id", ignore_index=True)
 
     result = json.loads(df_to_return.to_json(orient="index"))
