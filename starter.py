@@ -26,7 +26,8 @@ dynamic_database = {
     "guilds_table" : "data/Dynamic_database/guilds_table.csv",
     "characters_table" : "data/Dynamic_database/characters_table.csv",
     "runs_table" : "data/Dynamic_database/runs_of_the_guilds_table.csv",
-    "events_table" : "data/Dynamic_database/events_table.csv"
+    "events_table" : "data/Dynamic_database/events_table.csv",
+    "run_members" : "data/Dynamic_database/run_members.csv"
 }
 
 
@@ -130,38 +131,63 @@ def runs_of_the_guild():
     #accept info about new run
     new_run_df = pd.DataFrame.from_dict(request.json, orient="index")
     
-    #read table with run info    
+    #read table with info about runs
     df_to_work_with_runs = pd.read_csv(dynamic_database["runs_table"])
     
+    
     #adding new run to the runs_table
-    if len(df_to_work_with_runs.index)==0:
-        #if we adding first run ever we will use the lenght of the table
-        df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
-                len(df_to_work_with_runs.index),
-                new_run_df.loc["0","guild_id"],
-                new_run_df.loc["0","raid_id"], 
-                new_run_df.loc["0","date_of_raid"]
-        ] 
-    else:
-        #if we are adding not the first run:
-        #we are using privious last id to generate run_id for the new one
-        run_id = df_to_work_with_runs.loc[:,"run_id"].iat[
-            len(df_to_work_with_runs.index)-1
-        ]
-        
-        len(df_to_work_with_runs.index)
-        df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
-                run_id+1,
-                new_run_df.loc["0","guild_id"],
-                new_run_df.loc["0","raid_id"], 
-                new_run_df.loc["0","date_of_raid"]
-        ]
+    #we are using privious last id to generate run_id for the new one
+    #we have place holder, so we dont need to worry about 
+    #there is nothing beeng in the table
+    run_id = df_to_work_with_runs.loc[:,"run_id"].iat[
+        len(df_to_work_with_runs.index)-1
+    ]
+    df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
+            run_id+1,
+            new_run_df.loc["0","guild_id"],
+            new_run_df.loc["0","raid_id"], 
+            new_run_df.loc["0","date_of_raid"]
+    ]
     
     #writing runs back to the file
     df_to_work_with_runs.to_csv(
         dynamic_database["runs_table"],
         index=False,
         index_label=False
+    )
+    df_to_work_with_runs = None
+    
+    #reading table w/ all existing characters
+    df_to_work_with_characters = pd.read_csv(
+        dynamic_database["characters_table"] 
+    )
+    
+    #adding run members
+    for member_counter in range(len(new_run_df.loc[:,"character_id"])):
+        if new_run_df.loc[str(member_counter),"character_id"] == "new_char":
+            #adding new character to the character_table
+            #we are using privious last id to generate character_id for the new one
+            #we have place holder, so we dont need to worry about 
+            #there is nothing beeng in the table
+            character_id = df_to_work_with_characters.loc[:,"character_id"].iat[
+                len(df_to_work_with_characters.index)-1
+            ]
+            df_to_work_with_characters.loc[
+                len(
+                    df_to_work_with_characters.index
+                )
+            ] = [
+                    character_id+1,
+                    new_run_df.loc[str(member_counter),"character_name"],
+                    new_run_df.loc[str(member_counter),"guild_id"], 
+                    new_run_df.loc[str(member_counter),"class"]
+                ]
+            #continue here
+    print(df_to_work_with_characters)
+        
+    
+    df_to_work_with_run_members = pd.read_csv(
+        dynamic_database["run_members"] #members of all runs
     )
     return("Done")
 
