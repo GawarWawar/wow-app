@@ -4,12 +4,14 @@ import json
 
 import time
 
-from flask import Flask, request, Response, jsonify, json
+from flask import Flask, request, Response, jsonify, json, render_template
 from markupsafe import escape
 
 import utils.tools as u_tools
 
-app = Flask(__name__)
+render_dir = "FE"
+
+app = Flask(__name__, template_folder=render_dir)
 enctype="multipart/form-data"
 
 
@@ -28,7 +30,12 @@ dynamic_database = {
 }
 
 
-@app.route("/guildStats/<name>") #methods = ["GET"]
+@app.route("/")
+def render_index():
+    return render_template("index.html")
+
+
+@app.route("/api/guildStats/<name>") #methods = ["GET"]
 #get all data about the guild
 #right now gives only list of guild members
 def give_all_aviable_guild_stats(name):
@@ -68,7 +75,7 @@ def give_all_aviable_guild_stats(name):
     return json.dumps(result, indent=2)
 
 
-@app.route("/raids") #methods = ["GET"]
+@app.route("/api/raids") #methods = ["GET"]
 #user wants to create new raid and we need to give all of the raid to him
 def create_new_raid ():
     #read the table w/ info about raids
@@ -83,7 +90,7 @@ def create_new_raid ():
     return json.dumps(result, indent=2)
 
 
-@app.route("/characters/<guild_name>") #methods = ["GET"]
+@app.route("/api/characters/<guild_name>") #methods = ["GET"]
 #giving all the characters in the certain guild
 def characters_of_the_guild (guild_name):
     guild_name = escape(guild_name) 
@@ -118,14 +125,15 @@ def characters_of_the_guild (guild_name):
     return json.dumps(result, indent=2)
 
 
-@app.route("/raidRun", methods = ["POST"])
+@app.route("/api/raidRun", methods = ["POST"])
 def runs_of_the_guild():
-    
+    receive_data = request.json()
+    print(receive_data)
     return()
 
 
 #give all data about specific raid by it's id
-@app.route("/raid/<id>") #methods = ["GET"]
+@app.route("/api/raid/<id>") #methods = ["GET"]
 def info_about_raid_id(id):
     #getting raid id to look for
     raid_id = int(escape(id))
@@ -186,12 +194,12 @@ def info_about_raid_id(id):
     return json.dumps(result, indent=2)
 
 """
-@app.route("/raidRun/:id", methods = ["GET", "PUT"])
+@app.route("/api/raidRun/:id", methods = ["GET", "PUT"])
 def a():
 
     return()
 
-@app.route("/raidRuns") #methods = ["GET"]
+@app.route("/api/raidRuns") #methods = ["GET"]
 def a():
 
     return()
