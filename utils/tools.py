@@ -126,6 +126,11 @@ def find_one_row_in_DataFrame (
         j = j+1
 
 
+
+#outdated, due to existence of pd.DataFrame.merge()
+#fill leave it here if they will be needed
+
+
 #find many rows that contain searched object in 1 column
 def find_rows_in_DataFrame (
         main_df, #DataFrame that contain our object 

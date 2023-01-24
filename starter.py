@@ -77,14 +77,14 @@ def give_all_aviable_guild_stats(name):
 
 @app.route("/api/raids") #methods = ["GET"]
 #user wants to create new raid and we need to give all of the raid to him
-def create_new_raid ():
+def give_info_for_the_new_raid ():
     #read the table w/ info about raids
     df_to_work_with = pd.read_csv(
         static_database["raid_table"]
     )
     
     #get needed columns where the info stored
-    df_to_send = df_to_work_with.loc[:,["raid_id","raid_name"]]
+    df_to_send = df_to_work_with.loc[:,["raid_id","raid_name","raid_type"]]
     
     result = json.loads(df_to_send.to_json(orient="index"))
     return json.dumps(result, indent=2)
@@ -127,10 +127,43 @@ def characters_of_the_guild (guild_name):
 
 @app.route("/api/raidRun", methods = ["POST"])
 def runs_of_the_guild():
-    receive_data = request.json()
-    print(receive_data)
-    return()
-
+    #accept info about new run
+    new_run_df = pd.DataFrame.from_dict(request.json, orient="index")
+    
+    #read table with run info    
+    df_to_work_with_runs = pd.read_csv(dynamic_database["runs_table"])
+    
+    #adding new run to the runs_table
+    if len(df_to_work_with_runs.index)==0:
+        #if we adding first run ever we will use the lenght of the table
+        df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
+                len(df_to_work_with_runs.index),
+                new_run_df.loc["0","guild_id"],
+                new_run_df.loc["0","raid_id"], 
+                new_run_df.loc["0","date_of_raid"]
+        ] 
+    else:
+        #if we are adding not the first run:
+        #we are using privious last id to generate run_id for the new one
+        run_id = df_to_work_with_runs.loc[:,"run_id"].iat[
+            len(df_to_work_with_runs.index)-1
+        ]
+        
+        len(df_to_work_with_runs.index)
+        df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
+                run_id+1,
+                new_run_df.loc["0","guild_id"],
+                new_run_df.loc["0","raid_id"], 
+                new_run_df.loc["0","date_of_raid"]
+        ]
+    
+    #writing runs back to the file
+    df_to_work_with_runs.to_csv(
+        dynamic_database["runs_table"],
+        index=False,
+        index_label=False
+    )
+    return("Done")
 
 #give all data about specific raid by it's id
 @app.route("/api/raid/<id>") #methods = ["GET"]
@@ -193,12 +226,14 @@ def info_about_raid_id(id):
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
 
-"""
-@app.route("/api/raidRun/:id", methods = ["GET", "PUT"])
-def a():
-
+@app.route("/api/raidRun/<id>", methods = ["GET", "PUT", "DELETE"])
+def edit_raid_run(id):
+    raid_run_id = id
+    if request.method == "PUT":
+        a=1
     return()
 
+"""
 @app.route("/api/raidRuns") #methods = ["GET"]
 def a():
 
