@@ -3,6 +3,7 @@ import pandas as pd
 import json
 
 import time
+import datetime
 
 from flask import Flask, request, Response, jsonify, json, render_template
 from markupsafe import escape
@@ -141,9 +142,10 @@ def runs_of_the_guild():
     #there is nothing beeng in the table
     run_id = df_to_work_with_runs.loc[:,"run_id"].iat[
         len(df_to_work_with_runs.index)-1
-    ]
+    ] +1
+    
     df_to_work_with_runs.loc[len(df_to_work_with_runs.index)] = [
-            run_id+1,
+            run_id,
             new_run_df.loc["0","guild_id"],
             new_run_df.loc["0","raid_id"], 
             new_run_df.loc["0","date_of_raid"]
@@ -161,35 +163,62 @@ def runs_of_the_guild():
     df_to_work_with_characters = pd.read_csv(
         dynamic_database["characters_table"] 
     )
+    df_to_work_with_run_members = pd.read_csv(
+        dynamic_database["run_members"] #members of all runs
+    )
     
     #adding run members
     for member_counter in range(len(new_run_df.loc[:,"character_id"])):
         if new_run_df.loc[str(member_counter),"character_id"] == "new_char":
             #adding new character to the character_table
-            #we are using privious last id to generate character_id for the new one
+    #we are using privious last id to generate character_id for the new one
             #we have place holder, so we dont need to worry about 
-            #there is nothing beeng in the table
+            #nothing beeng in the table
             character_id = df_to_work_with_characters.loc[:,"character_id"].iat[
                 len(df_to_work_with_characters.index)-1
-            ]
+            ] + 1
+            
             df_to_work_with_characters.loc[
                 len(
                     df_to_work_with_characters.index
                 )
             ] = [
-                    character_id+1,
+                    character_id,
                     new_run_df.loc[str(member_counter),"character_name"],
                     new_run_df.loc[str(member_counter),"guild_id"], 
                     new_run_df.loc[str(member_counter),"class"]
                 ]
-            #continue here
-    print(df_to_work_with_characters)
+        else:
+    #using the same variable to store character id as in the previous example
+            character_id = new_run_df.loc[str(member_counter),"character_id"]
         
-    
-    df_to_work_with_run_members = pd.read_csv(
-        dynamic_database["run_members"] #members of all runs
+        #getting system time for the run_members_table
+        exact_time = datetime.datetime.now()
+        #adding run member to the table  
+        df_to_work_with_run_members.loc[
+            len(
+            df_to_work_with_run_members    
+            )
+        ]=[
+            run_id,
+            character_id,
+            exact_time
+        ]
+
+    df_to_work_with_characters.to_csv(
+        dynamic_database["characters_table"],
+        index=False,
+        index_label=False
     )
-    return("Done")
+    df_to_work_with_run_members.to_csv(
+        dynamic_database["run_members"],
+        index=False,
+        index_label=False
+    )
+    print(df_to_work_with_characters)
+    print(df_to_work_with_run_members)
+    
+    return(str(run_id))
 
 #give all data about specific raid by it's id
 @app.route("/api/raid/<id>") #methods = ["GET"]
