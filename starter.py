@@ -215,10 +215,11 @@ def runs_of_the_guild():
         index=False,
         index_label=False
     )
-    print(df_to_work_with_characters)
-    print(df_to_work_with_run_members)
     
-    return(str(run_id))
+    #returning run_id as the respons
+    dict_to_return = '''{"run_id" : %s}''' %run_id
+    result = json.loads(dict_to_return)
+    return json.dumps(result)
 
 #give all data about specific raid by it's id
 @app.route("/api/raid/<id>") #methods = ["GET"]
