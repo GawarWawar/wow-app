@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import time
 
+import tools as u_tools
+
 #This is slower, but let it be
 def find_item_in_DataFrame_without_for (
     main_df, #DataFrame that contain our object 
@@ -50,6 +52,61 @@ def next_in_series (
     ):
         if series_for_search.iat[search] >= item_to_compair:
             return search
+
+
+#outdated, due to existence of pd.DataFrame.merge()
+#still leave it here if they will be needed
+
+#find many rows that contain searched object in 1 column
+def find_rows_in_DataFrame (
+        main_df, #DataFrame that contain our object 
+        object_to_search_for, #what we need to find
+        item_column #name of column to look into for item
+):
+    """
+        Finds all enteties that we are looking for in given DataFrame
+    """
+    dict_to_work = {}
+    
+    #loop to find all lines and add them to the 1 dictionary 
+    #after that we can create df from it
+    j = 0
+    for i in main_df.loc[:,item_column]:
+        if i == object_to_search_for:
+            dict_to_work[len(dict_to_work)] = pd.Series(main_df.iloc[j]).T.to_dict()
+        j = j+1
+
+    df_to_return = pd.DataFrame.from_dict(dict_to_work, orient="index")
+    return(df_to_return)
+
+#find many rows for each object we are looking for in the column
+#based on in_pandas finder and pd.DataFrame.to_dict
+def many_to_many_finder (
+        main_df, #DataFrame that contain our object 
+        series_to_search_for, #list of what we need to find
+        item_column #name of column to look into for item
+    ):
+    t_start = time.perf_counter()
+    
+    #create main dict to extend after finding elements for each criteria
+    dict_to_work = pd.DataFrame(columns=main_df.columns)
+    dict_to_work = dict_to_work.to_dict(orient="list")
+    
+    #loop to find all lines for all criterias
+    for i in series_to_search_for:
+        dict_to_extend = main_df[main_df.loc[:, item_column] == i]\
+            .to_dict(orient="list")
+        #extend every element of the main dict for the found criteria
+        for j in dict_to_work:
+            dict_to_work[j].extend(dict_to_extend[j])
+    
+    df_to_return = pd.DataFrame.from_dict(dict_to_work)
+    
+    t_end = time.perf_counter()
+    print(many_to_many_finder.__name__,"time =",t_end-t_start)
+    
+    return(df_to_return)
+
 
 #find many rows for each object we are looking for in the column
 def many_to_many_finder_based_myltiple_for (
@@ -139,11 +196,11 @@ def from_many_csv_to_one_file_of_any_filetype (
         #dataframe for each step of the cycle
         df_situational = pd.DataFrame()
         #reading next file our situational dataframe (df_situational) and transposing it
-        df_situational = csv_with_no_header_to_transposed_dataframe(
-            csv = i,
-            dataframe = df_situational, 
-            set_names_for_transposed_indexes=[set_index_names], 
-            separetor=csv_separator
+        df_situational = u_tools.vertical_csv_to_df(
+            i,
+            path_to_ftr= "",
+            dataframe=df_situational,
+            set_indexes_names=set_index_names
         )
         #writing transposed situational dataframe (df_situational) into our main storage container
         main_df = pd.concat([main_df,df_situational], ignore_index=True)
@@ -161,6 +218,7 @@ def from_many_csv_to_one_file_of_any_filetype (
         main_df.to_excel(file_to_write, index=False) 
     else: 
         print("No such file type is supported") 
+
 
 #useless reads
 def read_columns_of_the_csv_to_DF (
@@ -194,4 +252,5 @@ def read_the_file_to_DF (
         return(print ("Error, we dont suppot such file extention"))
 
     return(df)
+    
     
