@@ -2,7 +2,13 @@ import numpy as np
 import pandas as pd
 import time
 
-import tools as u_tools
+import sys
+from os.path import dirname, abspath
+
+SCRIPT_DIR = dirname(abspath(__file__))
+sys.path.append(dirname(SCRIPT_DIR))
+
+import utils.tools as u_tools
 
 #This is slower, but let it be
 def find_item_in_DataFrame_without_for (

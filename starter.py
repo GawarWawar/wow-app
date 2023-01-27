@@ -274,31 +274,25 @@ def info_about_raid_id(id):
 
 @app.route("/api/raidRun/<id>", methods = ["GET", "PUT", "DELETE"])
 def edit_raid_run(id):
-    raid_run_id = id
+    raid_run_id = int(id)
+    
+    #reading tables w/ info
+    df_for_runs = pd.read_csv(dynamic_database["runs_table"]) #runs
+    df_for_events = pd.read_csv(dynamic_database["events_table"]) #events
+    
     if request.method == "PUT":
         #info that comes w/ the request
         run_update = pd.DataFrame.from_dict(request.json, orient="index")
-        print(run_update)
-        
-        #reading table w/ runs info
-        df_for_runs = pd.read_csv(dynamic_database["runs_table"])
         
         #check is there such run
         run_existence = u_tools.find_one_row_in_DataFrame(
             df_for_runs,
-            int(raid_run_id),
+            raid_run_id,
             "run_id"
         )
         run_existence_type = run_existence.__class__.__name__
         if run_existence_type == "NoneType" :
             return jsonify("There is no such run")
-        
-        #we no need anymore info about runs
-        df_for_runs = None
-        
-        #reading table w/ all events
-        df_for_events = pd.read_csv(dynamic_database["events_table"])
-        print(df_for_events)
         
         #cheking every event that were updated
         new_event_ids = []
@@ -332,24 +326,56 @@ def edit_raid_run(id):
                 #if there is one -> update it
                 df_for_events.loc[i_event.loc[0,"event_id"],"character_id"] = \
                     i_event.at[0,"character_id_new"]
-        
-    #write info w/ new events into the table 
-    df_for_events.to_csv(
-        dynamic_database["events_table"],
-        index=False,
-        index_label=False
-    )
     
-    #returning list of new event_id -s as the respons
-    dict_to_return = '''{"event_id" : %s}''' %new_event_ids
-    result = json.loads(dict_to_return)
-    return json.dumps(result)          
-#    
-#    elif request.method == "DELETE":
+        #write info w/ new events into the table 
+        df_for_events.to_csv(
+            dynamic_database["events_table"],
+            index=False,
+            index_label=False
+        )
+
+        #returning list of new event_id -s as the respons
+        dict_to_return = '''{"event_id" : %s}''' %new_event_ids
+        result = json.loads(dict_to_return)
+        return json.dumps(result)             
+   
+# elif request.method == "DELETE":
 #        b=1
-#    else:
-#        c=1
-#    return()
+    
+    else:
+        df_to_return = u_tools.find_item_in_DataFrame_without_for(
+            df_for_runs,
+            raid_run_id,
+            "run_id"
+        )
+
+        df_to_return = pd.DataFrame.merge(
+            df_to_return,
+            df_for_events,
+            on="run_id"
+        )
+        
+        df_for_characters = pd.read_csv(dynamic_database["characters_table"])
+        
+        df_to_return = pd.DataFrame.merge(
+            df_to_return,
+            df_for_characters,
+            on="character_id",
+            suffixes=["_run","_character"]
+        )
+        
+        df_for_items = pd.read_csv(static_database["item_table"])
+        
+        df_to_return = pd.DataFrame.merge(
+            df_to_return,
+            df_for_items,
+            on="item_id"
+        )
+        print(df_to_return)
+        
+        result = json.loads(df_to_return.to_json(orient="index"))
+        return json.dumps(result, indent=2)
+
 
 """
 @app.route("/api/raidRuns") #methods = ["GET"]

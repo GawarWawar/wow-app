@@ -124,3 +124,16 @@ def find_one_row_in_DataFrame (
             return(main_df.iloc[j])
         
         j = j+1
+
+#slower in small files, but faster in big files    
+def find_item_in_DataFrame_without_for (
+    main_df, #DataFrame that contain our object 
+    object_to_search_for, #what we need to find
+    column_name #name of column to look into for item 
+    ):
+    """
+        Finds entety that we are looking for in given DataFrame
+    """
+    #looking for the item
+    item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
+    return(item)
