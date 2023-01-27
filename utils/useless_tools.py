@@ -17,6 +17,10 @@ def find_item_in_DataFrame_without_for (
     item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
     return(item)
 
+#outdated, due to existence of pd.DataFrame.merge()
+#still leave it here if they will be needed
+
+
 def find_many_rows_in_DataFrame_with_for__concat (
     main_df, #DataFrame that contain our object 
     object_to_search_for, #what we need to find
@@ -52,10 +56,6 @@ def next_in_series (
     ):
         if series_for_search.iat[search] >= item_to_compair:
             return search
-
-
-#outdated, due to existence of pd.DataFrame.merge()
-#still leave it here if they will be needed
 
 #find many rows that contain searched object in 1 column
 def find_rows_in_DataFrame (
@@ -106,7 +106,6 @@ def many_to_many_finder (
     print(many_to_many_finder.__name__,"time =",t_end-t_start)
     
     return(df_to_return)
-
 
 #find many rows for each object we are looking for in the column
 def many_to_many_finder_based_myltiple_for (
@@ -178,6 +177,7 @@ def many_to_many_based_on_pandas_search_with_concat (
     print(function.__name__,"time =",t_end-t_start)
     
     return(df_to_return)
+
 
 
 #get data from the different files and write into 1
