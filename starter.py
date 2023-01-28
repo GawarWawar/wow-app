@@ -20,7 +20,7 @@ enctype="multipart/form-data"
 static_database = {
     "raid_table" : "data/Static_database/Wow app - Raid table.csv",
     "boss_table" : "data/Static_database/Wow app - Bosses table.csv",
-    "drop_table" : "data/Static_database/drop_of_bosses.csv",
+    "loot_table" : "data/Static_database/loot_of_bosses.csv",
     "item_table" : "data/Static_database/Items.csv"
 }
 
@@ -101,7 +101,7 @@ def characters_of_the_guild (guild_name):
     #read table w/ guilds info
     df_for_guild = pd.read_csv(
         dynamic_database["guilds_table"]
-        )
+    )
     
     #get all guild's info
     guild_info = u_tools.find_one_row_in_DataFrame(
@@ -165,6 +165,7 @@ def runs_of_the_guild():
     
     #adding run members
     for member_counter in range(len(new_run_df.loc[:,"character_id"])):
+        #check if character
         if new_run_df.loc[str(member_counter),"character_id"] == "new_char":
             
             #adding new character to the character_table
@@ -246,7 +247,7 @@ def info_about_raid_id(id):
     
     #reading table w/ dropp info
     df_for_drop = pd.read_csv(
-        static_database["drop_table"]
+        static_database["loot_table"]
     )
     #add drop from selected bosses
     df_to_return = pd.merge(
