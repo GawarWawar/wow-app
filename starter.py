@@ -272,7 +272,7 @@ def info_about_raid_id(id):
     result = json.loads(df_to_return.to_json(orient="index"))
     return json.dumps(result, indent=2)
 
-@app.route("/api/raidRun/<id>", methods = ["GET", "PUT", "DELETE"])
+@app.route("/api/raidRun/<id>", methods = ["GET", "PUT"])
 def edit_raid_run(id):
     raid_run_id = int(id)
     
@@ -294,39 +294,35 @@ def edit_raid_run(id):
         if run_existence_type == "NoneType" :
             return jsonify("There is no such run")
         
+        #get indexes of old events
+        to_drop = pd.DataFrame(df_for_events.loc[:,"run_id"]==raid_run_id)
+        to_drop = to_drop[to_drop["run_id"]==True].index.to_list()
+        
+        
+        #delete old events
+        df_for_events = df_for_events.drop(
+            to_drop
+        )
+        
         new_event_ids = []
-        #cheking every event that were updated
+        
+        #create new events from response info
         for event in range(len(run_update)):
-            #get event from the event table
-            i_event = run_update.iloc[event]
-            i_event = pd.merge(
-                i_event.to_frame().T, 
-                df_for_events, 
-                on=["run_id", "boss_id", "item_id"],
-                suffixes=["_new","_old"]
+            exact_time = datetime.datetime.now() #system time
+            #create new event
+            new_event_ids.append(
+                add_row.id_and_five_columns(
+                    df_for_events,
+                    dict_w_info={
+                        0: run_update.iloc[event].at["run_id"],
+                        1: run_update.iloc[event].at["boss_id"],
+                        2: run_update.iloc[event].at["item_id"],
+                        3: run_update.iloc[event].at["character_id"],
+                        4: exact_time,
+                    }
+                )
             )
             
-            #check is there such event
-            if len(i_event) == 0:
-                exact_time = datetime.datetime.now() #system time
-                #if there is non -> create new one
-                new_event_ids.append(
-                    add_row.id_and_five_columns(
-                        df_for_events,
-                        dict_w_info={
-                            0: run_update.iloc[event].at["run_id"],
-                            1: run_update.iloc[event].at["boss_id"],
-                            2: run_update.iloc[event].at["item_id"],
-                            3: run_update.iloc[event].at["character_id"],
-                            4: exact_time,
-                        }
-                    )
-                )
-            else:
-                #if there is one -> update it
-                df_for_events.loc[i_event.loc[0,"event_id"],"character_id"] = \
-                    i_event.at[0,"character_id_new"]
-    
         #write info w/ new events into the table 
         df_for_events.to_csv(
             dynamic_database["events_table"],
@@ -338,9 +334,6 @@ def edit_raid_run(id):
         dict_to_return = '''{"event_id" : %s}''' %new_event_ids
         result = json.loads(dict_to_return)
         return json.dumps(result)             
-   
-# elif request.method == "DELETE":
-#        b=1
     
     else:
         #find run by its id in runs table
