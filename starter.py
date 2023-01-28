@@ -294,8 +294,8 @@ def edit_raid_run(id):
         if run_existence_type == "NoneType" :
             return jsonify("There is no such run")
         
-        #cheking every event that were updated
         new_event_ids = []
+        #cheking every event that were updated
         for event in range(len(run_update)):
             #get event from the event table
             i_event = run_update.iloc[event]
@@ -343,36 +343,44 @@ def edit_raid_run(id):
 #        b=1
     
     else:
+        #find run by its id in runs table
         df_to_return = u_tools.find_item_in_DataFrame_without_for(
             df_for_runs,
             raid_run_id,
             "run_id"
         )
 
+        #find all events in events table by the run id
         df_to_return = pd.DataFrame.merge(
             df_to_return,
             df_for_events,
             on="run_id"
         )
         
+        #get info about characters
         df_for_characters = pd.read_csv(dynamic_database["characters_table"])
         
+        #find all characters, that were involved in run
         df_to_return = pd.DataFrame.merge(
             df_to_return,
             df_for_characters,
             on="character_id",
-            suffixes=["_run","_character"]
+            #there is guild in run table and characters table ->
+            suffixes=["_run","_character"] 
+        #we are giving them different names
         )
         
+        #read info about items
         df_for_items = pd.read_csv(static_database["item_table"])
         
+        #find all items, that has been dropped 
         df_to_return = pd.DataFrame.merge(
             df_to_return,
             df_for_items,
             on="item_id"
         )
-        print(df_to_return)
         
+        #return json w/ full info
         result = json.loads(df_to_return.to_json(orient="index"))
         return json.dumps(result, indent=2)
 
