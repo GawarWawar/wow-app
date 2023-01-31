@@ -336,6 +336,7 @@ def edit_raid_run(id):
         result = json.loads(dict_to_return)
         return json.dumps(result)             
     
+    #GET
     else:
         #find run by its id in runs table
         df_to_return = u_tools.find_item_in_DataFrame_without_for(
@@ -379,11 +380,25 @@ def edit_raid_run(id):
         return json.dumps(result, indent=2)
 
 
-"""
-@app.route("/api/raidRuns") #methods = ["GET"]
-def a():
+@app.route("/api/raidRuns/<g_id>") #methods = ["GET"]
+def get_all_guilds_runs(g_id):
+    needed_guild_id = int(escape(g_id))
+    
+    #reading table w/ info about all runs
+    df_for_runs = pd.read_csv(dynamic_database["runs_table"])
 
-    return()
+    #find all runs of given guild
+    df_to_return = u_tools.find_rows_in_DataFrame(
+        df_for_runs,
+        needed_guild_id,
+        "guild_id"
+    )
+
+    #return json w/ full info
+    result = json.loads(df_to_return.to_json(orient="index"))
+    return json.dumps(result, indent=2)
+
+"""
 """
 
 if __name__ == "__main__":

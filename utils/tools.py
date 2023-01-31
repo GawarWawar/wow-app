@@ -68,7 +68,7 @@ def from_many_csv_to_one_df (
 
 
 #read many csv to create one csv
-#has drop duplicantes and sort_value on colomn n1
+#has drop duplicantes and sort_value on colomn n0
 #write options: index_label=False, header=False, index=False
 def from_many_csv_to_one_csv(
     files_to_read, #list of files to read from
@@ -137,3 +137,26 @@ def find_item_in_DataFrame_without_for (
     #looking for the item
     item = main_df[main_df.loc[:, column_name] == object_to_search_for]  
     return(item)
+
+#find many rows that contain searched object in 1 column
+def find_rows_in_DataFrame (
+        main_df, #DataFrame that contain our object 
+        object_to_search_for, #what we need to find
+        item_column #name of column to look into for item
+):
+    """
+        Finds all enteties that we are looking for in given DataFrame
+    """
+    dict_to_work = {}
+    
+    #loop to find all lines and add them to the 1 dictionary 
+    #after that we can create df from it
+    j = 0
+    for i in main_df.loc[:,item_column]:
+        if i == object_to_search_for:
+            dict_to_work[len(dict_to_work)] = \
+                pd.Series(main_df.iloc[j]).T.to_dict()
+        j = j+1
+
+    df_to_return = pd.DataFrame.from_dict(dict_to_work, orient="index")
+    return(df_to_return)
