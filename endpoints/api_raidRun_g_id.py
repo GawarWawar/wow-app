@@ -17,11 +17,11 @@ import utils.add_row as add_row
 
 
 def edit_raid_run_m(
-    id,
+    g_id,
     dynamic_database,
     static_database
 ):
-    raid_run_id = int(escape(id))
+    raid_run_id = int(escape(g_id))
     
     #reading tables w/ info
     df_for_runs = pd.read_csv(dynamic_database["runs_table"]) #runs

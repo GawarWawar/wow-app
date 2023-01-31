@@ -13,8 +13,8 @@ sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.tools as u_tools
 
-def characters_of_the_guild_m (guild_name, dynamic_database):
-    guild_name = escape(guild_name) 
+def characters_of_the_guild_m (g_name, dynamic_database):
+    guild_name = escape(g_name) 
 
     #read table w/ guilds info
     df_for_guild = pd.read_csv(

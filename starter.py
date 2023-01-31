@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 import json
+import datetime
 
 import time
-import datetime
 
 from flask import Flask, request, Response, jsonify, json, render_template
 from markupsafe import escape
@@ -12,12 +12,13 @@ import utils.tools as u_tools
 import utils.add_row as add_row
 
 from endpoints import (
-    api_characters_guild_name,
-    api_raidRun,
+    api_guildStats_g_name,
+    api_raids,
     api_raid_id,
-    api_raidRun_id,
+    api_characters_g_name,
+    api_raidRun,
+    api_raidRun_g_id,
     api_raidRuns_g_id,
-    api_raids
 )
 
 render_dir = "FE"
@@ -47,44 +48,12 @@ def render_index():
     return render_template("index.html")
 
 
-@app.route("/api/guildStats/<name>") #methods = ["GET"]
+@app.route("/api/guildStats/<g_name>") #methods = ["GET"]
 #get all data about the guild
 #right now gives only list of guild members
-def give_all_aviable_guild_stats(name):
-    guild_name = escape(name) 
-    guild_info = pd.Series()
-    
-    #read table w/ guilds info
-    df_for_guild = pd.read_csv(
-        dynamic_database["guilds_table"]
-    )
-
-    #get all guild's info
-    guild_info = u_tools.find_one_row_in_DataFrame(
-        df_for_guild,
-        object_to_search_for = guild_name,
-        item_column = "guild_name"
-        )
-    
-    #check is there such guild
-    guild_info_type = guild_info.__class__.__name__
-    if guild_info_type == "NoneType" :
-        return jsonify("There is no such guild")   
-    
-    #read table w/ characters info
-    df_for_characters = pd.read_csv(
-        dynamic_database["characters_table"]
-        )
-    
-    #find all members of the given guild
-    df_to_return = u_tools.find_rows_in_DataFrame(
-        df_for_characters,
-        object_to_search_for = guild_info.loc["guild_id"],
-        item_column = "guild_id"
-        )
-    
-    result = json.loads(df_to_return.to_json(orient="index"))
-    return json.dumps(result, indent=2)
+def give_all_aviable_guild_stats(g_name):
+    result = api_guildStats_g_name.give_all_aviable_guild_stats_m(g_name,dynamic_database)
+    return(result)
 
 
 @app.route("/api/raids") #methods = ["GET"]
@@ -94,11 +63,18 @@ def give_info_about_all_raids ():
     result = api_raids.give_info_about_all_raids(static_database)
     return(result)
 
+    
+@app.route("/api/raid/<id>") #methods = ["GET"]
+#give all data about specific raid by it's id
+def info_about_raid_id(id):
+    result = api_raid_id.info_about_raid_id_m(id, static_database)
+    return(result)
 
-@app.route("/api/characters/<guild_name>") #methods = ["GET"]
+
+@app.route("/api/characters/<g_name>") #methods = ["GET"]
 #giving all the characters in the certain guild
-def characters_of_the_guild (guild_name):
-    result = api_characters_guild_name.characters_of_the_guild_m(guild_name,dynamic_database)
+def characters_of_the_guild (g_name):
+    result = api_characters_g_name.characters_of_the_guild_m(g_name,dynamic_database)
     return(result)
 
 
@@ -108,21 +84,17 @@ def runs_of_the_guild():
     result = api_raidRun.runs_of_the_guild_m(dynamic_database)
     return(result)
 
-    
-#give all data about specific raid by it's id
-@app.route("/api/raid/<id>") #methods = ["GET"]
-def info_about_raid_id(id):
-    result = api_raid_id.info_about_raid_id_m(id, static_database)
-    return(result)
 
-
-@app.route("/api/raidRun/<id>", methods = ["GET", "PUT"])
-def edit_raid_run (id):
-    result = api_raidRun_id.edit_raid_run_m(id, dynamic_database, static_database)
+@app.route("/api/raidRun/<g_id>", methods = ["GET", "PUT"])
+#PUT - update run_id
+#GET - get info about run_id 
+def edit_raid_run (g_id):
+    result = api_raidRun_g_id.edit_raid_run_m(g_id, dynamic_database, static_database)
     return(result)
 
 
 @app.route("/api/raidRuns/<g_id>") #methods = ["GET"]
+#get info about all runs of the guild
 def get_all_guilds_runs(g_id):
     result = api_raidRuns_g_id.get_all_guilds_runs_m(g_id, dynamic_database)
     return (result)
