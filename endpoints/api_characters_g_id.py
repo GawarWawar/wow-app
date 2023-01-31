@@ -44,14 +44,14 @@ def characters_of_the_guild_m (g_id, dynamic_database):
         on="guild_id"
     )
     
+    #transform guild_id and guild_name columns into index 
+    #   to create list of characters
     df_to_return = df_to_return.set_index(["guild_id", "guild_name"])
     
+    #forming propper respons for the FE
     dict_to_return ={
         "guild_name": guild_info["guild_name"],
         "characters": df_to_return.to_dict(orient="records")
     } 
     
     return json.dumps(dict_to_return, indent=2)
-    
-    #result = json.loads(dict_to_return)
-    #return json.dumps(result, indent=2)
