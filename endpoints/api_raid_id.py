@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import json
 
+
 from flask import jsonify
 from markupsafe import escape
 
@@ -20,58 +21,81 @@ def info_about_raid_id_m(
 ):
     raid_id = int(escape(id))
     
+    
     #read table w/ raid info
-    df_to_return = pd.read_csv(
+    main_df = pd.read_csv(
         static_database["raid_table"]
         )
 
     #looking for the specific raid id
-    df_to_return = u_tools.find_one_row_in_DataFrame(
-        df_to_return,
+    main_df = u_tools.find_one_row_in_DataFrame(
+        main_df,
         object_to_search_for = raid_id,
         item_column = "raid_id"
     )
     
     #check is there such raid
-    df_to_return_type = df_to_return.__class__.__name__
-    if df_to_return_type == "NoneType" :
+    main_df_type = main_df.__class__.__name__
+    if main_df_type == "NoneType" :
         return jsonify("There is no such raid")
+    
+    dict_to_send = {
+        "raid_name" : main_df["raid_name"],
+        "raid_type" : int(main_df["raid_type"]),
+        "bosses" : []
+    }
     
     #reading table w/ bosses info
     df_for_bosses = pd.read_csv(
         static_database["boss_table"]
         )
     #add bosses of our raid
-    df_to_return = pd.DataFrame.merge(
-        df_to_return.to_frame().T,
+    main_df = pd.DataFrame.merge(
+        main_df.to_frame().T,
         df_for_bosses,
         on="raid_id")
 
+    main_df = main_df.set_index(
+        ["raid_id","raid_name","raid_type"]
+    )
     
     #reading table w/ dropp info
     df_for_drop = pd.read_csv(
         static_database["loot_table"]
     )
-    #add drop from selected bosses
-    df_to_return = pd.merge(
-        df_for_drop, 
-        df_to_return, 
-        on="boss_id" 
-    )
-    
     #read items info
     df_items = pd.read_csv(
         static_database["item_table"]
     )
-    #add items info to the drops table
-    df_to_return = pd.merge(
-        df_to_return,
-        df_items,
-        on="item_id"
-    )
     
-    #sort respons to be in a-z order by "boss_id" 
-    df_to_return = df_to_return.sort_values(by="boss_id", ignore_index=True)
+    #for every boss get its loot
+    for row in range(len(main_df["boss_id"])):
+        series_row = main_df[main_df.loc[:, "boss_id"] == row] 
+        
+        #getting loot_drop of sertain boss
+        df_for_work = pd.merge(
+            series_row,
+            df_for_drop,
+            on="boss_id"
+        )
+        
+        #getting info about items from boss's loot
+        df_for_work = df_for_work.set_index(["boss_id","boss_name","npc_wowhead_id"])
+        df_for_work = pd.merge(
+            df_for_work,
+            df_items,
+            on="item_id"
+        )
+        
+        #writing info about boss and its loot into the dict
+        add_part = {
+            "boss_id" : int(series_row.iloc[0].at["boss_id"]),
+            "boss_name" : series_row.iloc[0].at["boss_name"],
+            "npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
+            "loot": json.loads(df_for_work.to_json(orient="records"))
+        }
 
-    result = json.loads(df_to_return.to_json(orient="index"))
-    return json.dumps(result, indent=2)
+        #writing boss's data into the main dict
+        dict_to_send["bosses"].append(add_part)
+    
+    return json.dumps(dict_to_send, indent=2)
