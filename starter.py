@@ -12,10 +12,10 @@ import utils.tools as u_tools
 import utils.add_row as add_row
 
 from endpoints import (
+    api_characters_g_id,
     api_guildStats_g_name,
     api_raids,
     api_raid_id,
-    api_characters_g_name,
     api_raidRun,
     api_raidRun_g_id,
     api_raidRuns_g_id,
@@ -71,10 +71,10 @@ def info_about_raid_id(id):
     return(result)
 
 
-@app.route("/api/characters/<g_name>") #methods = ["GET"]
+@app.route("/api/characters/<g_id>") #methods = ["GET"]
 #giving all the characters in the certain guild
-def characters_of_the_guild (g_name):
-    result = api_characters_g_name.characters_of_the_guild_m(g_name,dynamic_database)
+def characters_of_the_guild (g_id):
+    result = api_characters_g_id.characters_of_the_guild_m(g_id,dynamic_database)
     return(result)
 
 

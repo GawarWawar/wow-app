@@ -14,13 +14,17 @@ sys.path.append(dirname(SCRIPT_DIR))
 import utils.tools as u_tools
 
 #getting raid id to look for
-def info_about_raid_id_m(id, static_database):
+def info_about_raid_id_m(
+        id, 
+        static_database
+):
     raid_id = int(escape(id))
     
     #read table w/ raid info
     df_to_return = pd.read_csv(
         static_database["raid_table"]
         )
+
     #looking for the specific raid id
     df_to_return = u_tools.find_one_row_in_DataFrame(
         df_to_return,
