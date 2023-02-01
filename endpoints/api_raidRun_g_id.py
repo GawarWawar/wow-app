@@ -118,8 +118,13 @@ def edit_raid_run_m(
             on="run_id"
         )
         
-        #deliting info about guild_id that come from run_info
+        #deliting info about run that come from run_info
+            #and we wont use it
         df_run_members.pop("guild_id")
+        df_run_members.pop("run_id")
+        df_run_members.pop("system_time")
+        df_run_members.pop("raid_id")
+        df_run_members.pop("date_of_raid")
         
         #getting details about all characters in this run
         df_run_members = pd.DataFrame.merge(
@@ -128,17 +133,11 @@ def edit_raid_run_m(
             on="character_id"
         )
 
-                
-        for row in range(len(df_run_members.loc[:,"character_id"])):
-            #gathering info about run member
-            add_character =  {
-                "character_id": int(df_run_members.iloc[row].at["character_id"]),
-                "character_name": df_run_members.iloc[row].at["character_name"],
-                "character_class": df_run_members.iloc[row].at["class"]
-            }
-            
-            #adding info about run member into dict_to_send
-            dict_to_send["run_members"].append(add_character)
+        #structuring info about our run members into dict object
+        df_run_members = df_run_members.to_json(orient="records", indent=2)
+
+        #add run members info into dict_to_send
+        dict_to_send["run_members"].extend(json.loads(df_run_members))
         
         #getting events only for our run
         df_for_events = pd.DataFrame.merge(
@@ -149,8 +148,8 @@ def edit_raid_run_m(
         
         #getting info about every looted item in this run
         df_for_events = pd.DataFrame.merge(
-            df_for_events,
             df_for_items,
+            df_for_events,
             on="item_id"
         )
         
@@ -158,6 +157,8 @@ def edit_raid_run_m(
         df_bosses = df_for_events["boss_id"]
         #making bosses ids unique
         df_bosses = df_bosses.drop_duplicates()
+        #make bosses to be in the a -> z order
+        df_bosses.sort_values(inplace=True)
         
         #getting info about bosses, that were killed in this run
         df_bosses = pd.DataFrame.merge(
@@ -165,6 +166,16 @@ def edit_raid_run_m(
             df_boos_table,
             on="boss_id"
         )
+        print(df_bosses)
+        
+        #deliting info about events that come from run_info
+            #and we wont use it
+        df_for_events.pop("guild_id")
+        df_for_events.pop("raid_id")
+        df_for_events.pop("date_of_raid")
+        df_for_events.pop("run_id")
+        df_for_events.pop("event_id")
+        df_for_events.pop("system_time")
         
         #gather info about boss -> add to dict_to_send
         for boss in df_bosses.loc[:,"boss_id"]:
@@ -178,22 +189,20 @@ def edit_raid_run_m(
             
             #getting loot for the boss, that we are adding r/n
             boss_loot = df_for_events[df_for_events.loc[:, "boss_id"] == boss]
-            boss_loot = boss_loot.reset_index()
+            boss_loot.reset_index(inplace=True,drop=True)
             
-            #gather info about loot -> add to add_boss
-            for loot in range(len(boss_loot.loc[:,"boss_id"])):
-                #getting info about every loot
-                add_loot = {
-                    "item_id": int(boss_loot.iloc[loot].at["item_id"]),
-                    "item_name": boss_loot.iloc[loot].at["item_name"],
-                    "character_id": int(boss_loot.iloc[loot].at["character_id"])
-                }
-                
-                #adding loot to the add_boss
-                add_boss["dropped_loot"].append(add_loot)
+            #dont need to add this info to the response
+            boss_loot.pop("boss_id")
             
-            #adding bosses to the dict_to_send
+            #structuring info about our boss_loot into dict object
+            boss_loot = boss_loot.to_json(orient="records", indent=2)
+            
+            #add boss_loot info into add_boss
+            add_boss["dropped_loot"].extend(json.loads(boss_loot))
+            
+            #adding every boss to the dict_to_send
             dict_to_send["bosses"].append(add_boss)
 
         #sendind gathered info about run
         return json.dumps(dict_to_send, indent=2)
+
