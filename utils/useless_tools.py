@@ -259,4 +259,26 @@ def read_the_file_to_DF (
 
     return(df)
     
+def three_lvl_dict_check(dict_to_check):
+    for lvl1 in dict_to_check:
+            if dict_to_check[lvl1].__class__.__name__ == "list":
+                for lvl1_elem in dict_to_check[lvl1]:
+                    for lvl2 in lvl1_elem:
+                        if lvl1_elem[lvl2].__class__.__name__=="list":
+                            for lvl2_elem in lvl1_elem[lvl2]:
+                                for lvl3 in lvl2_elem:
+                                    print(
+                                        lvl3, lvl2_elem[lvl3],
+                                        f"{lvl3}.type", lvl2_elem[lvl3].__class__
+                                    )
+                        else:
+                            print(
+                                lvl2, lvl1_elem[lvl2],
+                                f"{lvl2}.type", lvl1_elem[lvl2].__class__
+                            )      
+            else:
+                print(
+                    lvl1,dict_to_check[lvl1],
+                    f"{lvl1}.type", dict_to_check[lvl1].__class__
+                )
     
