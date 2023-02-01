@@ -13,7 +13,7 @@ import utils.add_row as add_row
 
 from endpoints import (
     api_characters_g_id,
-    api_guildStats_g_name,
+    api_guildStats_g_id,
     api_raids,
     api_raid_id,
     api_raidRun,
@@ -48,11 +48,11 @@ def render_index():
     return render_template("index.html")
 
 
-@app.route("/api/guildStats/<g_name>") #methods = ["GET"]
+@app.route("/api/guildStats/<g_id>") #methods = ["GET"]
 #get all data about the guild
 #right now gives only list of guild members
 def give_all_aviable_guild_stats(g_name):
-    result = api_guildStats_g_name.give_all_aviable_guild_stats_m(g_name,dynamic_database)
+    result = api_guildStats_g_id.give_all_aviable_guild_stats_m(g_name,dynamic_database)
     return(result)
 
 

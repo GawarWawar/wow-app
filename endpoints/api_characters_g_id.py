@@ -14,7 +14,7 @@ sys.path.append(dirname(SCRIPT_DIR))
 import utils.tools as u_tools
 
 def characters_of_the_guild_m (g_id, dynamic_database):
-    guild_name = int(escape(g_id)) 
+    guild_id = int(escape(g_id)) 
 
     #read table w/ guilds info
     df_for_guild = pd.read_csv(
@@ -24,7 +24,7 @@ def characters_of_the_guild_m (g_id, dynamic_database):
     #get all guild's info
     guild_info = u_tools.find_one_row_in_DataFrame(
         df_for_guild,
-        object_to_search_for = guild_name,
+        object_to_search_for = guild_id,
         item_column = "guild_id"
     )
     

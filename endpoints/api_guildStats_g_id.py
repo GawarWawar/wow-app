@@ -16,10 +16,10 @@ import utils.tools as u_tools
 #import utils.add_row as add_row
 
 def give_all_aviable_guild_stats_m(
-    g_name,
+    g_id,
     dynamic_database
 ):
-    guild_name = escape(g_name) 
+    guild_id = escape(g_id) 
     guild_info = pd.Series()
     
     #read table w/ guilds info
@@ -30,8 +30,8 @@ def give_all_aviable_guild_stats_m(
     #get all guild's info
     guild_info = u_tools.find_one_row_in_DataFrame(
         df_for_guild,
-        object_to_search_for = guild_name,
-        item_column = "guild_name"
+        object_to_search_for = guild_id,
+        item_column = "guild_id"
         )
     
     #check is there such guild
