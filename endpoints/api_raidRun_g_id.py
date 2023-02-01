@@ -3,6 +3,8 @@ import pandas as pd
 import json
 import datetime
 
+import time
+
 from flask import request, jsonify
 from markupsafe import escape
 
@@ -21,6 +23,9 @@ def edit_raid_run_m(
     dynamic_database,
     static_database
 ):
+    #start timer
+    s_t = time.perf_counter()
+    
     raid_run_id = int(escape(g_id))
     
     #reading tables w/ info
@@ -166,7 +171,6 @@ def edit_raid_run_m(
             df_boos_table,
             on="boss_id"
         )
-        print(df_bosses)
         
         #deliting info about events that come from run_info
             #and we wont use it
@@ -203,6 +207,10 @@ def edit_raid_run_m(
             #adding every boss to the dict_to_send
             dict_to_send["bosses"].append(add_boss)
 
+        #end timer
+        e_t = time.perf_counter()
+        print(f"Time of {edit_raid_run_m.__name__}={e_t-s_t}")
+        
         #sendind gathered info about run
         return json.dumps(dict_to_send, indent=2)
 
