@@ -281,4 +281,15 @@ def three_lvl_dict_check(dict_to_check):
                     lvl1,dict_to_check[lvl1],
                     f"{lvl1}.type", dict_to_check[lvl1].__class__
                 )
-    
+
+#need to be checked
+def infinite_lvl_dict_check (dict_to_check):
+    for lvl1 in dict_to_check:
+        if dict_to_check[lvl1].__class__.__name__ == "list":
+            for lvl1_elem in dict_to_check[lvl1]:
+                infinite_lvl_dict_check(lvl1_elem)
+        else:
+                print(
+                    lvl1,dict_to_check[lvl1],
+                    f"{lvl1}.type", dict_to_check[lvl1].__class__
+                )
