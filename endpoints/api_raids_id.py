@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import json
 
+import time
 
 from flask import jsonify
 from markupsafe import escape
@@ -19,6 +20,9 @@ def info_about_raid_id_m(
         id, 
         static_database
 ):
+    #start timer
+    s_t = time.perf_counter()
+    
     raid_id = int(escape(id))
     
     
@@ -45,6 +49,10 @@ def info_about_raid_id_m(
         "bosses" : []
     }
     
+    #delete columns that wont use in main_df
+    main_df.pop("raid_name")
+    main_df.pop("raid_type")
+    
     #reading table w/ bosses info
     df_for_bosses = pd.read_csv(
         static_database["boss_table"]
@@ -54,10 +62,8 @@ def info_about_raid_id_m(
         main_df.to_frame().T,
         df_for_bosses,
         on="raid_id")
-
-    main_df = main_df.set_index(
-        ["raid_id","raid_name","raid_type"]
-    )
+    
+    main_df.pop("raid_id")
     
     #reading table w/ dropp info
     df_for_drop = pd.read_csv(
@@ -69,20 +75,24 @@ def info_about_raid_id_m(
     )
     
     #for every boss get its loot
-    for row in range(len(main_df["boss_id"])):
+    for row in main_df["boss_id"]:
         series_row = main_df[main_df.loc[:, "boss_id"] == row] 
         
         #getting loot_drop of sertain boss
-        df_for_work = pd.merge(
+        df_for_cycle = pd.merge(
             series_row,
             df_for_drop,
             on="boss_id"
         )
         
-        #getting info about items from boss's loot
-        df_for_work = df_for_work.set_index(["boss_id","boss_name","npc_wowhead_id"])
-        df_for_work = pd.merge(
-            df_for_work,
+        #delete columns that wont use in df_for_cycle
+        df_for_cycle.pop("boss_id")
+        df_for_cycle.pop("boss_name")
+        df_for_cycle.pop("npc_wowhead_id")
+        
+        
+        df_for_cycle = pd.merge(
+            df_for_cycle,
             df_items,
             on="item_id"
         )
@@ -92,10 +102,14 @@ def info_about_raid_id_m(
             "boss_id" : int(series_row.iloc[0].at["boss_id"]),
             "boss_name" : series_row.iloc[0].at["boss_name"],
             "npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
-            "loot": json.loads(df_for_work.to_json(orient="records"))
+            "loot": json.loads(df_for_cycle.to_json(orient="records"))
         }
 
         #writing boss's data into the main dict
         dict_to_send["bosses"].append(add_part)
+    
+    #end timer
+    e_t = time.perf_counter()
+    print(f"Time of {info_about_raid_id_m.__name__}={e_t-s_t}")
     
     return json.dumps(dict_to_send, indent=2)
