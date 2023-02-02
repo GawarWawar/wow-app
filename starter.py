@@ -15,10 +15,10 @@ from endpoints import (
     api_characters_g_id,
     api_guildStats_g_id,
     api_raids,
-    api_raid_id,
     api_raidRun,
     api_raidRun_g_id,
     api_raidRuns_g_id,
+    api_raids_id,
 )
 
 render_dir = "FE"
@@ -64,14 +64,14 @@ def give_info_about_all_raids ():
     return(result)
 
     
-@app.route("/api/raid/<id>") #methods = ["GET"]
+@app.route("/api/raids/<id>") #methods = ["GET"]
 #give all data about specific raid by it's id
 def info_about_raid_id(id):
-    result = api_raid_id.info_about_raid_id_m(id, static_database)
+    result = api_raids_id.info_about_raid_id_m(id, static_database)
     return(result)
 
 
-@app.route("/api/characters/<g_id>") #methods = ["GET"]
+@app.route("/api/guildStats/<g_id>/characters") #methods = ["GET"]
 #giving all the characters in the certain guild
 def characters_of_the_guild (g_id):
     result = api_characters_g_id.characters_of_the_guild_m(g_id,dynamic_database)
@@ -93,7 +93,7 @@ def edit_raid_run (g_id):
     return(result)
 
 
-@app.route("/api/raidRuns/<g_id>") #methods = ["GET"]
+@app.route("/api/guildStats/<g_id>/raidRuns") #methods = ["GET"]
 #get info about all runs of the guild
 def get_all_guilds_runs(g_id):
     result = api_raidRuns_g_id.get_all_guilds_runs_m(g_id, dynamic_database, static_database)
