@@ -51,8 +51,8 @@ def render_index():
 @app.route("/api/guildStats/<g_id>") #methods = ["GET"]
 #get all data about the guild
 #right now gives only list of guild members
-def give_all_aviable_guild_stats(g_name):
-    result = api_guildStats_g_id.give_all_aviable_guild_stats_m(g_name,dynamic_database)
+def give_all_aviable_guild_stats(g_id):
+    result = api_guildStats_g_id.give_all_aviable_guild_stats_m(g_id,dynamic_database)
     return(result)
 
 

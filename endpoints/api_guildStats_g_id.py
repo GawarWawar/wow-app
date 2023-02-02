@@ -19,7 +19,7 @@ def give_all_aviable_guild_stats_m(
     g_id,
     dynamic_database
 ):
-    guild_id = escape(g_id) 
+    guild_id = int(escape(g_id)) 
     guild_info = pd.Series()
     
     #read table w/ guilds info
