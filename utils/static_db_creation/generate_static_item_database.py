@@ -44,7 +44,7 @@ bosses_list = pd.read_csv(
 )
 bosses_list = bosses_list.sort_values("boss_name")
 #temporary droping lists, that doesnt have files
-bosses_list = bosses_list.drop([16])
+#bosses_list = bosses_list.drop([16])
 
 #creating table for items, that can drop from certain bosses
 file_for_drops_from_bosses = files_for_items_list
@@ -82,7 +82,7 @@ for file in file_for_drops_from_bosses:
 drop_df = pd.DataFrame.from_dict(drop_dict) 
 drop_df = drop_df.sort_values(by=["boss_id","item_id"])   
 drop_df.to_csv(
-    "Data/Static_database/drop_of_bosses.csv",
+    "Data/Static_database/loot_of_bosses.csv",
     index=False,
     index_label=False
 )
