@@ -96,7 +96,7 @@ def edit_raid_run (g_id):
 @app.route("/api/raidRuns/<g_id>") #methods = ["GET"]
 #get info about all runs of the guild
 def get_all_guilds_runs(g_id):
-    result = api_raidRuns_g_id.get_all_guilds_runs_m(g_id, dynamic_database)
+    result = api_raidRuns_g_id.get_all_guilds_runs_m(g_id, dynamic_database, static_database)
     return (result)
 
 """
