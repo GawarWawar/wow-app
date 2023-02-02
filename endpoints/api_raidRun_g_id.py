@@ -28,13 +28,15 @@ def edit_raid_run_m(
     
     raid_run_id = int(escape(g_id))
     
-    #reading tables w/ info
-    df_for_runs = pd.read_csv(dynamic_database["runs_table"]) #runs
-    df_for_events = pd.read_csv(dynamic_database["events_table"]) #events
+    
     
     if request.method == "PUT":
         #info that comes w/ the request
         run_update = pd.DataFrame.from_dict(request.json, orient="index")
+        
+        #reading tables w/ info about
+        df_for_runs = pd.read_csv(dynamic_database["runs_table"]) #runs
+        df_for_events = pd.read_csv(dynamic_database["events_table"]) #events
         
         #check is there such run
         run_existence = u_tools.find_one_row_in_DataFrame(
@@ -45,6 +47,7 @@ def edit_raid_run_m(
         run_existence_type = run_existence.__class__.__name__
         if run_existence_type == "NoneType" :
             return jsonify("There is no such run")
+        
         
         #get indexes of old events
         to_drop = pd.DataFrame(df_for_events.loc[:,"run_id"]==raid_run_id)
@@ -89,6 +92,17 @@ def edit_raid_run_m(
     
     #GET
     else:
+        #reading table w/ info about runs
+        df_for_runs = pd.read_csv( 
+            dynamic_database["runs_table"],
+            usecols=[
+              "run_id",
+              "guild_id",
+              "raid_id",
+              #"date_of_raid"  
+            ]
+        ) 
+        
         #find run by its id in runs table
         run_info = u_tools.find_item_in_DataFrame_without_for(
             df_for_runs,
@@ -110,11 +124,35 @@ def edit_raid_run_m(
             "bosses":[]
         }
         
-        #reading tables w/ info
+        #we dont need that info about run anymore 
+        run_info.pop("guild_id")
+        run_info.pop("raid_id")
+        
+        
+        #reading tables w/ info about
+            # we are not readint colums w/ # in the DataFrame
         df_characters = pd.read_csv(dynamic_database["characters_table"])
         df_for_items = pd.read_csv(static_database["item_table"])
-        df_run_members = pd.read_csv(dynamic_database["run_members"])
+        df_run_members = pd.read_csv(
+            dynamic_database["run_members"],
+            usecols=[
+                "run_id",
+                "character_id",
+                #"system_time"
+            ]
+        )
         df_boos_table = pd.read_csv(static_database["boss_table"])
+        df_for_events = pd.read_csv(
+            dynamic_database["events_table"], 
+            usecols=[
+                "event_id",
+                "run_id",
+                "boss_id",
+                "item_id",
+                "character_id",
+                #"system_time" 
+            ]
+        )
         
         #getting info about only this run members
         df_run_members = pd.DataFrame.merge(
@@ -123,13 +161,8 @@ def edit_raid_run_m(
             on="run_id"
         )
         
-        #deliting info about run that come from run_info
-            #and we wont use it
-        df_run_members.pop("guild_id")
+        #we dont need that info about run members anymore 
         df_run_members.pop("run_id")
-        df_run_members.pop("system_time")
-        df_run_members.pop("raid_id")
-        df_run_members.pop("date_of_raid")
         
         #getting details about all characters in this run
         df_run_members = pd.DataFrame.merge(
@@ -150,6 +183,9 @@ def edit_raid_run_m(
             run_info,
             on="run_id"
         )
+        
+        #we dont need that info about events anymore 
+        df_for_events.pop("run_id")
         
         #getting info about every looted item in this run
         df_for_events = pd.DataFrame.merge(
@@ -172,14 +208,9 @@ def edit_raid_run_m(
             on="boss_id"
         )
         
-        #deliting info about events that come from run_info
-            #and we wont use it
-        df_for_events.pop("guild_id")
-        df_for_events.pop("raid_id")
-        df_for_events.pop("date_of_raid")
-        df_for_events.pop("run_id")
+        #we dont need that info about events anymore 
         df_for_events.pop("event_id")
-        df_for_events.pop("system_time")
+        
         
         #gather info about boss -> add to dict_to_send
         for boss in df_bosses.loc[:,"boss_id"]:
