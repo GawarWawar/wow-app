@@ -92,26 +92,24 @@ def edit_raid_run_m(
     
     #GET
     else:
-        #reading table w/ info about runs
-        df_for_runs = pd.read_csv( 
-            dynamic_database["runs_table"],
-            usecols=[
-              "run_id",
-              "guild_id",
-              "raid_id",
-              #"date_of_raid"  
-            ]
-        ) 
-        
         #find run by its id in runs table
         run_info = u_tools.find_item_in_DataFrame_without_for(
-            df_for_runs,
+            #reading table w/ info about runs
+            #df_for_runs
+            pd.read_csv( 
+                dynamic_database["runs_table"],
+                usecols=[
+                  "run_id",
+                  "guild_id",
+                  "raid_id",
+                  #"date_of_raid"  
+                ]
+            ),
             raid_run_id,
             "run_id"
         )
         
         #clearing variables that we wont use anymore
-        df_for_runs = None
         raid_run_id = None
         
         #creating dictionary that we will send
@@ -129,28 +127,14 @@ def edit_raid_run_m(
         run_info.pop("raid_id")
         
         
-        #reading tables w/ info about
+        #reading table w/ info about run members
             # we are not readint colums w/ # in the DataFrame
-        df_characters = pd.read_csv(dynamic_database["characters_table"])
-        df_for_items = pd.read_csv(static_database["item_table"])
         df_run_members = pd.read_csv(
             dynamic_database["run_members"],
             usecols=[
                 "run_id",
                 "character_id",
                 #"system_time"
-            ]
-        )
-        df_boos_table = pd.read_csv(static_database["boss_table"])
-        df_for_events = pd.read_csv(
-            dynamic_database["events_table"], 
-            usecols=[
-                "event_id",
-                "run_id",
-                "boss_id",
-                "item_id",
-                "character_id",
-                #"system_time" 
             ]
         )
         
@@ -167,15 +151,33 @@ def edit_raid_run_m(
         #getting details about all characters in this run
         df_run_members = pd.DataFrame.merge(
             df_run_members,
-            df_characters,
+            #reading df_characters
+            pd.read_csv(dynamic_database["characters_table"]),
             on="character_id"
         )
+    
 
         #structuring info about our run members into dict object
-        df_run_members = df_run_members.to_json(orient="records", indent=2)
-
-        #add run members info into dict_to_send
-        dict_to_send["run_members"].extend(json.loads(df_run_members))
+            #add run members info into dict_to_send
+        u_tools.extend_list_by_dict_from_df(
+            df_run_members,
+            dict_to_send["run_members"]
+        )
+        df_run_members = None
+        
+        #reading table w/ info about events
+            # we are not readint colums w/ # in the DataFrame
+        df_for_events = pd.read_csv(
+            dynamic_database["events_table"], 
+            usecols=[
+                "event_id",
+                "run_id",
+                "boss_id",
+                "item_id",
+                "character_id",
+                #"system_time" 
+            ]
+        )
         
         #getting events only for our run
         df_for_events = pd.DataFrame.merge(
@@ -187,12 +189,16 @@ def edit_raid_run_m(
         #we dont need that info about events anymore 
         df_for_events.pop("run_id")
         
+        #reading tables w/ info about items
+        df_for_items = pd.read_csv(static_database["item_table"])
+        
         #getting info about every looted item in this run
         df_for_events = pd.DataFrame.merge(
             df_for_items,
             df_for_events,
             on="item_id"
         )
+        df_for_items = None
         
         #creating df about killed bosses
         df_bosses = df_for_events["boss_id"]
@@ -201,12 +207,16 @@ def edit_raid_run_m(
         #make bosses to be in the a -> z order
         df_bosses.sort_values(inplace=True)
         
+        #reading table w/ info about bosses 
+        df_boos_table = pd.read_csv(static_database["boss_table"])
+        
         #getting info about bosses, that were killed in this run
         df_bosses = pd.DataFrame.merge(
             df_bosses,
-            df_boos_table,
+            df_boos_table, 
             on="boss_id"
         )
+        df_boos_table = None
         
         #we dont need that info about events anymore 
         df_for_events.pop("event_id")
@@ -229,11 +239,10 @@ def edit_raid_run_m(
             #dont need to add this info to the response
             boss_loot.pop("boss_id")
             
-            #structuring info about our boss_loot into dict object
-            boss_loot = boss_loot.to_json(orient="records", indent=2)
-            
-            #add boss_loot info into add_boss
-            add_boss["dropped_loot"].extend(json.loads(boss_loot))
+            u_tools.extend_list_by_dict_from_df(
+                boss_loot,
+                add_boss["dropped_loot"]
+            )
             
             #adding every boss to the dict_to_send
             dict_to_send["bosses"].append(add_boss)

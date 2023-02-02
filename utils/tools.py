@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import json
+
 import time
 
 
@@ -160,3 +162,19 @@ def find_rows_in_DataFrame (
 
     df_to_return = pd.DataFrame.from_dict(dict_to_work, orient="index")
     return(df_to_return)
+
+def extend_list_by_dict_from_df (
+    df_to_add, #df that we transform into records and add to list
+    list_to_extend, #list that we need to add dict to
+):
+    """
+        Extend list_to_extend w/ df_to_add content \n
+        Returns None, so does this operation inplace
+    """
+    #structuring DataFrame into dict object
+    df_to_add = df_to_add.to_json(orient="records", indent=2)
+    
+    #add info into list
+    list_to_extend.extend(json.loads(df_to_add))
+    
+    return(None)
