@@ -47,9 +47,12 @@ def info_about_raid_id_m(
         return jsonify("There is no such raid")
     
     dict_to_send = {
-        "raid_name" : main_df["raid_name"],
-        "raid_capacity" : int(main_df["raid_capacity"]),
-        "bosses" : []
+        "data" :{
+            "id" : int(main_df["raid_id"]),
+            "name" : main_df["raid_name"],
+            "raid_capacity" : int(main_df["raid_capacity"]),
+            "bosses" : []
+        }
     }
     
     #delete columns that wont use in main_df
@@ -58,8 +61,15 @@ def info_about_raid_id_m(
     
     #reading table w/ bosses info
     df_for_bosses = pd.read_csv(
-        st_db_boss_table
-        )
+        st_db_boss_table,
+        usecols=[
+            "boss_id",
+            "raid_id",
+            "boss_name",
+            #"npc_wowhead_id"
+        ]
+    )
+    
     #add bosses of our raid
     main_df = pd.DataFrame.merge(
         main_df.to_frame().T,
@@ -83,15 +93,15 @@ def info_about_raid_id_m(
         
         #writing info about boss and its loot into the dict
         add_part = {
-            "boss_id" : int(series_row.iloc[0].at["boss_id"]),
-            "boss_name" : series_row.iloc[0].at["boss_name"],
-            "npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
+            "id" : int(series_row.iloc[0].at["boss_id"]),
+            "name" : series_row.iloc[0].at["boss_name"],
+            #"npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
             "loot": []
         }
         
         #delete columns that wont use in df_for_cycle
         series_row.pop("boss_name")
-        series_row.pop("npc_wowhead_id")
+        #series_row.pop("npc_wowhead_id")
         
         #getting loot_drop of sertain boss
         df_for_cycle = pd.merge(
@@ -110,13 +120,23 @@ def info_about_raid_id_m(
             on="item_id"
         )
 
+        df_for_cycle.rename(
+            {
+                "item_id": "id",
+                "item_name": "name"
+            },
+            axis="columns",
+            inplace=True
+        )
+        
+        #renaming elements according to docs
         u_tools.extend_list_by_dict_from_df(
             df_for_cycle,
             add_part["loot"]
         )
 
         #writing boss's data into the main dict
-        dict_to_send["bosses"].append(add_part)
+        dict_to_send["data"]["bosses"].append(add_part)
     
     #end timer
     e_t = time.perf_counter()
