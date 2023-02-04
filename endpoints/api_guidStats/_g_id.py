@@ -17,14 +17,15 @@ import utils.tools as u_tools
 
 def give_all_aviable_guild_stats_m(
     g_id,
-    dynamic_database
+    dn_db_guilds_table,
+    dn_db_characters_table
 ):
     guild_id = int(escape(g_id)) 
     guild_info = pd.Series()
     
     #read table w/ guilds info
     df_for_guild = pd.read_csv(
-        dynamic_database["guilds_table"]
+        dn_db_guilds_table
     )
 
     #get all guild's info
@@ -41,8 +42,8 @@ def give_all_aviable_guild_stats_m(
     
     #read table w/ characters info
     df_for_characters = pd.read_csv(
-        dynamic_database["characters_table"]
-        )
+        dn_db_characters_table    
+    )
     
     #find all members of the given guild
     df_to_return = u_tools.find_rows_in_DataFrame(

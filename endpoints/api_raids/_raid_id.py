@@ -18,7 +18,10 @@ import utils.tools as u_tools
 #getting raid id to look for
 def info_about_raid_id_m(
         id, 
-        static_database
+        st_db_raid_table,
+        st_db_boss_table,
+        st_db_loot_table,
+        st_db_item_table
 ):
     #start timer
     s_t = time.perf_counter()
@@ -28,7 +31,7 @@ def info_about_raid_id_m(
     
     #read table w/ raid info
     main_df = pd.read_csv(
-        static_database["raid_table"]
+        st_db_raid_table
         )
 
     #looking for the specific raid id
@@ -55,7 +58,7 @@ def info_about_raid_id_m(
     
     #reading table w/ bosses info
     df_for_bosses = pd.read_csv(
-        static_database["boss_table"]
+        st_db_boss_table
         )
     #add bosses of our raid
     main_df = pd.DataFrame.merge(
@@ -67,11 +70,11 @@ def info_about_raid_id_m(
     
     #reading table w/ dropp info
     df_for_drop = pd.read_csv(
-        static_database["loot_table"]
+        st_db_loot_table
     )
     #read items info
     df_items = pd.read_csv(
-        static_database["item_table"]
+        st_db_item_table
     )
     
     #for every boss get its loot

@@ -15,12 +15,16 @@ sys.path.append(dirname(SCRIPT_DIR))
 import utils.tools as u_tools
 import utils.add_row as add_row
 
-def runs_of_the_guild_m(dynamic_database):
+def runs_of_the_guild_m(
+    dn_db_runs_table,
+    dn_db_characters_table,
+    dn_db_run_members
+):
     #accept info about new run
     new_run_df = pd.DataFrame.from_dict(request.json, orient="index")
     
     #read table with info about runs
-    df_for_runs = pd.read_csv(dynamic_database["runs_table"])
+    df_for_runs = pd.read_csv(dn_db_runs_table)
     
     #adding new run to the runs_table
     run_id = add_row.id_and_three_columns(
@@ -35,18 +39,18 @@ def runs_of_the_guild_m(dynamic_database):
 
     #writing runs back to the file
     df_for_runs.to_csv(
-        dynamic_database["runs_table"],
+        dn_db_runs_table,
         index=False,
         index_label=False
     )
     df_for_runs = None
     
-    #reading table w/ all existing characters
+    #reading table w/ 
     df_for_characters = pd.read_csv(
-        dynamic_database["characters_table"] 
+        dn_db_characters_table #all existing characters 
     )
     df_for_run_members = pd.read_csv(
-        dynamic_database["run_members"] #members of all runs
+        dn_db_run_members #members of all runs
     )
     
     #adding run members
@@ -83,12 +87,12 @@ def runs_of_the_guild_m(dynamic_database):
         )
     
     df_for_characters.to_csv(
-        dynamic_database["characters_table"],
+        dn_db_characters_table,
         index=False,
         index_label=False
     )
     df_for_run_members.to_csv(
-        dynamic_database["run_members"],
+        dn_db_run_members,
         index=False,
         index_label=False
     )

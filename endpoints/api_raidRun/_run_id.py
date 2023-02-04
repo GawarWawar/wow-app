@@ -19,14 +19,20 @@ import utils.add_row as add_row
 
 
 def edit_raid_run_m(
-    g_id,
-    dynamic_database,
-    static_database
+    run_id,
+    #dynamic database
+    dn_db_runs_table,
+    dn_db_events_table,
+    dn_db_run_members,
+    dn_db_characters_table,
+    #static database
+    st_db_item_table,
+    st_db_boss_table
 ):
     #start timer
     s_t = time.perf_counter()
     
-    raid_run_id = int(escape(g_id))
+    raid_run_id = int(escape(run_id))
     
     
     
@@ -35,11 +41,15 @@ def edit_raid_run_m(
         run_update = pd.DataFrame.from_dict(request.json, orient="index")
         
         #reading tables w/ info about
-        df_for_runs = pd.read_csv(dynamic_database["runs_table"]) #runs
-        df_for_events = pd.read_csv(dynamic_database["events_table"]) #events
+        df_for_runs = pd.read_csv(dn_db_runs_table) #runs
+        df_for_events = pd.read_csv(dn_db_events_table) #events
         
         #check is there such run
+
+        
         run_existence = u_tools.find_one_row_in_DataFrame(
+
+            
             df_for_runs,
             raid_run_id,
             "run_id"
@@ -80,10 +90,12 @@ def edit_raid_run_m(
             
         #write info w/ new events into the table 
         df_for_events.to_csv(
-            dynamic_database["events_table"],
+            dn_db_events_table,
             index=False,
             index_label=False
         )
+
+        
 
         #returning list of new event_id -s as the respons
         dict_to_return = '''{"event_id" : %s}''' %new_event_ids
@@ -97,10 +109,12 @@ def edit_raid_run_m(
             #reading table w/ info about runs
             #df_for_runs
             pd.read_csv( 
-                dynamic_database["runs_table"],
+                dn_db_runs_table,
                 usecols=[
                   "run_id",
                   "guild_id",
+
+                  
                   "raid_id",
                   #"date_of_raid"  
                 ]
@@ -130,10 +144,12 @@ def edit_raid_run_m(
         #reading table w/ info about run members
             # we are not readint colums w/ # in the DataFrame
         df_run_members = pd.read_csv(
-            dynamic_database["run_members"],
+            dn_db_run_members,
             usecols=[
                 "run_id",
                 "character_id",
+
+                
                 #"system_time"
             ]
         )
@@ -152,9 +168,11 @@ def edit_raid_run_m(
         df_run_members = pd.DataFrame.merge(
             df_run_members,
             #reading df_characters
-            pd.read_csv(dynamic_database["characters_table"]),
+            pd.read_csv(dn_db_characters_table),
             on="character_id"
         )
+    
+
     
         #structuring info about our run members into dict object
             #add run members info into dict_to_send
@@ -167,10 +185,12 @@ def edit_raid_run_m(
         #reading table w/ info about events
             # we are not readint colums w/ # in the DataFrame
         df_for_events = pd.read_csv(
-            dynamic_database["events_table"], 
+            dn_db_events_table, 
             usecols=[
                 "event_id",
                 "run_id",
+
+                
                 "boss_id",
                 "item_id",
                 "character_id",
@@ -189,7 +209,7 @@ def edit_raid_run_m(
         df_for_events.pop("run_id")
         
         #reading tables w/ info about items
-        df_for_items = pd.read_csv(static_database["item_table"])
+        df_for_items = pd.read_csv(st_db_item_table)
         
         #getting info about every looted item in this run
         df_for_events = pd.DataFrame.merge(
@@ -207,7 +227,7 @@ def edit_raid_run_m(
         df_bosses.sort_values(inplace=True)
         
         #reading table w/ info about bosses 
-        df_boos_table = pd.read_csv(static_database["boss_table"])
+        df_boos_table = pd.read_csv(st_db_boss_table)
         
         #getting info about bosses, that were killed in this run
         df_bosses = pd.DataFrame.merge(

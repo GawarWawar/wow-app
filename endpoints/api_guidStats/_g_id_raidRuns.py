@@ -16,14 +16,17 @@ import utils.tools as u_tools
 #import utils.add_row as add_row
 
 def get_all_guilds_runs_m(
-    g_id, 
-    dynamic_database,
-    static_database
+    g_id,
+    #dynamic_database
+    dn_db_guilds_table,
+    dn_db_runs_table,
+    #static_database
+    st_db_raid_table
 ):
     needed_guild_id = int(escape(g_id))
     
     #read table w/ info about guilds
-    df_for_guild = pd.read_csv(dynamic_database["guilds_table"])
+    df_for_guild = pd.read_csv(dn_db_guilds_table)
     #finding all info about needed_guild 
     guild_info = u_tools.find_one_row_in_DataFrame(
         df_for_guild,
@@ -41,7 +44,7 @@ def get_all_guilds_runs_m(
     guild_info = None #no need guild_info anymore
     
     #reading table w/ info about all runs
-    df_for_runs = pd.read_csv(dynamic_database["runs_table"])
+    df_for_runs = pd.read_csv(dn_db_runs_table)
 
     #find all runs of given guild
     main_df = u_tools.find_item_in_DataFrame_without_for(
@@ -55,7 +58,7 @@ def get_all_guilds_runs_m(
     main_df.pop("guild_id")
     
     #read table w/ info about raids
-    df_for_raids = pd.read_csv(static_database["raid_table"])
+    df_for_raids = pd.read_csv(st_db_raid_table)
     
     #writing info about raids into runs
     main_df = pd.DataFrame.merge(

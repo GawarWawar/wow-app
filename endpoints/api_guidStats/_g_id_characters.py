@@ -13,12 +13,17 @@ sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.tools as u_tools
 
-def characters_of_the_guild_m (g_id, dynamic_database):
+def characters_of_the_guild_m (
+    g_id,
+    dn_db_guilds_table,
+    dn_db_characters_table,
+    
+):
     guild_id = int(escape(g_id)) 
 
     #read table w/ guilds info
     df_for_guild = pd.read_csv(
-        dynamic_database["guilds_table"]
+        dn_db_guilds_table
     )
     
     #get all guild's info
@@ -34,8 +39,9 @@ def characters_of_the_guild_m (g_id, dynamic_database):
         return jsonify("There is no such guild")   
         
     #read table w/ characters info
-    df_for_characters = pd.read_csv(dynamic_database["characters_table"])
-    
+    df_for_characters = pd.read_csv(
+        dn_db_characters_table
+    )
     
     #find all members of the given guild
     df_to_return = pd.DataFrame.merge(
