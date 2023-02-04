@@ -47,10 +47,36 @@ def render_index():
 def give_all_aviable_guild_stats(g_id):
     result = _g_id.give_all_aviable_guild_stats_m(
         g_id,
+        #dynamic_database
         dn_db_guilds_table=dynamic_database["guilds_table"],
         dn_db_characters_table=dynamic_database["characters_table"]
     )
     return(result)
+
+
+@app.route("/api/guildStats/<g_id>/characters") #methods = ["GET"]
+#giving all the characters in the certain guild
+def characters_of_the_guild (g_id):
+    result = _g_id_characters.characters_of_the_guild_m(
+        g_id,
+        dn_db_guilds_table=dynamic_database["guilds_table"],
+        dn_db_characters_table=dynamic_database["characters_table"]
+    )
+    return(result)
+
+
+@app.route("/api/guildStats/<g_id>/raidRuns") #methods = ["GET"]
+#get info about all runs of the guild
+def get_all_guilds_runs(g_id):
+    result = _g_id_raidRuns.get_all_guilds_runs_m(
+        g_id,
+        #dynamic_database
+        dn_db_guilds_table= dynamic_database["guilds_table"],
+        dn_db_runs_table= dynamic_database["runs_table"],
+        #static_database
+        st_db_raid_table = static_database["raid_table"]
+    )
+    return (result)
 
 
 @app.route("/api/raids") #methods = ["GET"]
@@ -76,17 +102,6 @@ def info_about_raid_id(raid_id):
     return(result)
 
 
-@app.route("/api/guildStats/<g_id>/characters") #methods = ["GET"]
-#giving all the characters in the certain guild
-def characters_of_the_guild (g_id):
-    result = _g_id_characters.characters_of_the_guild_m(
-        g_id,
-        dn_db_guilds_table=dynamic_database["guilds_table"],
-        dn_db_characters_table=dynamic_database["characters_table"]
-    )
-    return(result)
-
-
 @app.route("/api/raidRun", methods = ["POST"])
 #create new run
 def runs_of_the_guild():
@@ -101,34 +116,34 @@ def runs_of_the_guild():
 @app.route("/api/raidRun/<run_id>", methods = ["GET", "PUT"])
 #PUT - update run_id
 #GET - get info about run_id 
-def raid_run (run_id):
-    result = _run_id.edit_raid_run_m(
-    run_id,
-    #dynamic database
-    dn_db_runs_table=dynamic_database["runs_table"],
-    dn_db_events_table=dynamic_database["events_table"],
-    dn_db_run_members=dynamic_database["run_members"],
-    dn_db_characters_table=dynamic_database["characters_table"],
-    #static database
-    st_db_raid_table=static_database["raid_table"],
-    st_db_item_table=static_database["item_table"],
-    st_db_boss_table=static_database["boss_table"]
-    )
+def raid_run (run_id, method):
+    if method == "GET":
+        result = _run_id.raid_run_info_m(
+            run_id,
+            #dynamic database
+            dn_db_runs_table=dynamic_database["runs_table"],
+            dn_db_events_table=dynamic_database["events_table"],
+            dn_db_run_members=dynamic_database["run_members"],
+            dn_db_characters_table=dynamic_database["characters_table"],
+            #static database
+            st_db_raid_table=static_database["raid_table"],
+            st_db_item_table=static_database["item_table"],
+            st_db_boss_table=static_database["boss_table"]
+        )
     return(result)
 
 
-@app.route("/api/guildStats/<g_id>/raidRuns") #methods = ["GET"]
-#get info about all runs of the guild
-def get_all_guilds_runs(g_id):
-    result = _g_id_raidRuns.get_all_guilds_runs_m(
-        g_id,
-        #dynamic_database
-        dn_db_guilds_table= dynamic_database["guilds_table"],
-        dn_db_runs_table= dynamic_database["runs_table"],
-        #static_database
-        st_db_raid_table = static_database["raid_table"]
-    )
-    return (result)
+@app.route("/api/raidRun/<run_id>/characters", method=["POST","DELETE"])
+def edit_run_members (run_id, method):
+    a=1
+    return(a)
+
+
+@app.route("/api/raidRun/<run_id>/drops", method=["POST","DELETE"])
+def edit_run_drops (run_id, method):
+    a=1
+    return(a)
+    
 
 """
 """
