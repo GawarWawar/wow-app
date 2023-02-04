@@ -78,6 +78,18 @@ def info_about_raid_id_m(
     for row in main_df["boss_id"]:
         series_row = main_df[main_df.loc[:, "boss_id"] == row] 
         
+        #writing info about boss and its loot into the dict
+        add_part = {
+            "boss_id" : int(series_row.iloc[0].at["boss_id"]),
+            "boss_name" : series_row.iloc[0].at["boss_name"],
+            "npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
+            "loot": []
+        }
+        
+        #delete columns that wont use in df_for_cycle
+        series_row.pop("boss_name")
+        series_row.pop("npc_wowhead_id")
+        
         #getting loot_drop of sertain boss
         df_for_cycle = pd.merge(
             series_row,
@@ -85,25 +97,20 @@ def info_about_raid_id_m(
             on="boss_id"
         )
         
-        #delete columns that wont use in df_for_cycle
+        #delete column that we dont need in df_for_cycle anymore
         df_for_cycle.pop("boss_id")
-        df_for_cycle.pop("boss_name")
-        df_for_cycle.pop("npc_wowhead_id")
         
-        
+        #getting info about items for loot
         df_for_cycle = pd.merge(
             df_for_cycle,
             df_items,
             on="item_id"
         )
-        
-        #writing info about boss and its loot into the dict
-        add_part = {
-            "boss_id" : int(series_row.iloc[0].at["boss_id"]),
-            "boss_name" : series_row.iloc[0].at["boss_name"],
-            "npc_wowhead_id" : series_row.iloc[0].at["npc_wowhead_id"],
-            "loot": json.loads(df_for_cycle.to_json(orient="records"))
-        }
+
+        u_tools.extend_list_by_dict_from_df(
+            df_for_cycle,
+            add_part["loot"]
+        )
 
         #writing boss's data into the main dict
         dict_to_send["bosses"].append(add_part)

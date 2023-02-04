@@ -156,7 +156,6 @@ def edit_raid_run_m(
             on="character_id"
         )
     
-
         #structuring info about our run members into dict object
             #add run members info into dict_to_send
         u_tools.extend_list_by_dict_from_df(
@@ -246,7 +245,7 @@ def edit_raid_run_m(
             
             #adding every boss to the dict_to_send
             dict_to_send["bosses"].append(add_boss)
-
+            
         #end timer
         e_t = time.perf_counter()
         print(f"Time of {edit_raid_run_m.__name__}={e_t-s_t}")
