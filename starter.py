@@ -7,19 +7,12 @@ import time
 
 from flask import Flask, request, Response, jsonify, json, render_template
 from markupsafe import escape
+from endpoints.api_guidStats import _g_id, _g_id_characters, _g_id_raidRuns
+from endpoints.api_raidRun import _raidRun, _run_id
+from endpoints.api_raids import _raid_id, _raids
 
 import utils.tools as u_tools
 import utils.add_row as add_row
-
-from endpoints import (
-    api_characters_g_id,
-    api_guildStats_g_id,
-    api_raids,
-    api_raidRun,
-    api_raidRun_g_id,
-    api_raidRuns_g_id,
-    api_raids_id,
-)
 
 render_dir = "FE"
 
@@ -52,7 +45,7 @@ def render_index():
 #get all data about the guild
 #right now gives only list of guild members
 def give_all_aviable_guild_stats(g_id):
-    result = api_guildStats_g_id.give_all_aviable_guild_stats_m(g_id,dynamic_database)
+    result = g_id.give_all_aviable_guild_stats_m(g_id,dynamic_database)
     return(result)
 
 
@@ -60,43 +53,43 @@ def give_all_aviable_guild_stats(g_id):
 #user wants to create new raid and we need to give all of the raid to him
 def give_info_about_all_raids ():
     #read the table w/ info about raids
-    result = api_raids.give_info_about_all_raids(static_database)
+    result = _raids.give_info_about_all_raids(static_database)
     return(result)
 
     
 @app.route("/api/raids/<id>") #methods = ["GET"]
 #give all data about specific raid by it's id
 def info_about_raid_id(id):
-    result = api_raids_id.info_about_raid_id_m(id, static_database)
+    result = _raid_id.info_about_raid_id_m(id, static_database)
     return(result)
 
 
 @app.route("/api/guildStats/<g_id>/characters") #methods = ["GET"]
 #giving all the characters in the certain guild
 def characters_of_the_guild (g_id):
-    result = api_characters_g_id.characters_of_the_guild_m(g_id,dynamic_database)
+    result = _g_id_characters.characters_of_the_guild_m(g_id,dynamic_database)
     return(result)
 
 
 @app.route("/api/raidRun", methods = ["POST"])
 #create new run
 def runs_of_the_guild():
-    result = api_raidRun.runs_of_the_guild_m(dynamic_database)
+    result = _raidRun.runs_of_the_guild_m(dynamic_database)
     return(result)
 
 
-@app.route("/api/raidRun/<g_id>", methods = ["GET", "PUT"])
+@app.route("/api/raidRun/<run_id>", methods = ["GET", "PUT"])
 #PUT - update run_id
 #GET - get info about run_id 
-def edit_raid_run (g_id):
-    result = api_raidRun_g_id.edit_raid_run_m(g_id, dynamic_database, static_database)
+def raid_run (run_id):
+    result = _run_id.edit_raid_run_m(run_id, dynamic_database, static_database)
     return(result)
 
 
 @app.route("/api/guildStats/<g_id>/raidRuns") #methods = ["GET"]
 #get info about all runs of the guild
 def get_all_guilds_runs(g_id):
-    result = api_raidRuns_g_id.get_all_guilds_runs_m(g_id, dynamic_database, static_database)
+    result = _g_id_raidRuns.get_all_guilds_runs_m(g_id, dynamic_database, static_database)
     return (result)
 
 """
