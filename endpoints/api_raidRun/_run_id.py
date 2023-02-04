@@ -26,6 +26,7 @@ def edit_raid_run_m(
     dn_db_run_members,
     dn_db_characters_table,
     #static database
+    st_db_raid_table,
     st_db_item_table,
     st_db_boss_table
 ):
@@ -33,8 +34,6 @@ def edit_raid_run_m(
     s_t = time.perf_counter()
     
     raid_run_id = int(escape(run_id))
-    
-    
     
     if request.method == "PUT":
         #info that comes w/ the request
@@ -126,18 +125,52 @@ def edit_raid_run_m(
         
         #creating dictionary that we will send
         dict_to_send = {
-            #adding already known info from run_info
-            "guild_id": int(run_info.iloc[0].at["guild_id"]),
-            "raid_id": int(run_info.iloc[0].at["raid_id"]),
-            #creating structure
-            "run_members":[],
-            "bosses":[]
+            "data":{
+                #adding already known info from run_info
+                "id": int(run_info.iloc[0].at["guild_id"]),
+                #creating structure
+                "last_action": "",
+                "raid": [],
+                "participants":[],
+                "loot_distributed":[]
+            }
         }
         
         #we dont need that info about run anymore 
         run_info.pop("guild_id")
-        run_info.pop("raid_id")
         
+        #read the table w/ info about raids
+        df_run_raid = pd.read_csv(
+            st_db_raid_table
+        )
+        
+        #getting info about our run
+        df_run_raid = pd.DataFrame.merge(
+            df_run_raid,
+            run_info,
+            on="raid_id"
+        )
+        
+        #we dont need that info about run in df_run_raid
+        df_run_raid.pop("run_id")
+
+        #naming items according to doc
+        df_run_raid = df_run_raid.rename(
+            mapper={
+                "raid_id": "id",
+                "raid_name": "name"
+            },
+            axis="columns"
+        )
+        
+        #adding our info to dict_to_send
+        u_tools.extend_list_by_dict_from_df(
+            df_run_raid,
+            dict_to_send["data"]["raid"]
+        )
+        
+        #we dont need that info about run anymore 
+        run_info.pop("raid_id")
         
         #reading table w/ info about run members
             # we are not readint colums w/ # in the DataFrame
@@ -146,9 +179,7 @@ def edit_raid_run_m(
             usecols=[
                 "run_id",
                 "character_id",
-
-                
-                #"system_time"
+                "system_time"
             ]
         )
         
@@ -161,7 +192,10 @@ def edit_raid_run_m(
         
         #we dont need that info about run members anymore 
         df_run_members.pop("run_id")
-        
+    
+        #getting last action in the member_creation prosses 
+        last_member_creation = df_run_members.pop("system_time").max()
+    
         #getting details about all characters in this run
         df_run_members = pd.DataFrame.merge(
             df_run_members,
@@ -169,14 +203,21 @@ def edit_raid_run_m(
             pd.read_csv(dn_db_characters_table),
             on="character_id"
         )
-    
-
-    
+        
+        #naming items according to doc
+        df_run_members = df_run_members.rename(
+            mapper={
+                "character_id": "id",
+                "character_name": "name"
+            },
+            axis="columns"
+        )
+        
         #structuring info about our run members into dict object
             #add run members info into dict_to_send
         u_tools.extend_list_by_dict_from_df(
             df_run_members,
-            dict_to_send["run_members"]
+            dict_to_send["data"]["participants"]
         )
         df_run_members = None
         
@@ -187,12 +228,10 @@ def edit_raid_run_m(
             usecols=[
                 "event_id",
                 "run_id",
-
-                
                 "boss_id",
                 "item_id",
                 "character_id",
-                #"system_time" 
+                "system_time" 
             ]
         )
         
@@ -202,6 +241,17 @@ def edit_raid_run_m(
             run_info,
             on="run_id"
         )
+        
+        #getting last action in the event_creation prosses 
+        last_action = df_for_events.pop("system_time").max()
+        
+        #the latest action is written into 
+            #dict_to_send["data"]["last_action"]
+        if last_action > last_member_creation:
+            dict_to_send["data"]["last_action"] = last_action
+        else:
+            dict_to_send["data"]["last_action"] = \
+                last_member_creation
         
         #we dont need that info about events anymore 
         df_for_events.pop("run_id")
@@ -219,6 +269,7 @@ def edit_raid_run_m(
         
         #creating df about killed bosses
         df_bosses = df_for_events["boss_id"]
+        
         #making bosses ids unique
         df_bosses = df_bosses.drop_duplicates()
         #make bosses to be in the a -> z order
@@ -238,13 +289,12 @@ def edit_raid_run_m(
         #we dont need that info about events anymore 
         df_for_events.pop("event_id")
         
-        
         #gather info about boss -> add to dict_to_send
         for boss in df_bosses.loc[:,"boss_id"]:
             add_boss = {
                 #adding info that we already know
-                "boss_id": int(df_bosses.iloc[boss].at["boss_id"]),
-                "boss_name": df_bosses.iloc[boss].at["boss_name"],
+                "id": int(df_bosses.iloc[boss].at["boss_id"]),
+                "name": df_bosses.iloc[boss].at["boss_name"],
                 #forming structure for the loot
                 "dropped_loot":[]
             }
@@ -256,13 +306,21 @@ def edit_raid_run_m(
             #dont need to add this info to the response
             boss_loot.pop("boss_id")
             
+            boss_loot = boss_loot.rename(
+                mapper={
+                    "item_id": "id",
+                    "item_name": "name"
+                },
+                axis="columns"
+            )
+            
             u_tools.extend_list_by_dict_from_df(
                 boss_loot,
                 add_boss["dropped_loot"]
             )
             
             #adding every boss to the dict_to_send
-            dict_to_send["bosses"].append(add_boss)
+            dict_to_send["data"]["loot_distributed"].append(add_boss)
             
         #end timer
         e_t = time.perf_counter()

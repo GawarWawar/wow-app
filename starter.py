@@ -110,6 +110,7 @@ def raid_run (run_id):
     dn_db_run_members=dynamic_database["run_members"],
     dn_db_characters_table=dynamic_database["characters_table"],
     #static database
+    st_db_raid_table=static_database["raid_table"],
     st_db_item_table=static_database["item_table"],
     st_db_boss_table=static_database["boss_table"]
     )
