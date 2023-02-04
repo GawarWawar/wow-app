@@ -48,13 +48,13 @@ def info_about_raid_id_m(
     
     dict_to_send = {
         "raid_name" : main_df["raid_name"],
-        "raid_type" : int(main_df["raid_type"]),
+        "raid_capacity" : int(main_df["raid_capacity"]),
         "bosses" : []
     }
     
     #delete columns that wont use in main_df
     main_df.pop("raid_name")
-    main_df.pop("raid_type")
+    main_df.pop("raid_capacity")
     
     #reading table w/ bosses info
     df_for_bosses = pd.read_csv(

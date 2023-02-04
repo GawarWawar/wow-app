@@ -113,8 +113,6 @@ def edit_raid_run_m(
                 usecols=[
                   "run_id",
                   "guild_id",
-
-                  
                   "raid_id",
                   #"date_of_raid"  
                 ]

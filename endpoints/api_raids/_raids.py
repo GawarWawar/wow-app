@@ -17,6 +17,6 @@ def give_info_about_all_raids (
             #each elem of list have:
             #   "raid_id"
             #   "raid_name"
-            #   "raid_type"
+            #   "raid_capacity"
     
     return json.dumps(result, indent=2)

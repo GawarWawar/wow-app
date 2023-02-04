@@ -35,7 +35,7 @@ def get_all_guilds_runs_m(
     )
     df_for_guild = None #no need df_for_guild anymore
     
-    #writing getted info into dict_to_send
+    #writing info about guild into dict_to_send
     dict_to_send = {
         "guild_name": guild_info.loc["guild_name"],
         #structuring list to write guild_runs into
