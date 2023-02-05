@@ -176,13 +176,18 @@ def raid_run_info_m(
     #getting last action in the event_creation prosses 
     last_action = df_for_events.pop("system_time").max()
     
+    print(last_action, "\n", last_member_creation)
+    
     #the latest action is written into 
         #dict_to_send["data"]["last_action"]
-    if last_action > last_member_creation:
-        dict_to_send["data"]["last_action"] = last_action
+    if last_action =="nan":
+        if last_action > last_member_creation:
+            dict_to_send["data"]["last_action"] = last_action
+        else:
+            dict_to_send["data"]["last_action"] = \
+                last_member_creation
     else:
-        dict_to_send["data"]["last_action"] = \
-            last_member_creation
+        dict_to_send["data"]["last_action"] = last_member_creation
     
     #we dont need that info about events anymore 
     df_for_events.pop("run_id")
