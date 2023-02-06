@@ -28,7 +28,9 @@ def raid_run_info_m(
     #static database
     st_db_raid_table,
     st_db_item_table,
-    st_db_boss_table
+    st_db_boss_table,
+    #message
+    message
 ):
     #start timer
     s_t = time.perf_counter()
@@ -65,7 +67,8 @@ def raid_run_info_m(
             "raid": [],
             "participants":[],
             "loot_distributed":[]
-        }
+        },
+        "message": message
     }
     
     #we dont need that info about run anymore 
@@ -175,8 +178,6 @@ def raid_run_info_m(
     
     #getting last action in the event_creation prosses 
     last_action = df_for_events.pop("system_time").max()
-    
-    print(last_action, "\n", last_member_creation)
     
     #the latest action is written into 
         #dict_to_send["data"]["last_action"]

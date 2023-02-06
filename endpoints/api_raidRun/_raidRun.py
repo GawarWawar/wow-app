@@ -15,7 +15,7 @@ sys.path.append(dirname(SCRIPT_DIR))
 import utils.tools as u_tools
 import utils.add_row as add_row
 
-def runs_of_the_guild_m(
+def create_new_run_m(
     dn_db_runs_table,
     dn_db_characters_table,
     dn_db_run_members
