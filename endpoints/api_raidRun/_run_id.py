@@ -30,7 +30,7 @@ def raid_run_info_m(
     st_db_item_table,
     st_db_boss_table,
     #message
-    message
+    message= {"result" : True}
 ):
     #start timer
     s_t = time.perf_counter()
@@ -160,14 +160,23 @@ def raid_run_info_m(
     df_for_events = pd.read_csv(
         dn_db_events_table, 
         usecols=[
-            "event_id",
+            #"event_id",
             "run_id",
             "boss_id",
             "item_id",
             "character_id",
             "system_time" 
-        ]
+        ],
+        dtype={
+            #"run_id": np.int32,
+            "boss_id": np.int32,
+            "item_id": np.int32,
+            "character_id": np.float64,
+            "system_time": object
+        }
     )
+    
+    print(df_for_events)
     
     #getting events only for our run
     df_for_events = pd.DataFrame.merge(
@@ -178,87 +187,41 @@ def raid_run_info_m(
     
     #getting last action in the event_creation prosses 
     last_action = df_for_events.pop("system_time").max()
-    
+
     #the latest action is written into 
         #dict_to_send["data"]["last_action"]
-    if last_action =="nan":
+    if last_action.__class__.__name__ == "float":
+        dict_to_send["data"]["last_action"] = last_member_creation
+    elif last_member_creation.__class__.__name__ == "float":
+        dict_to_send["data"]["last_action"] = last_action
+    elif last_action.__class__.__name__ == "float" \
+            and \
+        last_member_creation.__class__.__name__ == "float": 
         if last_action > last_member_creation:
-            dict_to_send["data"]["last_action"] = last_action
+                dict_to_send["data"]["last_action"] = last_action
         else:
             dict_to_send["data"]["last_action"] = \
                 last_member_creation
     else:
-        dict_to_send["data"]["last_action"] = last_member_creation
+        dict_to_send["data"]["last_action"] = None
     
     #we dont need that info about events anymore 
     df_for_events.pop("run_id")
     
-    #reading tables w/ info about items
-    df_for_items = pd.read_csv(st_db_item_table)
+    df_for_events = df_for_events.rename(
+        {
+            "boss_id": "boss_dropped_from",
+            "character_id": "character_assigned_to"
+        },
+        axis="columns"
+    )
     
-    #getting info about every looted item in this run
-    df_for_events = pd.DataFrame.merge(
-        df_for_items,
+    u_tools.extend_list_by_dict_from_df(
         df_for_events,
-        on="item_id"
+        dict_to_send["data"]["loot_distributed"]
     )
-    df_for_items = None
+    df_for_events = None
     
-    #creating df about killed bosses
-    df_bosses = df_for_events["boss_id"]
-    
-    #making bosses ids unique
-    df_bosses = df_bosses.drop_duplicates()
-    #make bosses to be in the a -> z order
-    df_bosses.sort_values(inplace=True)
-    
-    #reading table w/ info about bosses 
-    df_boos_table = pd.read_csv(st_db_boss_table)
-    
-    #getting info about bosses, that were killed in this run
-    df_bosses = pd.DataFrame.merge(
-        df_bosses,
-        df_boos_table, 
-        on="boss_id"
-    )
-    df_boos_table = None
-    
-    #we dont need that info about events anymore 
-    df_for_events.pop("event_id")
-    
-    #gather info about boss -> add to dict_to_send
-    for boss in df_bosses.loc[:,"boss_id"]:
-        add_boss = {
-            #adding info that we already know
-            "id": int(df_bosses.iloc[boss].at["boss_id"]),
-            "name": df_bosses.iloc[boss].at["boss_name"],
-            #forming structure for the loot
-            "dropped_loot":[]
-        }
-        
-        #getting loot for the boss, that we are adding r/n
-        boss_loot = df_for_events[df_for_events.loc[:, "boss_id"] == boss]
-        boss_loot.reset_index(inplace=True,drop=True)
-        
-        #dont need to add this info to the response
-        boss_loot.pop("boss_id")
-        
-        boss_loot = boss_loot.rename(
-            mapper={
-                "item_id": "id",
-                "item_name": "name"
-            },
-            axis="columns"
-        )
-        
-        u_tools.extend_list_by_dict_from_df(
-            boss_loot,
-            add_boss["dropped_loot"]
-        )
-        
-        #adding every boss to the dict_to_send
-        dict_to_send["data"]["loot_distributed"].append(add_boss)
-        
     #end timer
     e_t = time.perf_counter()
     print(f"Time of {raid_run_info_m.__name__}={e_t-s_t}")
@@ -279,12 +242,20 @@ def edit_run_m (
     
     #reading tables w/ info about
     df_for_runs = pd.read_csv(dn_db_runs_table) #runs
-    df_for_events = pd.read_csv(dn_db_events_table) #events
+    df_for_events = pd.read_csv( #events
+        dn_db_events_table, 
+        dtype={
+            "run_id": np.int32,
+            "boss_id": np.int32,
+            "item_id": np.int32,
+            "character_id": np.float64,
+            "system_time": object
+        }
+    ) 
     
     #check is there such run
     
     run_existence = u_tools.find_one_row_in_DataFrame(
-        
         df_for_runs,
         raid_run_id,
         "run_id"
