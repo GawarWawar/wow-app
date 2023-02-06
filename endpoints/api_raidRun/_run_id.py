@@ -27,8 +27,6 @@ def raid_run_info_m(
     dn_db_characters_table,
     #static database
     st_db_raid_table,
-    st_db_item_table,
-    st_db_boss_table,
     #message
     message= {"result" : True}
 ):
