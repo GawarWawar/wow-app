@@ -251,7 +251,6 @@ def edit_run_m (
     ) 
     
     #check is there such run
-    
     run_existence = u_tools.find_one_row_in_DataFrame(
         df_for_runs,
         raid_run_id,
@@ -282,9 +281,9 @@ def edit_run_m (
             add_row.id_and_five_columns(
                 df_for_events,
                 dict_w_info={
-                    0: run_update.iloc[event].at["run_id"],
-                    1: run_update.iloc[event].at["boss_id"],
-                    2: run_update.iloc[event].at["item_id"],
+                    0: int(run_update.iloc[event].at["run_id"]),
+                    1: int(run_update.iloc[event].at["boss_id"]),
+                    2: int(run_update.iloc[event].at["item_id"]),
                     3: run_update.iloc[event].at["character_id"],
                     4: exact_time,
                 }
