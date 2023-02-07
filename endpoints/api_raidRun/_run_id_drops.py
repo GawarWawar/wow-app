@@ -30,26 +30,32 @@ def add_drops_m (
 ):
     run_id = int(escape(run_id))
     
+    #forming df for new events  
     new_drop = request.json
     new_drop = pd.DataFrame.from_records(new_drop)
     
+    #reading table w/ info about all events
     df_events = pd.read_csv(dn_db_events_table)
-    
-    print(new_drop.index)
     
     events_added = []
     events_changed = []
     for drop in range(len(new_drop.index)):
+        #cheking if this event exist by combination of 1+2
+            #1: "boss_id"
         event_boss_x_item = su_tools.find_item_in_DataFrame_without_for(
             df_events,
             new_drop.iloc[drop].at["boss_dropped_from_id"],
             "boss_id"
         )
+            #2: "item_id"
         event_boss_x_item = su_tools.find_item_in_DataFrame_without_for(
             event_boss_x_item,
             new_drop.iloc[drop].at["item_id"],
             "item_id"
         )
+        
+        #if it doesnt exist ->
+            #create new event
         if event_boss_x_item.empty:
             event_id = add_row.id_four_columns_and_exact_time(
                 df_events,
@@ -61,6 +67,8 @@ def add_drops_m (
                 }
             )
             events_added.append(int(event_id))
+        #if it does exist ->
+            #change old event
         else:
             df_events.loc[
                 event_boss_x_item.index[0],
@@ -73,12 +81,14 @@ def add_drops_m (
                 ])
             )
             
+    #write info back to table
     df_events.to_csv(
         dn_db_events_table,
         index=False,
         index_label=False
     )
 
+    #response is this message
     message = {
             "result" : True,
             "events_added": events_added,
