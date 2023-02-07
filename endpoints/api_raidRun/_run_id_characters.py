@@ -77,7 +77,7 @@ def delet_run_members_m (
         #massage if we didnt find anyone, who wasnt in the run
         message={
             "result" : True,
-            "not_in_the_run" : None
+            "were_not_in_the_run" : None
         }
     else: 
         #massage if we did find someone, who wasnt in the run
@@ -87,4 +87,106 @@ def delet_run_members_m (
         }
     return(message)
             
+def add_new_run_members (
+    run_id,
+    #dynamic database
+    dn_db_runs_table,
+    dn_db_run_members,
+    dn_db_characters_table
+):
+    run_id = int(escape(run_id))
+    
+    members_to_add = request.json
+    members_to_add = pd.DataFrame.from_records(members_to_add)
+    members_to_add = members_to_add.rename(
+        {
+            "class": "character_class"
+        },
+        axis="columns"
+    )
+    
+    run_info = pd.read_csv(dn_db_runs_table)
+    run_info = u_tools.find_item_in_DataFrame_without_for(
+        run_info,
+        run_id,
+        "run_id"
+    )
+    
+    df_characters = pd.read_csv(
+        dn_db_characters_table
+    )
+    
+    character_id_list = []
+    for run_member_counter in range(
+        len(members_to_add.loc[:,"name"])
+    ):
+        character_id = u_tools.check_character_existence_add_if_not(
+            df_characters,
+            members_to_add,
+            run_member_counter,
+            run_info.iloc[0].at["guild_id"]
+        )
+        character_id_list.append(character_id)
+    
+    #write df_character into file here
+    df_characters.to_csv(
+        dn_db_characters_table,
+        index=False,
+        index_label=False
+    )
+    
+    df_run_members = pd.read_csv(
+        dn_db_run_members
+    )
+    
+    they_were_in_the_run = []
+    for character_id in character_id_list:
+        character_to_find = u_tools.find_item_in_DataFrame_without_for(
+            df_run_members,
+            character_id,
+            "character_id"
+        )
+        character_to_find = u_tools.find_item_in_DataFrame_without_for(
+            character_to_find,
+            run_id,
+            "run_id"
+        )
         
+        if character_to_find.empty:
+            #getting system time for the run_members_table
+            exact_time = datetime.datetime.now()
+
+            #adding run member to the table  
+            add_row.three_columns(
+                df_run_members,
+                dict_w_info={
+                        #info about that character we need to write
+                        0: run_id,
+                        1: character_id,
+                        2: exact_time
+                    }
+            )
+        else:
+            they_were_in_the_run.append(int(character_id))
+          
+    #write new df_run_members into the file
+    df_run_members.to_csv(
+        dn_db_run_members,
+        index=False,
+        index_label=False
+    )
+    
+    #forming respons
+    if len(they_were_in_the_run) == 0:
+        #massage if we didnt find anyone, who wasnt in the run
+        message={
+            "result" : True,
+            "were_in_the_run" : None
+        }
+    else: 
+        #massage if we did find someone, who wasnt in the run
+        message = {
+            "result" : True,
+            "were_in_the_run": they_were_in_the_run
+        }
+    return(message)
