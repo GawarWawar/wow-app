@@ -4,8 +4,14 @@ import json
 
 import time
 
-import simple_utils.simple_tools as su_tools
-import simple_utils.add_row as add_row
+from os.path import dirname, abspath
+import sys
+
+SCRIPT_DIR = dirname(abspath(__file__))
+sys.path.append(dirname(SCRIPT_DIR))
+
+import utils.simple_utils.simple_tools as su_tools
+import utils.simple_utils.add_row as add_row
 
 def check_character_existence_add_if_not (
     df_characters, #df for all characters (characters table)
