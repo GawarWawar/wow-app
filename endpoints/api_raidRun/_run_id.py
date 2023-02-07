@@ -140,7 +140,8 @@ def raid_run_info_m(
     df_run_members = df_run_members.rename(
         mapper={
             "character_id": "id",
-            "character_name": "name"
+            "character_name": "name",
+            "character_class": "class"
         },
         axis="columns"
     )
@@ -173,8 +174,6 @@ def raid_run_info_m(
             "system_time": object
         }
     )
-    
-    print(df_for_events)
     
     #getting events only for our run
     df_for_events = pd.DataFrame.merge(
