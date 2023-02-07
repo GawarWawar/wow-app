@@ -13,8 +13,9 @@ def id_and_two_columns (
     
 ):
     """
-    Add row w/ 4 columns, in which the 1st one is generated id \n
-        and return id
+    Add row w/ 3 columns, in which the 1st one is generated id \n
+        \n
+        return id
     """
     #we have place holder in each table, so we dont need to worry about 
         #nothing beeng in the table
@@ -48,7 +49,8 @@ def three_columns (
 ): 
     """
     Add row w/ 3 columns \n
-        and return None
+        \n
+        return None
     """
     #adding row w/ info from our dict
     main_df.loc[
@@ -63,13 +65,18 @@ def three_columns (
             
     return()
 
-def twoo_columns_and_exect_time (
+def two_columns_and_exact_time (
     main_df,
     dict_w_info ={
         0: None,
         1: None
     }
 ):
+    """
+    Add row w/ 3 columns, in which the last one is generated exact time\n
+        \n
+        return None
+    """
     #getting system time for the exact moment
     exact_time = datetime.datetime.now()
     #adding new row to the talbe  
@@ -94,7 +101,8 @@ def id_and_three_columns (
 ):
     """
     Add row w/ 4 columns, in which the 1st one is generated id \n
-        and return id
+        \n
+        return id
     """
     #we have place holder in each table, so we dont need to worry about 
         #nothing beeng in the table
@@ -131,8 +139,9 @@ def id_and_five_columns (
     
 ):
     """
-    Add row w/ 4 columns, in which the 1st one is generated id \n
-        and return id
+    Add row w/ 6 columns, in which the 1st one is generated id \n
+        \n
+        return id
     """
     #we have place holder in each table, so we dont need to worry about 
         #nothing beeng in the table
@@ -159,3 +168,31 @@ def id_and_five_columns (
             
     return(next_id)
 
+def id_four_columns_and_exact_time(
+    main_df,
+    dict_w_info={
+            0: None,
+            1: None,
+            2: None,
+            3: None,
+    }
+):
+    """
+    Add row w/ 6 columns, in which the 1st one is generated id \n
+        and the last one is generated exact time\n
+        \n
+        return id
+    """
+    exact_time = datetime.datetime.now() #system time
+    #create new row
+    id = id_and_five_columns(
+        main_df,
+        dict_w_info={
+            0: dict_w_info[0],
+            1: dict_w_info[1],
+            2: dict_w_info[2],
+            3: dict_w_info[3],
+            4: exact_time,
+        }
+    )
+    return (id)

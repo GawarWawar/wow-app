@@ -159,7 +159,7 @@ def raid_run_info_m(
     df_for_events = pd.read_csv(
         dn_db_events_table, 
         usecols=[
-            #"event_id",
+            "event_id",
             "run_id",
             "boss_id",
             "item_id",
@@ -167,7 +167,8 @@ def raid_run_info_m(
             "system_time" 
         ],
         dtype={
-            #"run_id": np.int32,
+            "event_id": np.int32,
+            "run_id": np.int32,
             "boss_id": np.int32,
             "item_id": np.int32,
             "character_id": np.float64,
@@ -187,20 +188,20 @@ def raid_run_info_m(
 
     #the latest action is written into 
         #dict_to_send["data"]["last_action"]
-    if last_action.__class__.__name__ == "float":
-        dict_to_send["data"]["last_action"] = last_member_creation
-    elif last_member_creation.__class__.__name__ == "float":
-        dict_to_send["data"]["last_action"] = last_action
-    elif last_action.__class__.__name__ == "float" \
+    if last_action.__class__.__name__ == "float" \
             and \
         last_member_creation.__class__.__name__ == "float": 
+            dict_to_send["data"]["last_action"] = None
+    elif last_member_creation.__class__.__name__ == "float":
+        dict_to_send["data"]["last_action"] = last_action
+    elif last_action.__class__.__name__ == "float":
+        dict_to_send["data"]["last_action"] = last_member_creation
+    else:
         if last_action > last_member_creation:
                 dict_to_send["data"]["last_action"] = last_action
         else:
             dict_to_send["data"]["last_action"] = \
                 last_member_creation
-    else:
-        dict_to_send["data"]["last_action"] = None
     
     #we dont need that info about events anymore 
     df_for_events.pop("run_id")
@@ -225,6 +226,28 @@ def raid_run_info_m(
     
     #sendind gathered info about run
     return json.dumps(dict_to_send, indent=2)
+
+def call_raid_run_info_m(
+    run_id,
+    dynamic_database,
+    static_database,
+    message= {"result" : True}
+):
+    result = raid_run_info_m(
+        run_id,
+        #dynamic database
+        dn_db_runs_table=dynamic_database["runs_table"],
+        dn_db_events_table=dynamic_database["events_table"],
+        dn_db_run_members=dynamic_database["run_members"],
+        dn_db_characters_table=dynamic_database["characters_table"],
+        #static database
+        st_db_raid_table=static_database["raid_table"],
+        message=message
+    )
+    return result
+
+
+
 
 def edit_run_m (
     run_id,
@@ -275,17 +298,15 @@ def edit_run_m (
     
     #create new events from response info
     for event in range(len(run_update)):
-        exact_time = datetime.datetime.now() #system time
-        #create new event
         new_event_ids.append(
-            add_row.id_and_five_columns(
+            #create new event
+            add_row.id_four_columns_and_exact_time(
                 df_for_events,
                 dict_w_info={
                     0: int(run_update.iloc[event].at["run_id"]),
                     1: int(run_update.iloc[event].at["boss_id"]),
                     2: int(run_update.iloc[event].at["item_id"]),
                     3: run_update.iloc[event].at["character_id"],
-                    4: exact_time,
                 }
             )
         )

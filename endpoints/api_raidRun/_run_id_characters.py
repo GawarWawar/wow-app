@@ -168,7 +168,7 @@ def add_new_run_members (
         
         if character_to_find.empty:
             #adding run member to the table
-            add_row.twoo_columns_and_exect_time(
+            add_row.two_columns_and_exact_time(
                 df_run_members,
                 dict_w_info ={
                     #info about that character we need to write

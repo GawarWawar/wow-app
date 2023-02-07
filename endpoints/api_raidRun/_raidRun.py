@@ -75,7 +75,7 @@ def create_new_run_m(
             new_run["guild_id"]
         )
         
-        add_row.twoo_columns_and_exect_time(
+        add_row.two_columns_and_exact_time(
             #adding run member to the table
             df_all_runs_members,
             dict_w_info={
