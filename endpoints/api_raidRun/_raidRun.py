@@ -56,6 +56,13 @@ def create_new_run_m(
     df_this_run_members = pd.DataFrame.from_records(
         new_run["participants"]
     )
+    
+    df_this_run_members = df_this_run_members.rename(
+        {
+            "class" : "character_class"
+        },
+        axis="columns"
+    )
 
     for run_member_counter in range(
         len(df_this_run_members.loc[:,"name"])
