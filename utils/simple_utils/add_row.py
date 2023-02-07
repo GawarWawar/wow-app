@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import datetime
+
 import time
 
 def id_and_two_columns (
@@ -36,6 +38,51 @@ def id_and_two_columns (
             
     return(next_id)
 
+def three_columns (
+    main_df, #df to add a row
+    dict_w_info={ #dictionary w/ content info, that we need to add ->
+       0 : None,
+       1 : None,
+       2 : None 
+    } #keys = 0,1,2; values = values we need to add
+): 
+    """
+    Add row w/ 3 columns \n
+        and return None
+    """
+    #adding row w/ info from our dict
+    main_df.loc[
+                len(
+                    main_df.index
+                )
+            ] = [
+                    dict_w_info[0],
+                    dict_w_info[1], 
+                    dict_w_info[2]
+                ]
+            
+    return()
+
+def twoo_columns_and_exect_time (
+    main_df,
+    dict_w_info ={
+        0: None,
+        1: None
+    }
+):
+    #getting system time for the exact moment
+    exact_time = datetime.datetime.now()
+    #adding new row to the talbe  
+    three_columns(
+        main_df,
+        dict_w_info={
+                #info about that object we need to write
+                0: dict_w_info[0],
+                1: dict_w_info[1],
+                2: exact_time
+            }
+    )
+
 def id_and_three_columns (
     main_df, #df to add a row
     dict_w_info={ #dictionary w/ content info, that we need to add ->
@@ -71,32 +118,6 @@ def id_and_three_columns (
                 ]
             
     return(next_id)
-
-
-def three_columns (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None,
-       2 : None 
-    } #keys = 0,1,2; values = values we need to add
-): 
-    """
-    Add row w/ 3 columns \n
-        and return None
-    """
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    dict_w_info[0],
-                    dict_w_info[1], 
-                    dict_w_info[2]
-                ]
-            
-    return()
 
 def id_and_five_columns (
     main_df, #df to add a row

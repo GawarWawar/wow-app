@@ -167,18 +167,14 @@ def add_new_run_members (
             )
         
         if character_to_find.empty:
-            #getting system time for the run_members_table
-            exact_time = datetime.datetime.now()
-
-            #adding run member to the table  
-            add_row.three_columns(
+            #adding run member to the table
+            add_row.twoo_columns_and_exect_time(
                 df_run_members,
-                dict_w_info={
-                        #info about that character we need to write
-                        0: run_id,
-                        1: character_id,
-                        2: exact_time
-                    }
+                dict_w_info ={
+                    #info about that character we need to write
+                    0: run_id,
+                    1: character_id
+                }
             )
         else:
             they_were_in_the_run.append(int(character_id))

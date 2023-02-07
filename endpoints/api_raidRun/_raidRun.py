@@ -75,17 +75,13 @@ def create_new_run_m(
             new_run["guild_id"]
         )
         
-        #getting system time for the run_members_table
-        exact_time = datetime.datetime.now()
-        
-        #adding run member to the table  
-        add_row.three_columns(
+        add_row.twoo_columns_and_exect_time(
+            #adding run member to the table
             df_all_runs_members,
             dict_w_info={
                     #info about that character we need to write
                     0: run_id,
-                    1: character_id,
-                    2: exact_time
+                    1: character_id
                 }
         )
     
