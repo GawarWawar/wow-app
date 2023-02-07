@@ -12,8 +12,9 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
+import utils.simple_utils.simple_tools as su_tools
+import utils.simple_utils.add_row as add_row
 import utils.tools as u_tools
-import utils.add_row as add_row
 
 def create_new_run_m(
     dn_db_runs_table,

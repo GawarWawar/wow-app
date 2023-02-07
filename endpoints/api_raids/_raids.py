@@ -14,7 +14,7 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as su_tools
 #import utils.add_row as add_row
 
 def give_info_about_all_raids (
@@ -38,7 +38,7 @@ def give_info_about_all_raids (
         "data": []
     }
     
-    u_tools.extend_list_by_dict_from_df(
+    su_tools.extend_list_by_dict_from_df(
         df_for_raids,
         dict_to_send["data"]
     )

@@ -12,7 +12,7 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as u_tools
 #import utils.add_row as add_row
 
 def give_all_aviable_guild_stats_m(

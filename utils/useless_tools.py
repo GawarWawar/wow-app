@@ -8,7 +8,7 @@ from os.path import dirname, abspath
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as u_tools
 
 #This is slower, but let it be
 def find_item_in_DataFrame_without_for (
@@ -229,7 +229,7 @@ def from_many_csv_to_one_file_of_any_filetype (
 #useless reads
 def read_columns_of_the_csv_to_DF (
         file_to_read, #file that we need to read
-        columns = False #what columns do we need to read
+        columns = None #what columns do we need to read
 ):
     """
         Read file with the header and standart separator (,); \

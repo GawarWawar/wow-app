@@ -14,8 +14,9 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
+import utils.simple_utils.simple_tools as su_tools
+import utils.simple_utils.add_row as add_row
 import utils.tools as u_tools
-import utils.add_row as add_row
 
 def delet_run_members_m (
     run_id,
@@ -108,7 +109,7 @@ def add_new_run_members (
     
     #getting run info from dn_db_runs_table 
     run_info = pd.read_csv(dn_db_runs_table)
-    run_info = u_tools.find_item_in_DataFrame_without_for(
+    run_info = su_tools.find_item_in_DataFrame_without_for(
         run_info,
         run_id,
         "run_id"
@@ -152,13 +153,13 @@ def add_new_run_members (
                                     #already in the run
     for character_id in character_id_list:
         #checking in 2 stages bcz key contains in 2 columns
-        character_to_find = u_tools.\
+        character_to_find = su_tools.\
             find_item_in_DataFrame_without_for(
                 df_run_members,
                 character_id,
                 "character_id"
             )
-        character_to_find = u_tools.\
+        character_to_find = su_tools.\
             find_item_in_DataFrame_without_for(
                 character_to_find,
                 run_id,

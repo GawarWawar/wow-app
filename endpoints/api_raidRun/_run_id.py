@@ -14,8 +14,8 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
-import utils.add_row as add_row
+import utils.simple_utils.simple_tools as su_tools
+import utils.simple_utils.add_row as add_row
 
 
 def raid_run_info_m(
@@ -36,7 +36,7 @@ def raid_run_info_m(
     raid_run_id = int(escape(run_id))
 
     #find run by its id in runs table
-    run_info = u_tools.find_item_in_DataFrame_without_for(
+    run_info = su_tools.find_item_in_DataFrame_without_for(
         #reading table w/ info about runs
         #df_for_runs
         pd.read_csv( 
@@ -96,7 +96,7 @@ def raid_run_info_m(
     )
     
     #adding our info to dict_to_send
-    u_tools.extend_list_by_dict_from_df(
+    su_tools.extend_list_by_dict_from_df(
         df_run_raid,
         dict_to_send["data"]["raid"]
     )
@@ -148,7 +148,7 @@ def raid_run_info_m(
     
     #structuring info about our run members into dict object
         #add run members info into dict_to_send
-    u_tools.extend_list_by_dict_from_df(
+    su_tools.extend_list_by_dict_from_df(
         df_run_members,
         dict_to_send["data"]["participants"]
     )
@@ -213,7 +213,7 @@ def raid_run_info_m(
         axis="columns"
     )
     
-    u_tools.extend_list_by_dict_from_df(
+    su_tools.extend_list_by_dict_from_df(
         df_for_events,
         dict_to_send["data"]["loot_distributed"]
     )
@@ -251,7 +251,7 @@ def edit_run_m (
     ) 
     
     #check is there such run
-    run_existence = u_tools.find_one_row_in_DataFrame(
+    run_existence = su_tools.find_one_row_in_DataFrame(
         df_for_runs,
         raid_run_id,
         "run_id"

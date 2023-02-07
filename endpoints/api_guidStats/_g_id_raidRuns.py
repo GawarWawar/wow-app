@@ -12,7 +12,7 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as su_tools
 #import utils.add_row as add_row
 
 def get_all_guilds_runs_m(
@@ -28,7 +28,7 @@ def get_all_guilds_runs_m(
     #read table w/ info about guilds
     df_for_guild = pd.read_csv(dn_db_guilds_table)
     #finding all info about needed_guild 
-    guild_info = u_tools.find_one_row_in_DataFrame(
+    guild_info = su_tools.find_one_row_in_DataFrame(
         df_for_guild,
         needed_guild_id,
         "guild_id"
@@ -47,7 +47,7 @@ def get_all_guilds_runs_m(
     df_for_runs = pd.read_csv(dn_db_runs_table)
 
     #find all runs of given guild
-    main_df = u_tools.find_item_in_DataFrame_without_for(
+    main_df = su_tools.find_item_in_DataFrame_without_for(
         df_for_runs,
         needed_guild_id,
         "guild_id"
@@ -68,7 +68,7 @@ def get_all_guilds_runs_m(
     )
 
     #adding our info about runs into dict_to_send
-    u_tools.extend_list_by_dict_from_df(
+    su_tools.extend_list_by_dict_from_df(
         main_df,
         dict_to_send["guild_runs"]
     )

@@ -13,7 +13,7 @@ import sys
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as su_tools
 
 #getting raid id to look for
 def info_about_raid_id_m(
@@ -35,7 +35,7 @@ def info_about_raid_id_m(
         )
 
     #looking for the specific raid id
-    main_df = u_tools.find_one_row_in_DataFrame(
+    main_df = su_tools.find_one_row_in_DataFrame(
         main_df,
         object_to_search_for = raid_id,
         item_column = "raid_id"
@@ -130,7 +130,7 @@ def info_about_raid_id_m(
         )
         
         #renaming elements according to docs
-        u_tools.extend_list_by_dict_from_df(
+        su_tools.extend_list_by_dict_from_df(
             df_for_cycle,
             add_part["loot"]
         )
