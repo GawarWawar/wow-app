@@ -139,6 +139,13 @@ def edit_run_members (run_id):
             run_id,
             dn_db_run_members=dynamic_database["run_members"]
         )
+        result = _run_id.call_raid_run_info_m(
+                run_id,
+                dynamic_database,
+                static_database,
+                message=message
+            )
+        return(result)
     elif request.method == "POST":
         message = _run_id_characters.add_new_run_members(
             run_id,
@@ -147,13 +154,13 @@ def edit_run_members (run_id):
             dn_db_run_members=dynamic_database["run_members"],
             dn_db_characters_table=dynamic_database["characters_table"]
         )
-    result = _run_id.call_raid_run_info_m(
-        run_id,
-        dynamic_database,
-        static_database,
-        message=message
-    )
-    return(result)
+        result = _run_id.call_raid_run_info_m(
+            run_id,
+            dynamic_database,
+            static_database,
+            message=message
+        )
+        return(result)
 
 
 @app.route("/api/raidRun/<run_id>/drops", methods=["POST","DELETE"])
@@ -161,21 +168,27 @@ def edit_run_drops (run_id):
     if request.method == "POST":
         message = _run_id_drops.add_drops_m(
             run_id,
-            dn_db_runs_table=dynamic_database["runs_table"],
             dn_db_events_table=dynamic_database["events_table"],
-            #dn_db_events_table="123.csv",
-            dn_db_run_members=dynamic_database["run_members"],
-            dn_db_characters_table=dynamic_database["characters_table"],
-            #static database
-            st_db_raid_table=static_database["raid_table"],
         )
-    result = _run_id.call_raid_run_info_m(
+        result = _run_id.call_raid_run_info_m(
+                run_id,
+                dynamic_database,
+                static_database,
+                message=message
+            )
+        return(result)
+    elif request.method == "DELETE":
+        message = _run_id_drops.delete_loot(
             run_id,
-            dynamic_database,
-            static_database,
-            message=message
+            dn_db_events_table=dynamic_database["events_table"]
         )
-    return(result)
+        result = _run_id.call_raid_run_info_m(
+                run_id,
+                dynamic_database,
+                static_database,
+                message=message
+            )
+        return(result)
     
 
 """
