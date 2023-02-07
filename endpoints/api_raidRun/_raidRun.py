@@ -31,8 +31,8 @@ def create_new_run_m(
         df_for_runs,
         dict_w_info={
             #info about the run 
-            1: new_run["guild_id"],
-            0: new_run["raid_id"],
+            0: new_run["guild_id"],
+            1: new_run["raid_id"],
         }
     )
 
@@ -52,38 +52,20 @@ def create_new_run_m(
         dn_db_run_members #members of all runs
     )
     
+    #reading who will be in the raid
     df_this_run_members = pd.DataFrame.from_records(
         new_run["participants"]
     )
-    print(df_this_run_members)
-    
 
     for run_member_counter in range(
         len(df_this_run_members.loc[:,"name"])
     ):
-        #find character in the character table
-        member_existence = \
-            u_tools.find_item_in_DataFrame_without_for(
-                df_for_characters,
-                df_this_run_members.loc[run_member_counter,"name"],
-                "character_name"
-            )
-            
-        #check if this character already exist 
-        if member_existence.empty:
-            #adding new character to the character_table
-            character_id = add_row.id_and_three_columns(
-                df_for_characters,
-                dict_w_info={
-                    #info about that character we need to write
-                    0:df_this_run_members.loc[run_member_counter,"name"],
-                    1:new_run["guild_id"],
-                    2:df_this_run_members.loc[run_member_counter,"class"],
-                }
-            )
-        else:
-            #if exist -> getting its id
-            character_id = member_existence.iloc[0].at["character_id"]
+        character_id = u_tools.check_character_existence_add_if_not(
+            df_for_characters,
+            df_this_run_members,
+            run_member_counter,
+            new_run["guild_id"]
+        )
         
         #getting system time for the run_members_table
         exact_time = datetime.datetime.now()
