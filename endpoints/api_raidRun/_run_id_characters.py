@@ -96,6 +96,7 @@ def add_new_run_members (
 ):
     run_id = int(escape(run_id))
     
+    #forming df of characters that we need to add to run
     members_to_add = request.json
     members_to_add = pd.DataFrame.from_records(members_to_add)
     members_to_add = members_to_add.rename(
@@ -105,6 +106,7 @@ def add_new_run_members (
         axis="columns"
     )
     
+    #getting run info from dn_db_runs_table 
     run_info = pd.read_csv(dn_db_runs_table)
     run_info = u_tools.find_item_in_DataFrame_without_for(
         run_info,
@@ -112,11 +114,14 @@ def add_new_run_members (
         "run_id"
     )
     
+    #reading info about all existing characters
     df_characters = pd.read_csv(
         dn_db_characters_table
     )
     
-    character_id_list = []
+    #checking existence of all characters
+    #if character doesnt exist -> add him to the list of characters 
+    character_id_list = [] #-> all characters id we need to add to run
     for run_member_counter in range(
         len(members_to_add.loc[:,"name"])
     ):
@@ -134,23 +139,31 @@ def add_new_run_members (
         index=False,
         index_label=False
     )
+    df_characters = None
     
+    #reading info about all run_members
     df_run_members = pd.read_csv(
         dn_db_run_members
     )
     
-    they_were_in_the_run = []
+    #checking existence of all new run members into our run
+    #if character doesnt exist -> add him to the list of run_members 
+    they_were_in_the_run = [] #-> all characters_id that were 
+                                    #already in the run
     for character_id in character_id_list:
-        character_to_find = u_tools.find_item_in_DataFrame_without_for(
-            df_run_members,
-            character_id,
-            "character_id"
-        )
-        character_to_find = u_tools.find_item_in_DataFrame_without_for(
-            character_to_find,
-            run_id,
-            "run_id"
-        )
+        #checking in 2 stages bcz key contains in 2 columns
+        character_to_find = u_tools.\
+            find_item_in_DataFrame_without_for(
+                df_run_members,
+                character_id,
+                "character_id"
+            )
+        character_to_find = u_tools.\
+            find_item_in_DataFrame_without_for(
+                character_to_find,
+                run_id,
+                "run_id"
+            )
         
         if character_to_find.empty:
             #getting system time for the run_members_table
@@ -178,13 +191,13 @@ def add_new_run_members (
     
     #forming respons
     if len(they_were_in_the_run) == 0:
-        #massage if we didnt find anyone, who wasnt in the run
+        #massage if we didnt find anyone, who was in the run
         message={
             "result" : True,
             "were_in_the_run" : None
         }
     else: 
-        #massage if we did find someone, who wasnt in the run
+        #massage if we did find someone, who was in the run
         message = {
             "result" : True,
             "were_in_the_run": they_were_in_the_run
