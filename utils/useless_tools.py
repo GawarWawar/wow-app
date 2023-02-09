@@ -8,7 +8,7 @@ from os.path import dirname, abspath
 SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
-import utils.tools as u_tools
+import utils.simple_utils.simple_tools as u_tools
 
 #This is slower, but let it be
 def find_item_in_DataFrame_without_for (
@@ -229,7 +229,7 @@ def from_many_csv_to_one_file_of_any_filetype (
 #useless reads
 def read_columns_of_the_csv_to_DF (
         file_to_read, #file that we need to read
-        columns = False #what columns do we need to read
+        columns = None #what columns do we need to read
 ):
     """
         Read file with the header and standart separator (,); \
@@ -259,4 +259,37 @@ def read_the_file_to_DF (
 
     return(df)
     
-    
+def three_lvl_dict_check(dict_to_check):
+    for lvl1 in dict_to_check:
+            if dict_to_check[lvl1].__class__.__name__ == "list":
+                for lvl1_elem in dict_to_check[lvl1]:
+                    for lvl2 in lvl1_elem:
+                        if lvl1_elem[lvl2].__class__.__name__=="list":
+                            for lvl2_elem in lvl1_elem[lvl2]:
+                                for lvl3 in lvl2_elem:
+                                    print(
+                                        lvl3, lvl2_elem[lvl3],
+                                        f"{lvl3}.type", lvl2_elem[lvl3].__class__
+                                    )
+                        else:
+                            print(
+                                lvl2, lvl1_elem[lvl2],
+                                f"{lvl2}.type", lvl1_elem[lvl2].__class__
+                            )      
+            else:
+                print(
+                    lvl1,dict_to_check[lvl1],
+                    f"{lvl1}.type", dict_to_check[lvl1].__class__
+                )
+
+#need to be checked
+def infinite_lvl_dict_check (dict_to_check):
+    for lvl1 in dict_to_check:
+        if dict_to_check[lvl1].__class__.__name__ == "list":
+            for lvl1_elem in dict_to_check[lvl1]:
+                infinite_lvl_dict_check(lvl1_elem)
+        else:
+                print(
+                    lvl1,dict_to_check[lvl1],
+                    f"{lvl1}.type", dict_to_check[lvl1].__class__
+                )

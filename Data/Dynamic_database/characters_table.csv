@@ -1,4 +1,4 @@
-character_id,character_name,guild_id,class
+character_id,character_name,guild_id,character_class
 0,place_holder,0,place_holder
 1,Gawar,1,rogue
 2,Gawarhehe,1,rogue
@@ -12,3 +12,4 @@ character_id,character_name,guild_id,class
 10,Meriela,1,mage
 11,Hensen,1,warlock
 12,Greemdawn,1,deathknight
+13,Cezan,1,mage

@@ -4,13 +4,13 @@ import time
 
 from os import listdir
 from os.path import isfile, join, dirname, abspath
+#
+#import sys
+#
+#SCRIPT_DIR = dirname(abspath(__file__))
+#sys.path.append(dirname(SCRIPT_DIR))
 
-import sys
-
-SCRIPT_DIR = dirname(abspath(__file__))
-sys.path.append(dirname(SCRIPT_DIR))
-
-import utils.tools as u_tools 
+import db_creation_utils.db_creation_tools as db_tools
 
 start_timer = time.perf_counter()
 
@@ -22,7 +22,7 @@ files_to_rewrite = [f for f in listdir(file_path_to_ftw)
                     if isfile(join(file_path_to_ftw, f))]
 
 for each_file in files_to_rewrite:
-    u_tools.rewrite_wowhead_separator(
+    db_tools.rewrite_wowhead_separator(
         each_file,
         file_path_to_ftw,
         file_path_to_ri,
@@ -46,7 +46,7 @@ files_for_gluth_10 = [
     "The_Four_Horsemen_10_not_wowhead.csv"
 ]
 
-u_tools.from_many_csv_to_one_csv(
+db_tools.from_many_csv_to_one_csv(
     files_to_read=files_for_gluth_10,
     path_to_fstr=file_path_to_ri,
     file_to_write="Gluth_10_not_wowhead.csv",
@@ -71,7 +71,7 @@ files_for_gluth_25 = [
 
 ]
 
-u_tools.from_many_csv_to_one_csv(
+db_tools.from_many_csv_to_one_csv(
     files_to_read=files_for_gluth_10,
     path_to_fstr=file_path_to_ri,
     file_to_write="Gluth_25_not_wowhead.csv",

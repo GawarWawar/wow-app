@@ -4,13 +4,13 @@ import time
 
 from os import listdir
 from os.path import isfile, join, dirname, abspath
+#
+#import sys
+#
+#SCRIPT_DIR = dirname(abspath(__file__))
+#sys.path.append(dirname(SCRIPT_DIR))
 
-import sys
-
-SCRIPT_DIR = dirname(abspath(__file__))
-sys.path.append(dirname(SCRIPT_DIR))
-
-import utils.tools as u_tools
+import db_creation_utils.db_creation_tools as db_tools
 
 start_timer = time.perf_counter()
 
@@ -24,7 +24,7 @@ indexes_that_we_want_to_set_up = [
 files_for_items_list = [f for f in listdir(file_path_to_read) 
                     if isfile(join(file_path_to_read, f))]
 
-u_tools.from_many_csv_to_one_csv(
+db_tools.from_many_csv_to_one_csv(
     files_to_read=files_for_items_list,
     path_to_fstr=file_path_to_read,
     file_to_write="items.csv",
@@ -44,7 +44,7 @@ bosses_list = pd.read_csv(
 )
 bosses_list = bosses_list.sort_values("boss_name")
 #temporary droping lists, that doesnt have files
-bosses_list = bosses_list.drop([16])
+#bosses_list = bosses_list.drop([16])
 
 #creating table for items, that can drop from certain bosses
 file_for_drops_from_bosses = files_for_items_list
@@ -59,7 +59,7 @@ for file in file_for_drops_from_bosses:
     boss_df = pd.DataFrame()
     boss_dict = {}
     
-    boss_df = u_tools.vertical_csv_to_df(
+    boss_df = db_tools.vertical_csv_to_df(
         file_to_read = file,
         path_to_ftr = file_path_to_read,
         dataframe = boss_df,
@@ -82,7 +82,7 @@ for file in file_for_drops_from_bosses:
 drop_df = pd.DataFrame.from_dict(drop_dict) 
 drop_df = drop_df.sort_values(by=["boss_id","item_id"])   
 drop_df.to_csv(
-    "Data/Static_database/drop_of_bosses.csv",
+    "Data/Static_database/loot_of_bosses.csv",
     index=False,
     index_label=False
 )
