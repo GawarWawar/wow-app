@@ -72,7 +72,10 @@ def give_all_aviable_guild_stats(g_id):
         g_id,
         #dynamic_database
         dn_db_guilds_table=dynamic_database["guilds_table"],
-        dn_db_characters_table=dynamic_database["characters_table"]
+        dn_db_characters_table=dynamic_database["characters_table"],
+        dn_db_runs_table=dynamic_database["runs_table"],
+        #static_database
+        st_db_raid_table=static_database["raid_table"]
     )
     return(result)
 

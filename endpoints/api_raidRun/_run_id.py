@@ -35,33 +35,33 @@ def raid_run_info_m(
     
     raid_run_id = int(escape(run_id))
 
-    #find run by its id in runs table
-    run_info = su_tools.find_item_in_DataFrame_without_for(
-        #reading table w/ info about runs
-        #df_for_runs
-        pd.read_csv( 
+    #reading table w/ info about runs
+    df_runs = pd.read_csv( 
             dn_db_runs_table,
             usecols=[
               "run_id",
               "guild_id",
               "raid_id",
-              #"date_of_raid"  
+              "date_finished"  
             ]
-        ),
+        )
+
+    #find run by its id in runs table
+    run_info = su_tools.find_item_in_DataFrame_without_for(
+        df_runs,
         raid_run_id,
         "run_id"
     )
+    run_index = run_info.index[0]
     
-    #clearing variables that we wont use anymore
-    raid_run_id = None
     
     #creating dictionary that we will send
     dict_to_send = {
         "data":{
             #adding already known info from run_info
             "id": int(run_info.iloc[0].at["guild_id"]),
+            "date_finished": run_info.iloc[0].at["date_finished"],
             #creating structure
-            "last_action": "",
             "raid": [],
             "participants":[],
             "loot_distributed":[]
@@ -191,17 +191,30 @@ def raid_run_info_m(
     if last_action.__class__.__name__ == "float" \
             and \
         last_member_creation.__class__.__name__ == "float": 
-            dict_to_send["data"]["last_action"] = None
+            dict_to_send["data"]["date_finished"] = None
     elif last_member_creation.__class__.__name__ == "float":
-        dict_to_send["data"]["last_action"] = last_action
+        dict_to_send["data"]["date_finished"] = last_action
     elif last_action.__class__.__name__ == "float":
-        dict_to_send["data"]["last_action"] = last_member_creation
+        dict_to_send["data"]["date_finished"] = last_member_creation
     else:
         if last_action > last_member_creation:
-                dict_to_send["data"]["last_action"] = last_action
+                dict_to_send["data"]["date_finished"] = last_action
         else:
-            dict_to_send["data"]["last_action"] = \
+            dict_to_send["data"]["date_finished"] = \
                 last_member_creation
+    
+    df_runs.loc[run_index,"date_finished"]= \
+        dict_to_send["data"]["date_finished"]
+    
+    
+    df_runs.to_csv(
+        dn_db_runs_table,
+        index=False,
+        index_label=False
+    )
+    
+    #clearing variables that we wont use anymore
+    raid_run_id = None
     
     #we dont need that info about events anymore 
     df_for_events.pop("run_id")

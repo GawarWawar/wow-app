@@ -28,12 +28,14 @@ def create_new_run_m(
     df_for_runs = pd.read_csv(dn_db_runs_table)
     
     #adding new run to the runs_table
-    run_id = add_row.id_and_two_columns(
+    
+    run_id = add_row.id_and_three_columns(
         df_for_runs,
         dict_w_info={
             #info about the run 
             0: new_run["guild_id"],
             1: new_run["raid_id"],
+            2: None
         }
     )
 
