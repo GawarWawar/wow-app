@@ -14,7 +14,7 @@ import db_creation_utils.db_creation_tools as db_tools
 
 start_timer = time.perf_counter()
 
-file_path_to_ftw = "data/wowhead_data/items_from_Naxx"
+file_path_to_ftw = "data/wowhead_data/items_from_naxx"
 wowhead_separator = ", "
 file_path_to_ri = "data/data_for_staic_db/items_from_naxx"
 
