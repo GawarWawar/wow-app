@@ -1,5 +1,9 @@
 import numpy as np
 import pandas as pd
+import pyarrow as pa
+
+import pyarrow.parquet as pq
+
 import time
 
 start_timer = time.perf_counter()
@@ -70,7 +74,13 @@ loot_df = pd.DataFrame.from_dict(loot_dict)
 loot_df = loot_df.sort_values(
     by=["boss_id","item_id"], 
     ignore_index=True
+)
+
+loot_df.to_parquet(
+    path=path_to_st_db+"/"+"loot_of_bosses.parquet",
+    engine="pyarrow",
 )   
+
 loot_df.to_csv(
         path_to_st_db+"/"+"loot_of_bosses.csv", 
         index_label=False, 
@@ -89,6 +99,11 @@ df_items = pd.DataFrame(
 df_items = df_items.drop_duplicates()
 df_items = df_items.sort_values(by="item_id", inplace=False, ignore_index=True)
 
+df_items.to_parquet(
+    path=path_to_st_db+"/"+"items.parquet",
+    engine="pyarrow",
+)   
+
 df_items.to_csv(
         path_to_st_db+"/"+"items.csv", 
         index_label=False, 
@@ -101,4 +116,18 @@ end_timer = time.perf_counter()
 print(
     "generate_static_item_database time =",
     end_timer-start_timer
+)
+
+df_bosses = pd.read_csv("Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv")
+
+df_bosses.to_parquet(
+    "Data/Static_database/bosses.parquet",
+    engine="pyarrow"
+)
+
+df_raids = pd.read_csv("Data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv")
+
+df_raids.to_parquet(
+    "Data/Static_database/raids.parquet",
+    engine="pyarrow"
 )
