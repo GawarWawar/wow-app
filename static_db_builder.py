@@ -1,1 +1,3 @@
-import utils.static_db_creation.generate_static_item_database
+import utils.static_db_creation.generate_static_item_database as st_db_generator
+
+st_db_generator.main()
