@@ -19,14 +19,14 @@ render_dir = "FE"
 app = Flask(__name__, template_folder=render_dir)
 enctype="multipart/form-data"
 
-static_database_parquet = {
+static_database = {
     "raid_table" : "Data/Static_database/raids.parquet",
     "boss_table" : "Data/Static_database/bosses.parquet",
     "loot_table" : "Data/Static_database/loot_of_bosses.parquet",
     "item_table" : "Data/Static_database/items.parquet"
 }
 
-static_database = {
+static_database_csv = {
     "raid_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv",
     "boss_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
     "loot_table" : "Data/Static_database/loot_of_bosses.csv",
@@ -52,7 +52,7 @@ def render_index():
 def give_info_about_all_raids ():
     #read the table w/ info about raids
     result = _raids.give_info_about_all_raids(
-        st_db_raid_table=static_database_parquet["raid_table"]
+        st_db_raid_table=static_database["raid_table"]
     )
     return(result)
 
@@ -62,10 +62,10 @@ def give_info_about_all_raids ():
 def info_about_raid_id(raid_id):
     result = _raid_id.info_about_raid_id_m(
         raid_id,
-        st_db_raid_table=static_database_parquet["raid_table"],
-        st_db_boss_table=static_database_parquet["boss_table"],
-        st_db_loot_table=static_database_parquet["loot_table"],
-        st_db_item_table=static_database_parquet["item_table"]
+        st_db_raid_table=static_database["raid_table"],
+        st_db_boss_table=static_database["boss_table"],
+        st_db_loot_table=static_database["loot_table"],
+        st_db_item_table=static_database["item_table"]
     )
     return(result)
 
@@ -81,7 +81,7 @@ def give_all_aviable_guild_stats(g_id):
         dn_db_characters_table=dynamic_database["characters_table"],
         dn_db_runs_table=dynamic_database["runs_table"],
         #static_database
-        st_db_raid_table=static_database_parquet["raid_table"]
+        st_db_raid_table=static_database["raid_table"]
     )
     return(result)
 
@@ -108,7 +108,7 @@ def get_all_guilds_runs(g_id):
         dn_db_guilds_table= dynamic_database["guilds_table"],
         dn_db_runs_table= dynamic_database["runs_table"],
         #static_database
-        st_db_raid_table = static_database["raid_table"]
+        st_db_raid_table = static_database_csv["raid_table"]
     )
     return (result)
 
@@ -125,7 +125,7 @@ def runs_of_the_guild():
     result = _run_id.call_raid_run_info_m(
         new_run_id,
         dynamic_database,
-        static_database_parquet
+        static_database
     )
     return(result)
 
@@ -140,7 +140,7 @@ def raid_run (run_id):
         result = _run_id.call_raid_run_info_m(
             run_id,
             dynamic_database,
-            static_database_parquet
+            static_database
         )
     return(result)
 
@@ -155,7 +155,7 @@ def edit_run_members (run_id):
         result = _run_id.call_raid_run_info_m(
                 run_id,
                 dynamic_database,
-                static_database_parquet,
+                static_database,
                 message=message
             )
         return(result)
@@ -170,7 +170,7 @@ def edit_run_members (run_id):
         result = _run_id.call_raid_run_info_m(
             run_id,
             dynamic_database,
-            static_database_parquet,
+            static_database,
             message=message
         )
         return(result)
@@ -186,7 +186,7 @@ def edit_run_drops (run_id):
         result = _run_id.call_raid_run_info_m(
                 run_id,
                 dynamic_database,
-                static_database_parquet,
+                static_database,
                 message=message
             )
         return(result)
@@ -198,7 +198,7 @@ def edit_run_drops (run_id):
         result = _run_id.call_raid_run_info_m(
                 run_id,
                 dynamic_database,
-                static_database_parquet,
+                static_database,
                 message=message
             )
         return(result)
