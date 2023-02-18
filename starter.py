@@ -21,8 +21,8 @@ enctype="multipart/form-data"
 
 
 static_database = {
-    "raid_table" : "data/Static_database/Wow app - Raid table.csv",
-    "boss_table" : "data/Static_database/Wow app - Bosses table.csv",
+    "raid_table" : "data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv",
+    "boss_table" : "data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
     "loot_table" : "data/Static_database/loot_of_bosses.csv",
     "item_table" : "data/Static_database/Items.csv"
 }
