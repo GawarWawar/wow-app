@@ -18,12 +18,10 @@ import utils.simple_utils.simple_tools as su_tools
 #import utils.add_row as add_row
 
 def give_info_about_all_raids (
-    st_db_raid_table
+    st_db_raid_table,
 ):
     #read the table w/ info about raids
-    df_for_raids = pd.read_csv(
-        st_db_raid_table
-    )
+    df_for_raids = pd.read_parquet(st_db_raid_table)
     
     df_for_raids.rename(
         {

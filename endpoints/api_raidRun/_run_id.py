@@ -73,7 +73,7 @@ def raid_run_info_m(
     run_info.pop("guild_id")
     
     #read the table w/ info about raids
-    df_run_raid = pd.read_csv(
+    df_run_raid = pd.read_parquet(
         st_db_raid_table
     )
     

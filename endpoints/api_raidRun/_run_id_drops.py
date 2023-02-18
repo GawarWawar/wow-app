@@ -40,7 +40,7 @@ def add_loots_m (
         event_boss_x_item = su_tools.\
             find_item_in_DataFrame_without_for(
                 df_events,
-                new_loot.iloc[loot].at["boss_lootped_from_id"],
+                new_loot.iloc[loot].at["boss_dropped_from_id"],
                 "boss_id"
             )
             #2: "item_id"
@@ -60,7 +60,7 @@ def add_loots_m (
                     0: int(run_id),
                     1: int(
                         new_loot.iloc[loot].\
-                            at["boss_lootped_from_id"]
+                            at["boss_dropped_from_id"]
                     ),
                     2: int(
                         new_loot.iloc[loot].\

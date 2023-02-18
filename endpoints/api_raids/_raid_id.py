@@ -28,11 +28,10 @@ def info_about_raid_id_m(
     
     raid_id = int(escape(id))
     
-    
     #read table w/ raid info
-    main_df = pd.read_csv(
+    main_df = pd.read_parquet(
         st_db_raid_table
-        )
+    )
 
     #looking for the specific raid id
     main_df = su_tools.find_one_row_in_DataFrame(
@@ -60,9 +59,9 @@ def info_about_raid_id_m(
     main_df.pop("raid_capacity")
     
     #reading table w/ bosses info
-    df_for_bosses = pd.read_csv(
+    df_for_bosses = pd.read_parquet(
         st_db_boss_table,
-        usecols=[
+        columns=[
             "boss_id",
             "raid_id",
             "boss_name",
@@ -79,11 +78,11 @@ def info_about_raid_id_m(
     main_df.pop("raid_id")
     
     #reading table w/ dropp info
-    df_for_drop = pd.read_csv(
+    df_for_drop = pd.read_parquet(
         st_db_loot_table
     )
     #read items info
-    df_items = pd.read_csv(
+    df_items = pd.read_parquet(
         st_db_item_table
     )
     

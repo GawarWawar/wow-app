@@ -92,7 +92,7 @@ def give_all_aviable_guild_stats_m(
     
     #reading table about
     df_runs = pd.read_csv(dn_db_runs_table)#runs 
-    df_raids = pd.read_csv(st_db_raid_table)#raids
+    df_raids = pd.read_parquet(st_db_raid_table)#raids
     
     #changing names from db form to the response form
     df_raids = df_raids.rename(
