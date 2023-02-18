@@ -1,0 +1,33 @@
+boss_id,raid_id,boss_name,npc_wowhead_id
+0,0,Naxxramas trash_10,no_id
+1,0,Patchwerk_10,16028
+2,0,Grobbulus_10,15931
+3,0,Gluth_10,15932
+4,0,Thaddius_10,15928
+5,0,Anub'Rekhan_10,15956
+6,0,Grand Widow Faerlina_10,15953
+7,0,Maexxna_10,15952
+8,0,Instructor Razuvious_10,16061
+9,0,Gothik the Harvester_10,16060
+10,0,The Four Horsemen_10,"16063,16064,16065,30549"
+11,0,Noth the Plaguebringer_10,15954
+12,0,Heigan the Unclean_10,15936
+13,0,Loatheb_10,16011
+14,0,Sapphiron_10,15989
+15,0,Kel'Thuzad_10,15990
+16,1,Naxxramas trash_25,no_id
+17,1,Patchwerk_25,16028
+18,1,Grobbulus_25,15931
+19,1,Gluth_25,15932
+20,1,Thaddius_25,15928
+21,1,Anub'Rekhan_25,15956
+22,1,Grand Widow Faerlina_25,15953
+23,1,Maexxna_25,15952
+24,1,Instructor Razuvious_25,16061
+25,1,Gothik the Harvester_25,16060
+26,1,The Four Horsemen_25,"16063,16064,16065,30549"
+27,1,Noth the Plaguebringer_25,15954
+28,1,Heigan the Unclean_25,15936
+29,1,Loatheb_25,16011
+30,1,Sapphiron_25,15989
+31,1,Kel'Thuzad_25,15990
