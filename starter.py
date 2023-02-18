@@ -21,18 +21,18 @@ enctype="multipart/form-data"
 
 
 static_database = {
-    "raid_table" : "data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv",
-    "boss_table" : "data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
-    "loot_table" : "data/Static_database/loot_of_bosses.csv",
-    "item_table" : "data/Static_database/Items.csv"
+    "raid_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv",
+    "boss_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
+    "loot_table" : "Data/Static_database/loot_of_bosses.csv",
+    "item_table" : "Data/Static_database/Items.csv"
 }
 
 dynamic_database = {
-    "guilds_table" : "data/Dynamic_database/guilds_table.csv",
-    "characters_table" : "data/Dynamic_database/characters_table.csv",
-    "runs_table" : "data/Dynamic_database/runs_of_the_guilds_table.csv",
-    "events_table" : "data/Dynamic_database/events_table.csv",
-    "run_members" : "data/Dynamic_database/run_members.csv"
+    "guilds_table" : "Data/Dynamic_database/guilds_table.csv",
+    "characters_table" : "Data/Dynamic_database/characters_table.csv",
+    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
+    "events_table" : "Data/Dynamic_database/events_table.csv",
+    "run_members" : "Data/Dynamic_database/run_members.csv"
 }
 
 
