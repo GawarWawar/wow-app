@@ -199,5 +199,5 @@ def edit_run_drops (run_id):
 
 if __name__ == "__main__":
     app.run(
-        debug=True
+        #debug=True
     )
