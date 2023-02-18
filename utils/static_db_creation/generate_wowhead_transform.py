@@ -4,13 +4,13 @@ import time
 
 from os import listdir
 from os.path import isfile, join, dirname, abspath
-#
-#import sys
-#
-#SCRIPT_DIR = dirname(abspath(__file__))
-#sys.path.append(dirname(SCRIPT_DIR))
 
-import db_creation_utils.db_creation_tools as db_tools
+import sys
+
+SCRIPT_DIR = dirname(abspath(__file__))
+sys.path.append(dirname(SCRIPT_DIR))
+
+import utils.static_db_creation.db_creation_utils.db_creation_tools as db_tools
 
 start_timer = time.perf_counter()
 
