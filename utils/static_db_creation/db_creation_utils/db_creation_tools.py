@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import pyarrow as py
 import json
 
 #change separetor from ", " to ","
@@ -24,7 +25,6 @@ def rewrite_wowhead_separator(
         index_label=False,
         header=None     
     )
-
 
 #transform from csv into DataFrame with forward transposing it`s content
 #old name: wowhead_inspired_csv_to_df

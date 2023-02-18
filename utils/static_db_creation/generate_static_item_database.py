@@ -14,78 +14,88 @@ import db_creation_utils.db_creation_tools as db_tools
 
 start_timer = time.perf_counter()
 
-#giving basic info about our futer database
-file_path_to_read = "data/data_for_staic_db/items_from_naxx"
-indexes_that_we_want_to_set_up = [
-        "item_id", 
+df = pd.read_csv(
+    "data/data_for_staic_db/manually_changed_static_db/Wow app - Transfer sheet for Items.csv",
+    usecols=[
+        "boss_name",
+        "item_id",
         "item_name"
-]
-
-files_for_items_list = [f for f in listdir(file_path_to_read) 
-                    if isfile(join(file_path_to_read, f))]
-
-db_tools.from_many_csv_to_one_csv(
-    files_to_read=files_for_items_list,
-    path_to_fstr=file_path_to_read,
-    file_to_write="items.csv",
-    path_to_ftw="Data/Static_database",
-    set_index_names=indexes_that_we_want_to_set_up,
-    transpose_grouped_file=False,
-    options_for_tocsv={
-        "index_label":False,
-        "header" : True,
-        "index":False
-    }
+    ],
+    index_col=[0]
 )
 
-# Building table for loot that drops from bosses
+#building table for loot that drops from bosses
 bosses_list = pd.read_csv(
-    "Data/Static_database/Wow app - Bosses table.csv"
+    "data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
+    usecols=[
+        "boss_name",
+        "boss_id",
+    ]
 )
-bosses_list = bosses_list.sort_values("boss_name")
-#temporary droping lists, that doesnt have files
-#bosses_list = bosses_list.drop([16])
 
-#creating table for items, that can drop from certain bosses
-file_for_drops_from_bosses = files_for_items_list
-file_for_drops_from_bosses.sort()
 drop_dict = {
     "boss_id" : [],
     "item_id" : []
 }
-
-j = 0
-for file in file_for_drops_from_bosses:
-    boss_df = pd.DataFrame()
-    boss_dict = {}
+all_items_ids = []
+all_items_names = []
+for df_index in df.index:
+    item_ids = str(df.loc[df_index]["item_id"]).split(", ")
     
-    boss_df = db_tools.vertical_csv_to_df(
-        file_to_read = file,
-        path_to_ftr = file_path_to_read,
-        dataframe = boss_df,
-        set_indexes_names = indexes_that_we_want_to_set_up
-    )
-
-    boss_id = bosses_list.iat[j,0]
+    boss_id = bosses_list.loc[bosses_list.loc[:,"boss_name"]==df_index]
+    boss_id = boss_id.iloc[0].at["boss_id"]
     
     #creat DataFrame w/ drop for certain boss
-    boss_df["boss_id"] = boss_id
-    boss_df.pop("item_name")
+    df_add_drop = pd.DataFrame(
+        {
+            "item_id": item_ids,
+            "boss_id": boss_id
+        }
+    )
     
-    boss_dict = boss_df.to_dict(orient="list")
+    boss_dict = df_add_drop.to_dict(orient="list")
     #create dictiorary to transform into df
     drop_dict["boss_id"].extend(boss_dict["boss_id"])
     drop_dict["item_id"].extend(boss_dict["item_id"])
-    
-    j += 1
+
+    all_items_ids.extend(
+        item_ids
+    )
+    all_items_names.extend(
+        str(df.loc[df_index]["item_name"]).split(", ")
+    )
+
+path_to_st_db="Data/Static_database"
 
 drop_df = pd.DataFrame.from_dict(drop_dict) 
-drop_df = drop_df.sort_values(by=["boss_id","item_id"])   
+drop_df = drop_df.sort_values(
+    by=["boss_id","item_id"], 
+    ignore_index=True
+)   
+
 drop_df.to_csv(
-    "Data/Static_database/loot_of_bosses.csv",
-    index=False,
-    index_label=False
+        path_to_st_db+"/"+"loot_of_bosses.csv", 
+        index_label=False, 
+        index=False,
+        header=True, 
+    )
+
+df_items = pd.DataFrame(
+    {
+        "item_id": all_items_ids,
+        "item_name": all_items_names
+    }
 )
+
+df_items = df_items.drop_duplicates()
+df_items = df_items.sort_values(by="item_id", inplace=False, ignore_index=True)
+
+df_items.to_csv(
+        path_to_st_db+"/"+"items.csv", 
+        index_label=False, 
+        index=False,
+        header=True, 
+    )
 
 end_timer = time.perf_counter()
 print(
