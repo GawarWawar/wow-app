@@ -81,13 +81,6 @@ def main():
         engine="pyarrow",
     )   
 
-    loot_df.to_csv(
-            path_to_st_db+"/"+"loot_of_bosses.csv", 
-            index_label=False, 
-            index=False,
-            header=True, 
-        )
-
     # Writing prosses into items_table
     df_items = pd.DataFrame(
         {
@@ -103,13 +96,6 @@ def main():
         path=path_to_st_db+"/"+"items.parquet",
         engine="pyarrow",
     )   
-
-    df_items.to_csv(
-            path_to_st_db+"/"+"items.csv", 
-            index_label=False, 
-            index=False,
-            header=True, 
-        )
 
     # Transforming bosses_table to the .parquet format
     df_bosses = pd.read_csv("Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv")
