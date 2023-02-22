@@ -127,6 +127,42 @@ def id_and_three_columns (
             
     return(next_id)
 
+def id_two_columns_and_exect_time (
+    main_df, #df to add a row
+    dict_w_info={ #dictionary w/ content info, that we need to add ->
+       0 : None,
+       1 : None,
+    } #keys = 0,1,2; values = values we need to add
+    
+):
+    """
+    Add row w/ 4 columns, in which the 1st one is generated id \n
+        \n
+        return id
+    """
+    #we have place holder in each table, so we dont need to worry about 
+        #nothing beeng in the table
+    #we are using privious last id to generate id for the new row
+    next_id = main_df.iloc[:,0].\
+                iat[
+                    len(main_df.index)-1
+                ] + 1
+    #getting system time for the exact moment
+    exact_time = datetime.datetime.now()
+    #adding row w/ info from our dict
+    main_df.loc[
+                len(
+                    main_df.index
+                )
+            ] = [
+                    next_id,
+                    dict_w_info[0],
+                    dict_w_info[1], 
+                    exact_time
+                ]
+            
+    return(next_id)
+
 def id_and_five_columns (
     main_df, #df to add a row
     dict_w_info={ #dictionary w/ content info, that we need to add ->
