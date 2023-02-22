@@ -30,7 +30,7 @@ def add_loots_m (
     new_loot = pd.DataFrame.from_records(new_loot)
     
     #reading table w/ info about all events
-    df_events = pd.read_csv(dn_db_events_table)
+    df_events = pd.read_parquet(dn_db_events_table)
     
     events_added = []
     events_changed = []
@@ -89,10 +89,9 @@ def add_loots_m (
             )
             
     #write info back to table
-    df_events.to_csv(
+    df_events.to_parquet(
         dn_db_events_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
 
     #response is this message
@@ -113,7 +112,7 @@ def delete_loot(
 
     loot_to_delete = request.json
     
-    df_events = pd.read_csv(dn_db_events_table)
+    df_events = pd.read_parquet(dn_db_events_table)
     
     they_werent_in_the_loot = []
     for loot in loot_to_delete:
@@ -128,10 +127,9 @@ def delete_loot(
         else:
             df_events = df_events.drop(loot_to_look.index[0])
     
-    df_events.to_csv(
+    df_events.to_parquet(
         dn_db_events_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     
     if len(they_werent_in_the_loot) == 0:

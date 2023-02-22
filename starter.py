@@ -34,6 +34,14 @@ static_database_csv = {
 }
 
 dynamic_database = {
+    "guilds_table" : "Data/Dynamic_database/guilds_table.parquet",
+    "characters_table" : "Data/Dynamic_database/characters_table.parquet",
+    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.parquet",
+    "events_table" : "Data/Dynamic_database/events_table.parquet",
+    "run_members" : "Data/Dynamic_database/run_members.parquet"
+}
+
+dynamic_database_csv = {
     "guilds_table" : "Data/Dynamic_database/guilds_table.csv",
     "characters_table" : "Data/Dynamic_database/characters_table.csv",
     "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
@@ -76,7 +84,7 @@ def info_about_raid_id(raid_id):
 def give_all_aviable_guild_stats(g_id):
     result = _g_id.give_all_aviable_guild_stats_m(
         g_id,
-        #dynamic_database
+        #dynamic database
         dn_db_guilds_table=dynamic_database["guilds_table"],
         dn_db_characters_table=dynamic_database["characters_table"],
         dn_db_runs_table=dynamic_database["runs_table"],
@@ -92,9 +100,9 @@ def give_all_aviable_guild_stats(g_id):
 def characters_of_the_guild (g_id):
     result = _g_id_characters.characters_of_the_guild_m(
         g_id,
-        #dynamic_database
-        dn_db_guilds_table=dynamic_database["guilds_table"],
-        dn_db_characters_table=dynamic_database["characters_table"]
+        #dynamic database
+        dn_db_guilds_table=dynamic_database_csv["guilds_table"],
+        dn_db_characters_table=dynamic_database_csv["characters_table"]
     )
     return(result)
 
@@ -104,9 +112,9 @@ def characters_of_the_guild (g_id):
 def get_all_guilds_runs(g_id):
     result = _g_id_raidRuns.get_all_guilds_runs_m(
         g_id,
-        #dynamic_database
-        dn_db_guilds_table= dynamic_database["guilds_table"],
-        dn_db_runs_table= dynamic_database["runs_table"],
+        #dynamic database
+        dn_db_guilds_table= dynamic_database_csv["guilds_table"],
+        dn_db_runs_table= dynamic_database_csv["runs_table"],
         #static_database
         st_db_raid_table = static_database_csv["raid_table"]
     )

@@ -29,7 +29,7 @@ def give_all_aviable_guild_stats_m(
     guild_id = int(escape(g_id)) 
     
     #read table w/ guilds info
-    df_for_guild = pd.read_csv(
+    df_for_guild = pd.read_parquet(
         dn_db_guilds_table
     )
 
@@ -61,7 +61,7 @@ def give_all_aviable_guild_stats_m(
     }
     
     #read table w/ characters info
-    df_characters = pd.read_csv(
+    df_characters = pd.read_parquet(
         dn_db_characters_table
     )
     
@@ -91,7 +91,7 @@ def give_all_aviable_guild_stats_m(
     df_characters= None
     
     #reading table about
-    df_runs = pd.read_csv(dn_db_runs_table)#runs 
+    df_runs = pd.read_parquet(dn_db_runs_table)#runs 
     df_raids = pd.read_parquet(st_db_raid_table)#raids
     
     #changing names from db form to the response form
