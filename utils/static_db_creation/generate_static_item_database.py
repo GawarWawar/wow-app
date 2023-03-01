@@ -6,12 +6,14 @@ import pyarrow.parquet as pq
 
 import time
 
-def main():
+def main(
+    log_on=False
+):
     start_timer = time.perf_counter()
     
     # Reading table w/ info about loot in Naxx
     Naxx_df = pd.read_csv(
-        "data/data_for_staic_db/manually_changed_static_db/Wow app - Items_from_Naxx_transfer.csv",
+        "data/csv_data/manually_changed_static_db/Wow app - Items_from_Naxx_transfer.csv",
         usecols=[
             "boss_name",
             "item_id",
@@ -22,7 +24,7 @@ def main():
 
     # Read names and ids of all bosses
     bosses_list = pd.read_csv(
-        "data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
+        "data/csv_data/manually_changed_static_db/Wow app - Bosses table.csv",
         usecols=[
             "boss_name",
             "boss_id",
@@ -98,24 +100,25 @@ def main():
     )   
 
     # Transforming bosses_table to the .parquet format
-    df_bosses = pd.read_csv("Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv")
+    df_bosses = pd.read_csv("Data/csv_data/manually_changed_static_db/Wow app - Bosses table.csv")
     df_bosses.to_parquet(
         "Data/Static_database/bosses.parquet",
         engine="pyarrow"
     )
 
     # Transforming raids_table to the .parquet format
-    df_raids = pd.read_csv("Data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv")
+    df_raids = pd.read_csv("Data/csv_data/manually_changed_static_db/Wow app - Raid table.csv")
     df_raids.to_parquet(
         "Data/Static_database/raids.parquet",
         engine="pyarrow"
     )
 
     end_timer = time.perf_counter()
-    print(
-        "generate_static_item_database time =",
-        end_timer-start_timer
-    )
+    if log_on:
+        print(
+            "generate_static_item_database time =",
+            end_timer-start_timer
+        )
 
 if __name__ == "__main__":
     main()
