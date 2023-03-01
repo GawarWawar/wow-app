@@ -7,6 +7,8 @@ import time
 
 from flask import Flask, request, Response, jsonify, json, render_template
 from markupsafe import escape
+from flask_cors import CORS
+
 from endpoints.api_guidStats import _g_id, _g_id_characters, _g_id_raidRuns
 from endpoints.api_raidRun import _raidRun, _run_id, _run_id_characters, _run_id_drops
 from endpoints.api_raids import _raid_id, _raids
@@ -17,6 +19,7 @@ import utils.simple_utils.add_row as add_row
 render_dir = "FE"
 
 app = Flask(__name__, template_folder=render_dir)
+CORS(app)
 enctype="multipart/form-data"
 
 static_database = {
