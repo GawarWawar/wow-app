@@ -26,13 +26,6 @@ static_database = {
     "item_table" : "Data/Static_database/items.parquet"
 }
 
-static_database_csv = {
-    "raid_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Raid table.csv",
-    "boss_table" : "Data/data_for_staic_db/manually_changed_static_db/Wow app - Bosses table.csv",
-    "loot_table" : "Data/Static_database/loot_of_bosses.csv",
-    "item_table" : "Data/Static_database/Items.csv"
-}
-
 dynamic_database = {
     "guilds_table" : "Data/Dynamic_database/guilds_table.parquet",
     "characters_table" : "Data/Dynamic_database/characters_table.parquet",
@@ -40,15 +33,6 @@ dynamic_database = {
     "events_table" : "Data/Dynamic_database/events_table.parquet",
     "run_members" : "Data/Dynamic_database/run_members.parquet"
 }
-
-dynamic_database_csv = {
-    "guilds_table" : "Data/csv_data/dynamic_database_csv/guilds_table.csv",
-    "characters_table" : "Data/csv_data/dynamic_database_csv/characters_table.csv",
-    "runs_table" : "Data/csv_data/dynamic_database_csv/runs_of_the_guilds_table.csv",
-    "events_table" : "Data/csv_data/dynamic_database_csv/events_table.csv",
-    "run_members" : "Data/csv_data/dynamic_database_csv/run_members.csv"
-}
-
 
 @app.route("/")
 def render_index():
@@ -77,7 +61,6 @@ def info_about_raid_id(raid_id):
     )
     return(result)
 
-
 @app.route("/api/guildStats/<g_id>") #methods = ["GET"]
 #get all data about the guild
 #right now gives only list of guild members
@@ -92,34 +75,6 @@ def give_all_aviable_guild_stats(g_id):
         st_db_raid_table=static_database["raid_table"]
     )
     return(result)
-
-
-# DEPRECATED
-@app.route("/api/guildStats/<g_id>/characters") #methods = ["GET"]
-#giving all the characters in the certain guild
-def characters_of_the_guild (g_id):
-    result = _g_id_characters.characters_of_the_guild_m(
-        g_id,
-        #dynamic database
-        dn_db_guilds_table=dynamic_database_csv["guilds_table"],
-        dn_db_characters_table=dynamic_database_csv["characters_table"]
-    )
-    return(result)
-
-# DEPRECATED
-@app.route("/api/guildStats/<g_id>/raidRuns") #methods = ["GET"]
-#get info about all runs of the guild
-def get_all_guilds_runs(g_id):
-    result = _g_id_raidRuns.get_all_guilds_runs_m(
-        g_id,
-        #dynamic database
-        dn_db_guilds_table= dynamic_database_csv["guilds_table"],
-        dn_db_runs_table= dynamic_database_csv["runs_table"],
-        #static_database
-        st_db_raid_table = static_database_csv["raid_table"]
-    )
-    return (result)
-
 
 @app.route("/api/raidRun", methods = ["POST"])
 #create new run
@@ -140,9 +95,6 @@ def runs_of_the_guild():
 
 @app.route("/api/raidRun/<run_id>", methods = ["GET", "PUT"])
 #GET - get info about run_id 
-
-# DEPRECATED
-#PUT - update run_id
 def raid_run (run_id):
     if request.method == "GET":
         result = _run_id.call_raid_run_info_m(
