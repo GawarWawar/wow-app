@@ -42,11 +42,11 @@ dynamic_database = {
 }
 
 dynamic_database_csv = {
-    "guilds_table" : "Data/Dynamic_database/guilds_table.csv",
-    "characters_table" : "Data/Dynamic_database/characters_table.csv",
-    "runs_table" : "Data/Dynamic_database/runs_of_the_guilds_table.csv",
-    "events_table" : "Data/Dynamic_database/events_table.csv",
-    "run_members" : "Data/Dynamic_database/run_members.csv"
+    "guilds_table" : "Data/csv_data/dynamic_database_csv/guilds_table.csv",
+    "characters_table" : "Data/csv_data/dynamic_database_csv/characters_table.csv",
+    "runs_table" : "Data/csv_data/dynamic_database_csv/runs_of_the_guilds_table.csv",
+    "events_table" : "Data/csv_data/dynamic_database_csv/events_table.csv",
+    "run_members" : "Data/csv_data/dynamic_database_csv/run_members.csv"
 }
 
 
