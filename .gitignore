@@ -3,8 +3,10 @@
 documentation
 
 try.py
+try.html
 cheat_sheet.json
 
 .DS_Store
+.ipynb_checkpoints
 
 .gitconfig

@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import fastparquet as fp
 import json
 import datetime
 
@@ -25,33 +26,34 @@ def create_new_run_m(
     new_run = request.json
     
     #read table with info about runs
-    df_for_runs = pd.read_csv(dn_db_runs_table)
+    df_for_runs = pd.read_parquet(
+        dn_db_runs_table,
+        engine="pyarrow"
+    )
     
     #adding new run to the runs_table
     
-    run_id = add_row.id_and_three_columns(
+    run_id = add_row.id_two_columns_and_exect_time(
         df_for_runs,
         dict_w_info={
             #info about the run 
             0: new_run["guild_id"],
             1: new_run["raid_id"],
-            2: None
         }
     )
 
     #writing runs back to the file
-    df_for_runs.to_csv(
+    df_for_runs.to_parquet(
         dn_db_runs_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     df_for_runs = None
     
     #reading table w/ 
-    df_for_characters = pd.read_csv(
+    df_for_characters = pd.read_parquet(
         dn_db_characters_table #all existing characters 
     )
-    df_all_runs_members = pd.read_csv(
+    df_all_runs_members = pd.read_parquet(
         dn_db_run_members #members of all runs
     )
     
@@ -88,15 +90,14 @@ def create_new_run_m(
         )
     
     #writing info back into talbes 
-    df_for_characters.to_csv(
+    df_for_characters.to_parquet(
         dn_db_characters_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
-    df_all_runs_members.to_csv(
+    
+    df_all_runs_members.to_parquet(
         dn_db_run_members,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
      
     #returning run_id as the respons
