@@ -36,16 +36,16 @@ def raid_run_info_m(
     raid_run_id = int(escape(run_id))
 
     #reading table w/ info about runs
-    df_runs = pd.read_csv( 
+    df_runs = pd.read_parquet( 
             dn_db_runs_table,
-            usecols=[
+            columns=[
               "run_id",
               "guild_id",
               "raid_id",
               "date_finished"  
             ]
         )
-
+    
     #find run by its id in runs table
     run_info = su_tools.find_item_in_DataFrame_without_for(
         df_runs,
@@ -71,9 +71,11 @@ def raid_run_info_m(
     
     #we dont need that info about run anymore 
     run_info.pop("guild_id")
+    run_info.pop("date_finished")
+    
     
     #read the table w/ info about raids
-    df_run_raid = pd.read_csv(
+    df_run_raid = pd.read_parquet(
         st_db_raid_table
     )
     
@@ -106,9 +108,9 @@ def raid_run_info_m(
     
     #reading table w/ info about run members
         # we are not readint colums w/ # in the DataFrame
-    df_run_members = pd.read_csv(
+    df_run_members = pd.read_parquet(
         dn_db_run_members,
-        usecols=[
+        columns=[
             "run_id",
             "character_id",
             "system_time"
@@ -132,7 +134,7 @@ def raid_run_info_m(
     df_run_members = pd.DataFrame.merge(
         df_run_members,
         #reading df_characters
-        pd.read_csv(dn_db_characters_table),
+        pd.read_parquet(dn_db_characters_table),
         on="character_id"
     )
     
@@ -156,24 +158,16 @@ def raid_run_info_m(
     
     #reading table w/ info about events
         # we are not readint colums w/ # in the DataFrame
-    df_for_events = pd.read_csv(
+    df_for_events = pd.read_parquet(
         dn_db_events_table, 
-        usecols=[
+        columns=[
             "event_id",
             "run_id",
             "boss_id",
             "item_id",
             "character_id",
             "system_time" 
-        ],
-        dtype={
-            "event_id": np.int32,
-            "run_id": np.int32,
-            "boss_id": np.int32,
-            "item_id": np.int32,
-            "character_id": np.float64,
-            "system_time": object
-        }
+        ]
     )
     
     #getting events only for our run
@@ -188,29 +182,18 @@ def raid_run_info_m(
 
     #the latest action is written into 
         #dict_to_send["data"]["last_action"]
-    if last_action.__class__.__name__ == "float" \
-            and \
-        last_member_creation.__class__.__name__ == "float": 
-            dict_to_send["data"]["date_finished"] = None
-    elif last_member_creation.__class__.__name__ == "float":
+    if last_action > last_member_creation:
         dict_to_send["data"]["date_finished"] = last_action
-    elif last_action.__class__.__name__ == "float":
+    elif last_action < last_member_creation:
         dict_to_send["data"]["date_finished"] = last_member_creation
-    else:
-        if last_action > last_member_creation:
-                dict_to_send["data"]["date_finished"] = last_action
-        else:
-            dict_to_send["data"]["date_finished"] = \
-                last_member_creation
     
     df_runs.loc[run_index,"date_finished"]= \
-        dict_to_send["data"]["date_finished"]
+            dict_to_send["data"]["date_finished"]
     
     
-    df_runs.to_csv(
+    df_runs.to_parquet(
         dn_db_runs_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     
     #clearing variables that we wont use anymore
@@ -238,7 +221,7 @@ def raid_run_info_m(
     print(f"Time of {raid_run_info_m.__name__}={e_t-s_t}")
     
     #sendind gathered info about run
-    return json.dumps(dict_to_send, indent=2)
+    return json.dumps(dict_to_send, indent=2, cls=su_tools.MyEncoder)
 
 def call_raid_run_info_m(
     run_id,
@@ -274,16 +257,16 @@ def edit_run_m (
     run_update = pd.DataFrame.from_dict(request.json, orient="index")
     
     #reading tables w/ info about
-    df_for_runs = pd.read_csv(dn_db_runs_table) #runs
-    df_for_events = pd.read_csv( #events
-        dn_db_events_table, 
-        dtype={
-            "run_id": np.int32,
-            "boss_id": np.int32,
-            "item_id": np.int32,
-            "character_id": np.float64,
-            "system_time": object
-        }
+    df_for_runs = pd.read_parquet(dn_db_runs_table) #runs
+    df_for_events = pd.read_parquet( #events
+        dn_db_events_table,
+        #dtype={
+        #    "run_id": np.int32,
+        #    "boss_id": np.int32,
+        #    "item_id": np.int32,
+        #    "character_id": np.float64,
+        #    "system_time": object
+        #}
     ) 
     
     #check is there such run
@@ -325,10 +308,9 @@ def edit_run_m (
         )
         
     #write info w/ new events into the table 
-    df_for_events.to_csv(
+    df_for_events.to_parquet(
         dn_db_events_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     
     #returning list of new event_id -s as the respons

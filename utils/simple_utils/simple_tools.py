@@ -74,3 +74,14 @@ def extend_list_by_dict_from_df (
     
     return(None)
 
+class MyEncoder(json.JSONEncoder):
+    def default(self, object_to_check, *args, **kwargs):
+        # Change not serializeble object into serializble dtype
+        #if isinstance(object_to_check, pd._libs.missing.NAType) \
+        #    or \
+        if   pd.isnull(object_to_check):
+                return None
+        if isinstance(object_to_check, pd.Timestamp):
+            return str(object_to_check)
+        # Otherwise use the default behavior
+        return json.JSONEncoder.default(self, object_to_check, *args, **kwargs)

@@ -43,7 +43,7 @@ def delet_run_members_m (
     )
     
     #reading talbe w/ members of all runs 
-    df_run_members = pd.read_csv(dn_db_run_members)
+    df_run_members = pd.read_parquet(dn_db_run_members)
     
     #setting the same key as in the members_to_delete_df
     df_run_members = df_run_members.set_index(["character_id","run_id"])
@@ -67,10 +67,9 @@ def delet_run_members_m (
     df_run_members = df_run_members.reset_index()
     
     #write new talbe into the file
-    df_run_members.to_csv(
+    df_run_members.to_parquet(
         dn_db_run_members,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     
     #forming respons
@@ -108,7 +107,7 @@ def add_new_run_members (
     )
     
     #getting run info from dn_db_runs_table 
-    run_info = pd.read_csv(dn_db_runs_table)
+    run_info = pd.read_parquet(dn_db_runs_table)
     run_info = su_tools.find_item_in_DataFrame_without_for(
         run_info,
         run_id,
@@ -116,7 +115,7 @@ def add_new_run_members (
     )
     
     #reading info about all existing characters
-    df_characters = pd.read_csv(
+    df_characters = pd.read_parquet(
         dn_db_characters_table
     )
     
@@ -135,15 +134,14 @@ def add_new_run_members (
         character_id_list.append(character_id)
     
     #write df_character into file here
-    df_characters.to_csv(
+    df_characters.to_parquet(
         dn_db_characters_table,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     df_characters = None
     
     #reading info about all run_members
-    df_run_members = pd.read_csv(
+    df_run_members = pd.read_parquet(
         dn_db_run_members
     )
     
@@ -172,18 +170,17 @@ def add_new_run_members (
                 df_run_members,
                 dict_w_info ={
                     #info about that character we need to write
-                    0: run_id,
-                    1: character_id
+                    0: character_id,
+                    1: run_id,
                 }
             )
         else:
             they_were_in_the_run.append(int(character_id))
           
     #write new df_run_members into the file
-    df_run_members.to_csv(
+    df_run_members.to_parquet(
         dn_db_run_members,
-        index=False,
-        index_label=False
+        engine="pyarrow"
     )
     
     #forming respons
