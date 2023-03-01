@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import fastparquet as fp
 import json
 import datetime
 
