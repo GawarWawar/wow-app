@@ -62,7 +62,7 @@ def raid_run_info_m(
             "id": int(run_info.iloc[0].at["guild_id"]),
             "date_finished": run_info.iloc[0].at["date_finished"],
             #creating structure
-            "raid": [],
+            "raid": {},
             "participants":[],
             "loot_distributed":[]
         },
@@ -98,10 +98,12 @@ def raid_run_info_m(
     )
     
     #adding our info to dict_to_send
-    su_tools.extend_list_by_dict_from_df(
-        df_run_raid,
-        dict_to_send["data"]["raid"]
+    raid_to_add = json.loads(
+        df_run_raid.to_json(orient="records")
     )
+    dict_to_send["data"]["raid"] = raid_to_add[0]
+    
+    print(dict_to_send["data"]["raid"])
     
     #we dont need that info about run anymore 
     run_info.pop("raid_id")
