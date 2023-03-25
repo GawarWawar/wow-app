@@ -120,18 +120,18 @@ def give_all_aviable_guild_stats_m(
         axis="columns"
     )
     
-    #adding the new column to store info about raid for each run
-    df_runs["raid"]="place_holder"
-    
     #proseed in if guild has at least 1 run
     if not df_runs.empty:
+        #adding the new column to store info about raid for each run
+        df_runs["raid"]="place_holder"
+        
         #forming list of unique raids guild was in
         raids_unique_ids = df_runs["id"].copy()
         raids_unique_ids = raids_unique_ids.to_frame()
         raids_unique_ids = raids_unique_ids.\
             drop_duplicates(ignore_index=True)
         
-        #for every run -> add add info about it's raid
+        #for every run -> add info about it's raid
         for raid_id in range(len(raids_unique_ids.loc[:,"id"])):
             #getting info about raid in raid table
             raid_info = su_tools.find_item_in_DataFrame_without_for(

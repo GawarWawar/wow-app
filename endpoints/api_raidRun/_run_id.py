@@ -59,7 +59,7 @@ def raid_run_info_m(
     dict_to_send = {
         "data":{
             #adding already known info from run_info
-            "id": int(run_info.iloc[0].at["guild_id"]),
+            "id": raid_run_id,
             "date_finished": run_info.iloc[0].at["date_finished"],
             #creating structure
             "raid": {},
