@@ -15,7 +15,7 @@ SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
+from utils.simple_utils import add_row
 import utils.tools as u_tools
 
 def delet_run_members_m (
@@ -166,7 +166,7 @@ def add_new_run_members (
         
         if character_to_find.empty:
             #adding run member to the table
-            add_row.two_columns_and_exact_time(
+            add_row.add_a_row_with_exact_time(
                 df_run_members,
                 dict_w_info ={
                     #info about that character we need to write

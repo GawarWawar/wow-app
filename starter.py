@@ -14,7 +14,7 @@ from endpoints.api_raidRun import _raidRun, _run_id, _run_id_characters, _run_id
 from endpoints.api_raids import _raid_id, _raids
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
+from utils.simple_utils import add_row
 
 render_dir = "FE"
 

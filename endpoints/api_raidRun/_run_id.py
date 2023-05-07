@@ -15,7 +15,7 @@ SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
+from utils.simple_utils import add_row
 
 
 def raid_run_info_m(
@@ -298,14 +298,14 @@ def edit_run_m (
     for event in range(len(run_update)):
         new_event_ids.append(
             #create new event
-            add_row.id_four_columns_and_exact_time(
+            add_row.add_a_row_with_id_and_exact_time(
                 df_for_events,
-                dict_w_info={
-                    0: int(run_update.iloc[event].at["run_id"]),
-                    1: int(run_update.iloc[event].at["boss_id"]),
-                    2: int(run_update.iloc[event].at["item_id"]),
-                    3: run_update.iloc[event].at["character_id"],
-                }
+                list_with_info=[
+                    int(run_update.iloc[event].at["run_id"]),
+                    int(run_update.iloc[event].at["boss_id"]),
+                    int(run_update.iloc[event].at["item_id"]),
+                    run_update.iloc[event].at["character_id"],
+                ]
             )
         )
         

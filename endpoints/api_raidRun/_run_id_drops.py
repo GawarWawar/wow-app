@@ -15,7 +15,7 @@ SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
+from utils.simple_utils import add_row
 import utils.tools as u_tools
 
 def add_loots_m (
@@ -54,23 +54,23 @@ def add_loots_m (
         #if it doesnt exist ->
             #create new event
         if event_boss_x_item.empty:
-            event_id = add_row.id_four_columns_and_exact_time(
+            event_id = add_row.add_a_row_with_id_and_exact_time(
                 df_events,
-                dict_w_info={
-                    0: int(run_id),
-                    1: int(
+                list_with_info=[
+                    int(run_id),
+                    int(
                         new_loot.iloc[loot].\
                             at["boss_dropped_from_id"]
                     ),
-                    2: int(
-                        new_loot.iloc[loot].\
+                    int(
+                     new_loot.iloc[loot].\
                             at["item_id"]
                     ),
-                    3: float(
+                    float(
                         new_loot.iloc[loot].\
                             at["character_assigned_to_id"]
                     ),
-                }
+                ]
             )
             events_added.append(int(event_id))
         #if it does exist ->
@@ -79,8 +79,10 @@ def add_loots_m (
             df_events.loc[
                 event_boss_x_item.index[0],
                 "character_id"
-            ] = float(new_loot.iloc[loot].\
-                    at["character_assigned_to_id"])
+            ] = float(
+                    new_loot.iloc[loot].\
+                    at["character_assigned_to_id"]
+                )
             events_changed.append(
                 int(df_events.loc[
                     event_boss_x_item.index[0],

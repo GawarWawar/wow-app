@@ -4,231 +4,69 @@ import datetime
 
 import time
 
-def id_and_two_columns (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None
-    } #keys = 0,1,2; values = values we need to add
-    
+def generate_new_id(
+    main_df: pd.DataFrame(), # df to generate new id for
 ):
-    """
-    Add row w/ 3 columns, in which the 1st one is generated id \n
-        \n
-        return id
-    """
-    #we have place holder in each table, so we dont need to worry about 
+    '''
+        Generates id based on the first column of the given DataFrame
+    '''
+    # We have place holder in each table, so we dont need to worry about 
         #nothing beeng in the table
-        
-    #we are using privious last id to generate id for the new row
     next_id = main_df.iloc[:,0].\
                 iat[
                     len(main_df.index)-1
                 ] + 1
-    
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    next_id,
-                    dict_w_info[0],
-                    dict_w_info[1]
-                ]
-            
     return(next_id)
 
-def three_columns (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None,
-       2 : None 
-    } #keys = 0,1,2; values = values we need to add
-): 
-    """
-    Add row w/ 3 columns \n
-        \n
-        return None
-    """
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    dict_w_info[0],
-                    dict_w_info[1], 
-                    dict_w_info[2]
-                ]
-            
-    return()
+def add_a_row (
+    main_df: pd.DataFrame(), # df to add a row
+    list_with_info: list() # List with a contant for the row
+) -> None:
+    '''
+        Insert a new row into the end of the DataFrame with list_with_info content.
+        Note: the length of list_with_info needs to be exact as amount of columns into the main_df.
+    '''
+    main_df.loc[len(main_df.index)]=list_with_info
 
-def two_columns_and_exact_time (
-    main_df,
-    dict_w_info ={
-        0: None,
-        1: None
-    }
-):
-    """
-    Add row w/ 3 columns, in which the last one is generated exact time\n
-        \n
-        return None
-    """
+def add_a_row_with_exact_time (
+    main_df: pd.DataFrame(), # df to add a row
+    list_with_info: list() # List with a contant for the row
+) -> None:
+    '''
+        Insert a new row into the end of the DataFrame with list_with_info content and exact_time in the last column.
+        Note: the length of list_with_info needs to be exact as amount of columns into the main_df - 1, because last column already contains exact_time.
+    '''
     #getting system time for the exact moment
     exact_time = datetime.datetime.now()
-    #adding new row to the talbe  
-    three_columns(
-        main_df,
-        dict_w_info={
-                #info about that object we need to write
-                0: dict_w_info[0],
-                1: dict_w_info[1],
-                2: exact_time
-            }
-    )
+    list_with_info.append(exact_time)
+    add_a_row(main_df, list_with_info)
 
-def id_and_three_columns (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None,
-       2 : None 
-    } #keys = 0,1,2; values = values we need to add
-    
-):
-    """
-    Add row w/ 4 columns, in which the 1st one is generated id \n
-        \n
-        return id
-    """
-    #we have place holder in each table, so we dont need to worry about 
-        #nothing beeng in the table
-        
-    #we are using privious last id to generate id for the new row
-    next_id = main_df.iloc[:,0].\
-                iat[
-                    len(main_df.index)-1
-                ] + 1
-    
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    next_id,
-                    dict_w_info[0],
-                    dict_w_info[1], 
-                    dict_w_info[2]
-                ]
-            
+def add_a_row_with_id (
+    main_df: pd.DataFrame(), # df to add a row
+    list_with_info: list() # List with a contant for the row
+) -> int:
+    '''
+        Insert a new row into the end of the Dataframe with id in the first column and list_with_info content.
+        !Note: the length of list_with_info needs to be exact as amount of columns into the main_df - 1, because first column already contains id.
+    '''
+    row_content = [] # We need to create new list to get id in the 1st column
+    next_id = generate_new_id(main_df)
+    row_content.append(next_id)
+    row_content.extend(list_with_info)
+    add_a_row(main_df, row_content)
     return(next_id)
-
-def id_two_columns_and_exect_time (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None,
-    } #keys = 0,1,2; values = values we need to add
     
-):
-    """
-    Add row w/ 4 columns, in which the 1st one is generated id \n
-        \n
-        return id
-    """
-    #we have place holder in each table, so we dont need to worry about 
-        #nothing beeng in the table
-    #we are using privious last id to generate id for the new row
-    next_id = main_df.iloc[:,0].\
-                iat[
-                    len(main_df.index)-1
-                ] + 1
-    #getting system time for the exact moment
-    exact_time = datetime.datetime.now()
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    next_id,
-                    dict_w_info[0],
-                    dict_w_info[1], 
-                    exact_time
-                ]
-            
+def add_a_row_with_id_and_exact_time (
+    main_df: pd.DataFrame(), # df to add a row
+    list_with_info: list() # List with a contant for the row
+) -> int:
+    '''
+        Insert a new row into the end of the Dataframe with id in the first column, list_with_info content and exact_time in the last column.
+        !Note: the length of list_with_info needs to be exact as amount of columns into the main_df - 2, because first column already contains id and last column already contains exact_time.
+    '''
+    row_content = [] # We need to create new list to get id in the 1st column
+    next_id = generate_new_id(main_df)
+    row_content.append(next_id)
+    row_content.extend(list_with_info)
+    add_a_row_with_exact_time(main_df, row_content)
     return(next_id)
-
-def id_and_five_columns (
-    main_df, #df to add a row
-    dict_w_info={ #dictionary w/ content info, that we need to add ->
-       0 : None,
-       1 : None,
-       2 : None,
-       3 : None,
-       4 : None 
-    } #keys = 0,1,2; values = values we need to add
-    
-):
-    """
-    Add row w/ 6 columns, in which the 1st one is generated id \n
-        \n
-        return id
-    """
-    #we have place holder in each table, so we dont need to worry about 
-        #nothing beeng in the table
-        
-    #we are using privious last id to generate id for the new row
-    next_id = main_df.iloc[:,0].\
-                iat[
-                    len(main_df.index)-1
-                ] + 1
-    
-    #adding row w/ info from our dict
-    main_df.loc[
-                len(
-                    main_df.index
-                )
-            ] = [
-                    next_id,
-                    dict_w_info[0],
-                    dict_w_info[1], 
-                    dict_w_info[2],
-                    dict_w_info[3], 
-                    dict_w_info[4]
-                ]
-            
-    return(next_id)
-
-def id_four_columns_and_exact_time(
-    main_df,
-    dict_w_info={
-            0: None,
-            1: None,
-            2: None,
-            3: None,
-    }
-):
-    """
-    Add row w/ 6 columns, in which the 1st one is generated id \n
-        and the last one is generated exact time\n
-        \n
-        return id
-    """
-    exact_time = datetime.datetime.now() #system time
-    #create new row
-    id = id_and_five_columns(
-        main_df,
-        dict_w_info={
-            0: dict_w_info[0],
-            1: dict_w_info[1],
-            2: dict_w_info[2],
-            3: dict_w_info[3],
-            4: exact_time,
-        }
-    )
-    return (id)

@@ -15,7 +15,7 @@ sys.path.append(dirname(SCRIPT_DIR))
 import utils.simple_utils.simple_tools as su_tools
 import utils.tools as u_tools
 
-#import utils.add_row as add_row
+#from utils.simple_utils import add_row
 
 def give_all_aviable_guild_stats_m(
     g_id,

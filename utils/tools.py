@@ -11,7 +11,7 @@ SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
+from utils.simple_utils import add_row
 
 def check_character_existence_add_if_not (
     df_characters, #df for all characters (characters table)
@@ -32,14 +32,13 @@ def check_character_existence_add_if_not (
     #check if this character already exist 
     if member_existence.empty:
         #adding new character to the character_table
-        character_id = add_row.id_and_three_columns(
+        character_id = add_row.add_a_row_with_id(
             df_characters,
-            dict_w_info={
-                #info about that character we need to write
-                0:df_run_members.loc[run_member_counter,"name"],
-                1:new_members_guild_id,
-                2:df_run_members.loc[run_member_counter,"character_class"],
-            }
+            list_with_info=[
+                df_run_members.loc[run_member_counter,"name"],
+                new_members_guild_id,
+                df_run_members.loc[run_member_counter,"character_class"], 
+            ]
         )
     else:
         #if exist -> getting its id

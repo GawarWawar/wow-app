@@ -13,8 +13,8 @@ SCRIPT_DIR = dirname(abspath(__file__))
 sys.path.append(dirname(SCRIPT_DIR))
 
 import utils.simple_utils.simple_tools as su_tools
-import utils.simple_utils.add_row as add_row
 import utils.tools as u_tools
+from utils.simple_utils import add_row
 
 def create_new_run_m(
     dn_db_runs_table,
@@ -32,13 +32,13 @@ def create_new_run_m(
     
     #adding new run to the runs_table
     
-    run_id = add_row.id_two_columns_and_exect_time(
+    run_id = add_row.add_a_row_with_id_and_exact_time(
         df_for_runs,
-        dict_w_info={
-            #info about the run 
-            0: new_run["guild_id"],
-            1: new_run["raid_id"],
-        }
+        # Info about the run 
+        list_with_info=[ 
+            new_run["guild_id"],
+            new_run["raid_id"],
+        ]
     )
 
     #writing runs back to the file
@@ -78,14 +78,14 @@ def create_new_run_m(
             new_run["guild_id"]
         )
         
-        add_row.two_columns_and_exact_time(
+        add_row.add_a_row_with_exact_time(
             #adding run member to the table
             df_all_runs_members,
-            dict_w_info={
-                    #info about that character we need to write
-                    0: run_id,
-                    1: character_id
-                }
+            list_with_info=[
+                #info about that character we need to write
+                run_id,
+                character_id
+            ]
         )
     
     #writing info back into talbes 
