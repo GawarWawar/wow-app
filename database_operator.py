@@ -20,9 +20,9 @@ print(
 """
 Select next options what you want to do:
     0: Generate static database (if yes input 0)
-    1: Transform dynamic database into parquet (if yes input 2)
-    2: Transform dynamic database into csv (if yes input 1)
-    3: Should we do logging (if yes input 3)
+    1: Transform dynamic database into parquet (if yes input 1)
+    2: Transform dynamic database into csv (if yes input 2)
+    3: Should we do time logging (printing) (if yes input 3)
 
 If you want all options, input 0123
 *Transformation dynamic database into parquet will be done first
